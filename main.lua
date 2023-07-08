@@ -16,6 +16,8 @@ local scripts = {
     "passives.MomsPearls",
     "passives.AcidBaby",
     "passives.Leprosy",
+
+	"actives.Teleport",
 }
 
 for i = 1 , #scripts do

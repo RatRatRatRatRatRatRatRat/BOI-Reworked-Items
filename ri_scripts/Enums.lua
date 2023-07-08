@@ -1,5 +1,6 @@
 local Enums = {
     EID = {
+		-- Passives
         [CollectibleType.COLLECTIBLE_TRANSCENDENCE] = "",
         [CollectibleType.COLLECTIBLE_STEVEN] = "",
         [CollectibleType.COLLECTIBLE_LITTLE_STEVEN] = "",
@@ -13,6 +14,9 @@ local Enums = {
         [CollectibleType.COLLECTIBLE_MOMS_PEARLS] = "",
         [CollectibleType.COLLECTIBLE_ACID_BABY] = "",
         [CollectibleType.COLLECTIBLE_LEPROSY] = "",
+
+		-- Actives
+		[CollectibleType.COLLECTIBLE_TELEPORT] = "",
     },
     Callbacks = {
         POST_COLLECTIBLE_PICKUP = "POST_COLLECTIBLE_PICKUP"
