@@ -8,7 +8,7 @@ local tearstochange = {
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
     if tear.SpawnerType == EntityType.ENTITY_PLAYER then
         local player = tear.SpawnerEntity:ToPlayer()
-        if REWORKEDITEMS.Helpers.DoesPlayerHaveCollectibleEffect(player, CollectibleType.COLLECTIBLE_STEVEN) then
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_STEVEN) then
             if tearstochange[tear.Variant] then
                 tear:ChangeVariant(TearVariant.MULTIDIMENSIONAL)
             end

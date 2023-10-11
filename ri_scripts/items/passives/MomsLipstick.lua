@@ -1,6 +1,6 @@
 ---@param player EntityPlayer
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, _, _, istouched, _, _, player)
-    if istouched then return end
+    if not istouched then return end
     for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART)) do
         local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SAD_ONION)
         if pickup.FrameCount == 0 and rng:RandomFloat() < 0.05 then
