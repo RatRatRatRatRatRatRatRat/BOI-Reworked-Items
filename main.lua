@@ -1,23 +1,24 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 
-REWORKEDITEMS.Enums = require("ri_scripts.Enums")
-REWORKEDITEMS.Helpers = require("ri_scripts.Helpers")
-
 local scripts = {
-    "passives.Skatole",
-    "passives.Transcendence",
-    "passives.MomsLipstick",
-    "passives.Steven",
-    "passives.LittleSteven",
-    "passives.GhostBaby",
-    "passives.StemCells",
-    "passives.Abel",
-    "passives.TheBody",
-    "passives.MomsPearls",
-    "passives.AcidBaby",
-    "passives.Leprosy",
+    "Helpers",
+    "Enums",
 
-	"actives.Teleport",
+    "items.passives.Skatole",
+    --"passives.Transcendence",
+    "items.passives.MomsLipstick",
+    "items.passives.Steven",
+    "items.passives.LittleSteven",
+    "items.passives.GhostBaby",
+    "items.passives.StemCells",
+    "items.passives.Abel",
+    "items.passives.TheBody",
+    "items.passives.MomsPearls",
+    "items.passives.GodsFlesh",
+    "items.passives.AcidBaby",
+    "items.passives.Leprosy",
+
+	"items.actives.Teleport",
 }
 
 for i = 1 , #scripts do

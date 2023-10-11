@@ -18,9 +18,6 @@ local Enums = {
 		-- Actives
 		[CollectibleType.COLLECTIBLE_TELEPORT] = "",
     },
-    Callbacks = {
-        POST_COLLECTIBLE_PICKUP = "POST_COLLECTIBLE_PICKUP"
-    }
 }
 
 return Enums
