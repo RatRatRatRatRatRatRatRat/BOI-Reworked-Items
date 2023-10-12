@@ -19,6 +19,7 @@ local scripts = {
     "items.passives.Leprosy",
 
 	"items.actives.Teleport",
+    "items.actives.SpiderButt",
 }
 
 for i = 1 , #scripts do
