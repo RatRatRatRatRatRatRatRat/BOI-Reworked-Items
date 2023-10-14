@@ -4,6 +4,7 @@ local scripts = {
     "Helpers",
     "Enums",
 
+    "items.passives.NumberOne",
     "items.passives.Skatole",
     --"passives.Transcendence",
     "items.passives.MomsLipstick",
@@ -25,6 +26,7 @@ local scripts = {
 	"items.actives.Teleport",
     "items.actives.SpiderButt",
     "items.actives.Flush",
+    --"items.actives.MomsBracelet",
 }
 
 for i = 1 , #scripts do
