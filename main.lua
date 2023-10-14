@@ -15,12 +15,16 @@ local scripts = {
     "items.passives.Abel",
     "items.passives.TheBody",
     "items.passives.MomsPearls",
+    "items.passives.Zodiac",
     "items.passives.GodsFlesh",
+    "items.passives.DarkPrincesCrown",
+    "items.passives.DeadTooth",
     "items.passives.AcidBaby",
     "items.passives.Leprosy",
 
 	"items.actives.Teleport",
     "items.actives.SpiderButt",
+    "items.actives.Flush",
 }
 
 for i = 1 , #scripts do
