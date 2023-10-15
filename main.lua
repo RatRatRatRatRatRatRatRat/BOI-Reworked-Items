@@ -28,6 +28,9 @@ local scripts = {
     "items.actives.SpiderButt",
     "items.actives.Flush",
     --"items.actives.MomsBracelet",
+
+    "slots.KeyMaster",
+    "slots.BombBum",
 }
 
 for i = 1 , #scripts do
