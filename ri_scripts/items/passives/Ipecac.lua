@@ -73,9 +73,10 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
     if tear.SpawnerType == EntityType.ENTITY_PLAYER then
         local player = tear.SpawnerEntity:ToPlayer()
         if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
-            local damage = player.Damage * 10
+            local mult = tear.CollisionDamage / player.Damage
+            local damage = player.Damage * 10 * mult
             if damage > 40 then
-                damage = player.Damage * 5 + 20
+                damage = player.Damage * 5 * mult + 20
             end
             tear.CollisionDamage = damage
             tear.Scale = math.sqrt((30 / (player.MaxFireDelay + 1)) * 3)
