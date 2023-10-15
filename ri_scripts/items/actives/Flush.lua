@@ -18,4 +18,4 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_USE_ITEM, function()
             end
         end
     end
-end, CollectibleType.FLUSH)
+end, CollectibleType.COLLECTIBLE_FLUSH)
