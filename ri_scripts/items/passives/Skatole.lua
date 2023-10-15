@@ -31,7 +31,7 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, function(_, npc)
 end)
 
 --[[
-    
+
 ---@param tear EntityProjectile
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PROJECTILE_INIT, function(_, tear)
     if not REWORKEDITEMS.Helpers.DoesAnyPlayerHaveCollectibleEffect(CollectibleType.COLLECTIBLE_SKATOLE) then return end

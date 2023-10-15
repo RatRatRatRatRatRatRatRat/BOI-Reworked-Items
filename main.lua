@@ -24,6 +24,7 @@ local scripts = {
     "items.passives.AcidBaby",
     "items.passives.Leprosy",
 
+    "items.actives.ThePoop",
 	"items.actives.Teleport",
     "items.actives.SpiderButt",
     "items.actives.Flush",
@@ -33,3 +34,11 @@ local scripts = {
 for i = 1 , #scripts do
     require("ri_scripts."..scripts[i])
 end
+
+---@param player EntityPlayer
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+    local heldEntity = player:GetHeldEntity()
+    if heldEntity then
+        print(heldEntity.Type.. "." ..heldEntity.Variant.. "." ..heldEntity.SubType)
+    end
+end)

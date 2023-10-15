@@ -61,35 +61,35 @@ function mod:GetDamageMultiplier(player)
 	if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_EVES_MASCARA) > 0 then
 		multi = multi * 2.0
 	end
-	
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_POLYPHEMUS) > 0 and
 	   player:GetCollectibleNum(CollectibleType.COLLECTIBLE_20_20) == 0
 	then
 		multi = multi * 2.0
 	end
-	
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SACRED_HEART) > 0 then
 		multi = multi * 2.3
 	end
-	
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ALMOND_MILK) > 0 then
 		multi = multi * 0.3
 	elseif player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SOY_MILK) > 0 then
 		multi = multi * 0.2
 	end
-	
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_IMMACULATE_HEART) > 0 then
 		multi = multi * 1.2
 	end
-	
+
     if effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) > 0 then
 		multi = multi * 2.0
 	end
-	
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_HAEMOLACRIA) > 0 then
 		multi = multi * 1.5
 	end
-	
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_20_20) > 0 then
 		multi = multi * 0.8
 	end
@@ -175,7 +175,7 @@ function mod:AddFlatTears(player, tearsup)
 
     --C section, Knife, Epic Fetus, Technology, Ludo and Sword doesn't change it?
     --Please report any unknown or forgotten synergy
-  
+
     --Ipecac
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_IPECAC) > 0 then
         if not player:HasWeaponType(2) and
@@ -209,7 +209,7 @@ function mod:AddFlatTears(player, tearsup)
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) > 0 then
       multi = multi * 0.66
     end
-    
+
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_INNER_EYE) > 0 and
         player:GetCollectibleNum(CollectibleType.COLLECTIBLE_20_20) == 0 then
       multi = multi * 0.51
@@ -224,12 +224,12 @@ function mod:AddFlatTears(player, tearsup)
         not player:HasWeaponType(14) then
       multi = multi * 0.42
     end
-    
+
     --Cards
     if player:GetEffects():HasNullEffect(NullItemID.ID_REVERSE_CHARIOT) then
       multi = multi * 4
     end
-    
+
     --Misc
     if player:GetPlayerType() == PlayerType.PLAYER_JUDAS and
         player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT) > 0 and
@@ -342,9 +342,9 @@ function mod:IsInHallowedGroundAura(player)
     data.PeterModInStarAura = data.PeterModInHallowedAura or 0
 
     for _, effect in pairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND)) do
-        if effect.Parent 
+        if effect.Parent
         and (effect.Parent.Type == EntityType.ENTITY_POOP
-        or effect.Parent.Type == EntityType.ENTITY_FAMILIAR 
+        or effect.Parent.Type == EntityType.ENTITY_FAMILIAR
         and effect.Parent.Variant == FamiliarVariant.DIP) then
             local scale = ((effect.SpriteScale.X + effect.SpriteScale.Y) * 70 / 2) + player.Size
             if player.Position:Distance(effect.Position) < scale then
@@ -356,15 +356,15 @@ function mod:IsInHallowedGroundAura(player)
             local scale = 70 + player.Size
             if player.Position:Distance(effect.Position) < scale then
                 staraura = staraura + 1
-            end           
+            end
         end
     end
 
     if hallowedaura ~= data.PeterModInHallowedAura then
-        data.PeterModInHallowedAura = hallowedaura 
+        data.PeterModInHallowedAura = hallowedaura
     end
     if staraura ~= data.PeterModInStarAura then
-        data.PeterModInStarAura = staraura 
+        data.PeterModInStarAura = staraura
     end
 end
 
@@ -385,4 +385,14 @@ function mod:IsInHallowedCreep(player)
     if auranum ~= data.PeterModInHallowedCreep then
         data.PeterModInHallowedCreep = auranum
     end
+end
+
+---@param player EntityPlayer
+function mod:TryHoldPoop(player, poopVariant)
+    local poop = Isaac.Spawn(EntityType.ENTITY_POOP, poopVariant, 0, player.Position, Vector.Zero, player)
+    for i = 1, 20 do
+        poop:Update()
+    end
+    player:TryHoldEntity(poop)
+    SFXManager():Play(SoundEffect.SOUND_POOPITEM_HOLD)
 end

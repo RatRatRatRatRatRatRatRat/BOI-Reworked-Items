@@ -1,14 +1,14 @@
 -- Hidden Item Manager, by Connor (aka Ghostbroster)
 -- Version 2.0
--- 
+--
 -- Manages a system of hidden Lemegeton Item Wisps to simulate the effects of passive items without actually granting the player those items (so they can't be removed or rerolled!).
 -- Good for giving the effect of an item temporarily, making an item effect "innate" to a character, and all sorts of other stuff, probably.
 -- Please keep in mind that the game has a TOTAL FAMILIAR LIMIT of 64 at a time! Each item provided by this is a wisp familiar!
 -- So given that, please be careful and considerate when using this.
--- 
+--
 -- GitHub Page: https://github.com/ConnorForan/HiddenItemManager
 -- Please refer to the GitHub page or the README file for more information and a guide.
--- 
+--
 -- Thanks Cake, DeadInfinity, Erfly, Taiga, and anyone else who might have helped figure out these wisp tricks.
 --
 -- Let me know if you have any problems or would like to suggest additional features/functions.
@@ -48,13 +48,13 @@ local initialized = false
 function HiddenItemManager:Init(mod)
 	if not initialized then
 		HiddenItemManager.Mod = mod
-		
+
 		for _, tab in ipairs(Callbacks) do
 			mod:AddPriorityCallback(tab.Callback, tab.Priority, tab.Func, tab.Param)
 		end
-		
+
 		HiddenItemManager.WispTag = "HiddenItemManager:" .. mod.Name
-		
+
 		initialized = true
 	end
 	return HiddenItemManager
@@ -177,7 +177,7 @@ local function GetPlayerKey(player)
 		LOG_ERROR("Found invalid player reference in GetPlayerKey!")
 		return
 	end
-	
+
 	-- Player InitSeeds are inconsistent with Tainted Lazarus & co-op.
 	-- However, using collectible RNG seeds seems to work, even if potentially breakable.
 	player = player:ToPlayer()
@@ -190,7 +190,7 @@ end
 -- Given the data entry for a hidden item, gets the wisp.
 local function GetWisp(tab)
 	if not tab then return end
-	
+
 	local ptr = WISP_PTRS[tab.WispKey]
 	if ptr and ptr.Ref then
 		if ptr.Ref.Type == EntityType.ENTITY_FAMILIAR and ptr.Ref.Variant == FamiliarVariant.ITEM_WISP then
@@ -203,7 +203,7 @@ end
 -- Given the data entry for a hidden item, gets the player.
 local function GetPlayer(tab)
 	if not tab then return end
-	
+
 	local wisp = GetWisp(tab)
 	if wisp and wisp.Player then
 		if wisp.Player.Type ~= EntityType.ENTITY_PLAYER then
@@ -212,7 +212,7 @@ local function GetPlayer(tab)
 		end
 		return wisp.Player
 	end
-	
+
 	-- Player wasn't found on the wisp. Might be due to us temporarily nulling `wisp.Player` to avoid Sacrificial Altar. See if we can find the player.
 	for i=0, game:GetNumPlayers()-1 do
 		local player = game:GetPlayer(i)
@@ -224,13 +224,13 @@ end
 
 local function KillWisp(wisp)
 	if not wisp then return end
-	
+
 	if wisp.Player and wisp.Player.Type == EntityType.ENTITY_PLAYER and wisp.Player:Exists() and wisp.SubType == CollectibleType.COLLECTIBLE_MARS then
 		wisp.Player:TryRemoveNullCostume(NullItemID.ID_MARS)
 	end
-	
+
 	wisp:Remove()
-	
+
 	if wisp.Player and wisp.Player.Type ~= EntityType.ENTITY_PLAYER then
 		LOG_ERROR("Found wisp with an invalid Player reference in KillWisp!")
 	elseif wisp.Type == EntityType.ENTITY_FAMILIAR and wisp.Variant == FamiliarVariant.ITEM_WISP then
@@ -247,7 +247,7 @@ local function RemoveWisp(key)
 	if not tab then return end
 	local player = GetPlayer(tab)
 	local item = tab.Item
-	
+
 	if player then
 		ClearData(GetPlayerKey(player), tab.Group, item, key)
 	else
@@ -256,7 +256,7 @@ local function RemoveWisp(key)
 			ClearData(playerKey, tab.Group, item, key)
 		end
 	end
-	
+
 	INDEX[key] = nil
 end
 
@@ -306,7 +306,7 @@ local function InitializeWisp(wisp)
 	KeepWispHidden(wisp)
 	wisp:RemoveFromOrbit()
 	TagWisp(wisp)
-	
+
 	local wispKey = GetWispKey(wisp)
 	local tab = INDEX[wispKey]
 	tab.WispKey = wispKey
@@ -324,7 +324,7 @@ local function SpawnWisp(player, itemID, duration, group, removeOnNewRoom, remov
 	if duration and duration < 1 then
 		duration = nil
 	end
-	
+
 	local wisp = player:AddItemWisp(itemID, kWispPos)
 	local wispKey = GetWispKey(wisp)
 	local tab = {
@@ -371,7 +371,7 @@ end
 function HiddenItemManager:CheckStack(player, itemID, targetStack, group)
 	local currentStack = HiddenItemManager:CountStack(player, itemID, group)
 	local diff = math.abs(currentStack - targetStack)
-	
+
 	if currentStack > targetStack then
 		for i=1, diff do
 			HiddenItemManager:Remove(player, itemID, group)
@@ -428,7 +428,7 @@ end
 function HiddenItemManager:CountStack(player, itemID, group)
 	local tab = FindData(GetPlayerKey(player), group, itemID)
 	if not tab then return 0 end
-	
+
 	local count = 0
 	for key, data in pairs(tab) do
 		count = count + 1
@@ -439,16 +439,16 @@ end
 -- Returns a table representing all of the item effects a player currently has from a specified group.
 function HiddenItemManager:GetStacks(player, group)
 	local tab = FindData(GetPlayerKey(player), group)
-	
+
 	local output = {}
-	
+
 	for itemID, _ in pairs(tab) do
 		local count = HiddenItemManager:CountStack(player, itemID, group)
 		if count > 0 then
 			output[itemID] = count
 		end
 	end
-	
+
 	return output
 end
 
@@ -467,7 +467,7 @@ end
 -- Pass this table into HiddenItemManager:LoadData() when you load your SaveData.
 function HiddenItemManager:GetSaveData()
 	LOG("Saving wisp index of size: " .. TableSize(INDEX))
-	
+
 	return {
 		INDEX = INDEX,
 	}
@@ -500,20 +500,20 @@ end
 
 function HiddenItemManager:ItemWispUpdate(wisp)
 	if HiddenItemManager.INITIALIZING then return end
-	
+
 	local wispKey = GetWispKey(wisp)
 	local wispData = INDEX[wispKey]
-	
+
 	if wispData then
 		KeepWispHidden(wisp)
 		ApplyPersistentHiddenItemManagerMark(wisp)
-		
+
 		local player = wisp.Player
 		local playerKey = GetPlayerKey(player)
-		
+
 		if not IsManagedWisp(wisp) then
 			-- This wisp isn't marked as one of our wisps, but we're supposed to have a wisp with this InitSeed.
-			
+
 			-- Check if there's already an active wisp for this effect.
 			local existingWisp = GetWisp(wispData)
 			if existingWisp or not player or not playerKey then
@@ -523,17 +523,17 @@ function HiddenItemManager:ItemWispUpdate(wisp)
 				KillWisp(wisp)
 				return false
 			end
-			
+
 			-- Most likely, we've quit and continued a run. Re-initialize this wisp as a hidden one.
 			InsertData(playerKey, wispData.Group, wispData.Item, wispKey, wispData)
 			InitializeWisp(wisp)
 		end
-		
+
 		-- Check if timed wisp has expired.
 		local timedOut = (wispData.Duration and wispData.AddTime + wispData.Duration < game:GetFrameCount())
 		-- Remove the wisp if the player disappears or seems to get replaced.
 		local playerGone = (not player or playerKey ~= wispData.PlayerKey)
-		
+
 		if timedOut or playerGone then
 			RemoveWisp(wispKey)
 			KillWisp(wisp)
@@ -545,7 +545,7 @@ function HiddenItemManager:ItemWispUpdate(wisp)
 		KillWisp(wisp)
 		return false
 	end
-	
+
 	if IsManagedWisp(wisp) then
 		return false
 	end
@@ -555,10 +555,10 @@ AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, HiddenItemManager.ItemWispUpdate, F
 
 function HiddenItemManager:ItemWispLateUpdate(wisp)
 	if HiddenItemManager.INITIALIZING then return end
-	
+
 	local wispKey = GetWispKey(wisp)
 	local wispData = INDEX[wispKey]
-	
+
 	if not wispData and not IsAnyHiddenItemManagerWisp(wisp) and WasHiddenItemManagerWisp(wisp) then
 		-- This wisp was at one point a HiddenItemManager wisp, but no instance of HiddenItemManager has claimed it. Kill it.
 		KeepWispHidden(wisp)
@@ -583,7 +583,7 @@ AddLateCallback(ModCallbacks.MC_POST_GAME_STARTED, HiddenItemManager.PostGameSta
 
 function HiddenItemManager:PostPlayerInit()
 	local numPlayers = #Isaac.FindByType(EntityType.ENTITY_PLAYER, -1, -1, false, false)
-	
+
 	if numPlayers == 0 then
 		-- New run or continued run.
 		DATA = {}
@@ -610,14 +610,14 @@ function HiddenItemManager:PostUpdate()
 		LOG_ERROR("Initialization may not have finished correctly? Did someone return non-nil in MC_POST_GAME_STARTED?")
 		HiddenItemManager.INITIALIZING = false
 	end
-	
+
 	if HiddenItemManager.DoingSacrificialAltarProtection then
 		LOG_ERROR("Sacrificial Altar protection didn't finish on MC_USE_ITEM - was the activation canceled?")
 		HiddenItemManager:FinishSacrificialAltarProtection()
 	end
-	
+
 	local wispsToRespawn = {}
-	
+
 	for key, data in pairs(INDEX) do
 		local wisp = GetWisp(data)
 		local player = GetPlayer(data)
@@ -636,7 +636,7 @@ function HiddenItemManager:PostUpdate()
 			end
 		end
 	end
-	
+
 	-- When wisps disappear unexpectedly, try to respawn them at least a few times.
 	-- We won't try forever, however, to avoid infinite fights with another mod.
 	for oldKey, data in pairs(wispsToRespawn) do
@@ -684,7 +684,7 @@ function HiddenItemManager:ItemWispDamage(entity, damage, damageFlags, damageSou
 	if entity and entity.Type == EntityType.ENTITY_FAMILIAR and entity.Variant == FamiliarVariant.ITEM_WISP and IsManagedWisp(entity) then
 		return false
 	end
-	
+
 	if damageSourceRef.Type == EntityType.ENTITY_FAMILIAR and damageSourceRef.Variant == FamiliarVariant.ITEM_WISP
 			and damageSourceRef.Entity and IsManagedWisp(damageSourceRef.Entity) then
 		return false
@@ -709,7 +709,7 @@ function HiddenItemManager:StartSacrificialAltarProtection()
 	LOG("Detected Sacrificial Altar activation. Temporarily nulling wisp.Player...")
 	for _, data in pairs(INDEX) do
 		local wisp = GetWisp(data)
-		
+
 		if wisp then
 			wisp:GetData().hiddenItemManagerCachedPlayer = wisp.Player
 			-- Should already be removed from the orbit, but call RemoveFromOrbit again just to be sure.
@@ -731,7 +731,7 @@ function HiddenItemManager:FinishSacrificialAltarProtection()
 		local wisp = GetWisp(data)
 		if wisp then
 			local player = wisp:GetData().hiddenItemManagerCachedPlayer or GetPlayer(data)
-			
+
 			if player then
 				wisp.Player = player
 			else
@@ -741,7 +741,7 @@ function HiddenItemManager:FinishSacrificialAltarProtection()
 				end
 				RemoveWisp(key)
 			end
-			
+
 			wisp:GetData().hiddenItemManagerCachedPlayer = nil
 		end
 	end
