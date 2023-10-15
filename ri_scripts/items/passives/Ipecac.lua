@@ -1,32 +1,84 @@
---<passive cache="all" description="Explosive shots" gfx="Collectibles_149_Ipecac.png" id="1" name=" Ipecac " tags="bob" />
+REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.IMPORTANT, function(_, player)
+    local effects = player:GetEffects()
+    local data = player:GetData()
+    local multi = 1
+    local damage = 40
 
---["Ipecac"] = Isaac.GetItemIdByName(" Ipecac "),
+    if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE) > 0 or
+    player:GetCollectibleNum(CollectibleType.COLLECTIBLE_DR_FETUS) > 0 or
+    player:GetCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KNIFE) > 0 or
+    player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECH_X) > 0 or
+    player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECHNOLOGY) > 0 or
+    player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then
+        damage = 2
+    end
 
-local shittyitems = {
-    CollectibleType.COLLECTIBLE_BROTHER_BOBBY,
-    CollectibleType.COLLECTIBLE_SISTER_MAGGY,
-    CollectibleType.COLLECTIBLE_MULTIDIMENSIONAL_BABY,
-    CollectibleType.COLLECTIBLE_HEADLESS_BABY,
-    CollectibleType.COLLECTIBLE_LIL_DELIRIUM,
-    CollectibleType.COLLECTIBLE_MONSTER_MANUAL
-}
+	if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_EVES_MASCARA) > 0 then
+		multi = multi * 2.0
+	end
 
-function REWORKEDITEMS:SoulOfForgod()
-    local p = Game():GetNumPlayers() - 1
-    local player = Isaac.GetPlayer(p)
-    player:ChangePlayerType(PlayerType.PLAYER_BLUEBABY)
-end
+    if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_20_20) > 0 then
+		multi = multi * 0.8
+	end
 
---REWORKEDITEMS:AddCallback(ModCallbacks.MC_USE_CARD, REWORKEDITEMS.SoulOfForgod, Card.CARD_SOUL_FORGOTTEN)
+    if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ALMOND_MILK) > 0 then
+		multi = multi * 0.3
+	elseif player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SOY_MILK) > 0 then
+		multi = multi * 0.2
+	end
 
-function REWORKEDITEMS:bootyballs(npc)
-    if npc.Price < 0 and npc.Price > -10 then
-        for _, item in pairs(shittyitems) do
-            if npc.SubType == item then
-                npc:Morph(npc.Type, npc.Variant, 0, true)
-            end
+	if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CRICKETS_HEAD) > 0 or
+	   player:GetCollectibleNum(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) > 0 or
+	   (player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BLOOD_OF_THE_MARTYR) > 0 and
+		effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) > 0)
+	then
+		multi = multi * 1.5
+	end
+
+    if REPENTOGON then
+        multi = multi * player:GetD8DamageModifier()
+        multi = multi * (1 + player:GetDeadEyeCharge() / 8)
+    end
+
+    REWORKEDITEMS:IsInHallowedCreep(player)
+    REWORKEDITEMS:IsInHallowedGroundAura(player)
+    if data.PeterModInStarAura and data.PeterModInStarAura > 0 then
+        multi = multi * 1.8
+    end
+    if data.PeterModInHallowedCreep and data.PeterModInHallowedCreep > 0 then
+        multi = multi * 1.2
+    elseif data.PeterModInHallowedAura and data.PeterModInHallowedAura > 0 then
+        multi = multi * 1.2
+    end
+
+	for _, familiar in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.SUCCUBUS)) do
+		if (player.Position - familiar.Position):Length() < 100 then
+			multi = multi * 1.5
+		end
+	end
+
+    local crown = player:GetTrinketMultiplier(TrinketType.TRINKET_CRACKED_CROWN)
+    if crown > 0 then
+        if (player.Damage / (REWORKEDITEMS:GetDamageMultiplier(player) * crown)) > 3.5 then
+            multi = multi * crown
         end
     end
-end
 
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, REWORKEDITEMS.bootyballs, PickupVariant.PICKUP_COLLECTIBLE)
+    player.Damage = player.Damage - damage * multi
+
+end, CacheFlag.CACHE_DAMAGE)
+
+---@param tear EntityTear
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+    if tear.SpawnerType == EntityType.ENTITY_PLAYER then
+        local player = tear.SpawnerEntity:ToPlayer()
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
+            local damage = player.Damage * 10
+            if damage > 40 then
+                damage = player.Damage * 5 + 20
+            end
+            tear.CollisionDamage = damage
+            tear.Scale = math.sqrt((30 / (player.MaxFireDelay + 1)) * 3)
+        end
+    end
+end)

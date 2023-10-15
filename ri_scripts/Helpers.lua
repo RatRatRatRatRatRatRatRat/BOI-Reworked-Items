@@ -41,7 +41,7 @@ local playerdamagemodifiers = {
 }
 
 ---@param player EntityPlayer
-function mod:AddFlatDamage(player, damage)
+function mod:GetDamageMultiplier(player)
 	local data = player:GetData()
 	local effects = player:GetEffects()
     local type = player:GetPlayerType()
@@ -131,7 +131,7 @@ function mod:AddFlatDamage(player, damage)
         end
     end
 
-	player.Damage = player.Damage + damage * multi
+	return multi
 end
 
 ---@param player EntityPlayer

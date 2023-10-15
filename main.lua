@@ -6,10 +6,11 @@ local scripts = {
 
     "items.passives.NumberOne",
     "items.passives.Skatole",
-    --"passives.Transcendence",
+    --"items.passives.Transcendence",
     "items.passives.MomsLipstick",
     "items.passives.Steven",
     "items.passives.LittleSteven",
+    "items.passives.Ipecac",
     "items.passives.ToughLove",
     "items.passives.GhostBaby",
     "items.passives.StemCells",
