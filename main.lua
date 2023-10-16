@@ -19,6 +19,7 @@ local scripts = {
     "items.passives.MomsPearls",
     "items.passives.Zodiac",
     "items.passives.GodsFlesh",
+    "items.passives.LilLoki",
     "items.passives.DarkPrincesCrown",
     "items.passives.DeadTooth",
     "items.passives.AcidBaby",
