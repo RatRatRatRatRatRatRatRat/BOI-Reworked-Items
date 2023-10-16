@@ -1,4 +1,6 @@
 REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.IMPORTANT, function(_, player)
+    if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_IPECAC) == 0 then return end
+
     local effects = player:GetEffects()
     local data = player:GetData()
     local multi = 1
