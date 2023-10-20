@@ -24,5 +24,6 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
         if familiar:GetData().IsCardinal then
             tear.Velocity = tear.Velocity:Rotated(45)
         end
+        tear.CollisionDamage = 4
     end
 end)
