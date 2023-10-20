@@ -135,7 +135,7 @@ function mod:GetDamageMultiplier(player)
 end
 
 ---@param player EntityPlayer
-function mod:AddFlatTears(player, tearsup)
+function mod:GetTearMultiplier(player, tearsup)
     local data = player:GetData()
     local multi = 1.0
 
@@ -261,9 +261,7 @@ function mod:AddFlatTears(player, tearsup)
         multi = multi * 2.5
     end
 
-    local tears = 30 / (player.MaxFireDelay + 1)
-    tears = tears + tearsup * multi
-    player.MaxFireDelay = (30 / tears) - 1
+    return multi
 end
 
 ---@param player EntityPlayer

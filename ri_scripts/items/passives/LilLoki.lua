@@ -9,13 +9,11 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, familiar)
 
     if (sprite:IsPlaying("FloatDown") or sprite:IsPlaying("FloatUp") or sprite:IsPlaying("FloatSide")) and not data.Switch then
         data.Switch = true
-        print("A")
     end 
 
     if (sprite:IsPlaying("FloatShootDown") or sprite:IsPlaying("FloatShootUp") or sprite:IsPlaying("FloatShootSide")) and data.Switch then
         data.Switch = false
         data.IsCardinal = not data.IsCardinal
-        print("B")
     end
 end, FamiliarVariant.LIL_LOKI)
 

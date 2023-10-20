@@ -1,0 +1,5 @@
+<entities anm2root="gfx/" version="5">
+    <entity anm2path="003.033_Fly Orbital.anm2" tags="fly" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionInterval="7" collisionMass="3" collisionRadius="6" friction="1" id="3" name="Fly Orbital [Transendence]" numGridCollisionPoints="12" shadowSize="8" stageHP="0" variant="5780">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+</entities>

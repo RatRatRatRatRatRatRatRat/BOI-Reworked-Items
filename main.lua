@@ -6,7 +6,7 @@ local scripts = {
 
     "items.passives.NumberOne",
     "items.passives.Skatole",
-    --"items.passives.Transcendence",
+    "items.passives.Transcendence",
     "items.passives.MomsLipstick",
     "items.passives.Steven",
     "items.passives.LittleSteven",
@@ -15,6 +15,7 @@ local scripts = {
     "items.passives.GhostBaby",
     "items.passives.StemCells",
     "items.passives.Abel",
+    "items.passives.SpiderBaby",
     "items.passives.TheBody",
     "items.passives.MomsPearls",
     "items.passives.Zodiac",
