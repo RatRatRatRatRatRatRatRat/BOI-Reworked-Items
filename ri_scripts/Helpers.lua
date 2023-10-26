@@ -11,14 +11,14 @@ end
 
 ---@param trinket TrinketType
 function mod:TrySpawnTrinketFromItem(position, trinket)
-    local pool = Game():GetItemPool()
-    if pool:RemoveTrinket(trinket) == true then
-        local newposition = Game():GetRoom():FindFreePickupSpawnPosition(position, 1)
-        Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinket, newposition, Vector.Zero, nil)
-        return true
-    else
-        return false
+    if Isaac.GetItemConfig():GetTrinket(trinket):IsAvailable() then
+        if Game():GetItemPool():RemoveTrinket(trinket) == true then
+            local newposition = Game():GetRoom():FindFreePickupSpawnPosition(position, 1)
+            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinket, newposition, Vector.Zero, nil)
+            return true
+        end
     end
+    return false
 end
 
 local playerdamagemodifiers = {

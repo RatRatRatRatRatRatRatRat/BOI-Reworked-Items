@@ -3,7 +3,7 @@ local hplist = {}
 ---@param player EntityPlayer
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SHARD_OF_GLASS) == 0  then return end
-    local id = tostring(player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SAD_ONION):GetSeed())
+    local id = tostring(player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SHARD_OF_GLASS):GetSeed())
     local extrahearts = (player:GetSoulHearts() + player:GetEternalHearts() + player:GetBoneHearts())
     if hplist[id] == nil then
         hplist[id] = extrahearts

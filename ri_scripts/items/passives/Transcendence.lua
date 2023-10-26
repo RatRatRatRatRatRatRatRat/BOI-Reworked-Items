@@ -3,12 +3,12 @@ local flyvariant = Isaac.GetEntityVariantByName("Fly Orbital [Transendence]")
 
 ---@param player EntityPlayer
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
-    local id = tostring(player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SAD_ONION):GetSeed())
+    local id = tostring(player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TRANSCENDENCE):GetSeed())
     if numTranscendence[id] == nil then
         numTranscendence[id] = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE)
     elseif numTranscendence[id] ~= player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE) then
         numTranscendence[id] = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE)
-        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)    
+        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
 end)
 
