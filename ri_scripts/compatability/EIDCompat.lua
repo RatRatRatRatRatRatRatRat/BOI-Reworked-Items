@@ -34,8 +34,6 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MOMS_PEARLS, "↑ {{Range}} +2.5 
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_ZODIAC, "Grants a random zodiac item effect every floor") -- Change is only visual, not mentioned in EID
 
-EID:addCollectible(CollectibleType.COLLECTIBLE_MOMS_PEARLS, "↑ {{Range}} +2.5 Range#↑ {{Luck}} +1 Luck#{{SoulHeart}} +1 Soul Heart#{{Trinket38}} Spawns the Mom's Pearl trinket")
-
 --EID:addCollectible(CollectibleType.COLLECTIBLE_GODS_FLESH, "Tears can shrink enemies#Shrunken enemies can be crushed and killed by walking over them") -- Change has more to do with the status effect, isn't menioned in EID.
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_LIL_LOKI, "Shoots 4 tears in an alternating cardinal and diagonal pattern#Deals 4 damage per tear")

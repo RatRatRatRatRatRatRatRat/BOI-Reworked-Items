@@ -39,6 +39,8 @@ local scripts = {
 
     "slots.KeyMaster",
     "slots.BombBum",
+
+    "compatibility.EIDCompat",
 }
 
 for i = 1 , #scripts do
