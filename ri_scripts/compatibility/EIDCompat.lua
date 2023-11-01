@@ -1,6 +1,6 @@
 if not EID then return end
 
-EID:addCollectible(CollectibleType.COLLECTIBLE_NUMBER_ONE, "↑ {{Tears}} +1.5 Tears#↑ {{Tears}} 1.2x Tears multiplier#↓ {{Range}} -1.5 Range#↓ {{Range}} x0.8 Range multiplier")
+EID:addCollectible(CollectibleType.COLLECTIBLE_NUMBER_ONE, "↑ {{Tears}} +1.5 Tears#↑ {{Tears}} x1.2 Tears multiplier#↓ {{Range}} -1.5 Range#↓ {{Range}} x0.8 Range multiplier")
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_SKATOLE, "All fly enemies are friendly") -- Change isn't mentioned in EID
 
