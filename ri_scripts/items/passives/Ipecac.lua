@@ -81,7 +81,7 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
                 damage = player.Damage * 5 * mult + 20
             end
             tear.CollisionDamage = damage
-            tear.Scale = math.sqrt((30 / (player.MaxFireDelay + 1)) * 3)
+            tear.Scale = (tear.Scale / player.Damage) * damage * 0.3
         end
     end
 end)

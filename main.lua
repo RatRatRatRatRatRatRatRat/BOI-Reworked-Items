@@ -18,7 +18,7 @@ local scripts = {
     "items.passives.StemCells",
     --"items.passives.DeadDove",
     "items.passives.Abel",
-    --"items.passives.SpiderBaby",
+    "items.passives.SpiderBaby",
     "items.passives.TheBody",
     "items.passives.MomsPearls",
     "items.passives.Zodiac",
