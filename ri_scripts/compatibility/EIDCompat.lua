@@ -14,7 +14,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_TELEPORT, "Teleports Isaac into a
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_STEVEN, "↑ {{Damage}} +1 Damage") -- Change is only visual, not mentioned in EID
 
-EID:addCollectible(CollectibleType.COLLECTIBLE_LIL_STEVEN, "Shoots homing tears#Deals 3.5 damage per tear#{{Collectible50}} Deals 4.5 damage if Isaac has Steven")
+EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_STEVEN, "Shoots homing tears#Deals 3.5 damage per tear#{{Collectible50}} Deals 4.5 damage if Isaac has Steven")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_IPECAC, "↑ {{Damage}} +Damage x 10 (If the damage is less than 40)#↑ {{Damage}} +Damage x 5 + 20 (If the damage is greater than 40)#↓ {{Tears}} x0.33 Fire rate multiplier#↓ {{Range}} x0.8 Range multiplier#↓ {{Shotspeed}} -0.2 Shot speed#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land")
 
@@ -30,7 +30,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_SPIDERBABY, "Taking damage spawns
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_FLUSH, "Turns all non-boss enemies into poop#Instantly kills poop enemies and bosses#Extinguishes fire places and fills the room with water#Turns lava pits into walkable ground") -- Change isn't mentioned in EID
 
-EID:addCollectible(CollectibleType.COLLECTIBLE_THE_BODY, "↑ {{Heart}} +3 Health#{{Heart}} Full health")
+EID:addCollectible(CollectibleType.COLLECTIBLE_BODY, "↑ {{Heart}} +3 Health#{{Heart}} Full health")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_MOMS_PEARLS, "↑ {{Range}} +2.5 Range#↑ {{Luck}} +1 Luck#{{SoulHeart}} +1 Soul Heart#{{Trinket38}} Spawns the Mom's Pearl trinket")
 
