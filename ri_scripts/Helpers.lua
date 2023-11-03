@@ -13,7 +13,7 @@ end
 function mod:TrySpawnTrinketFromItem(position, trinket)
     if Isaac.GetItemConfig():GetTrinket(trinket):IsAvailable() then
         if Game():GetItemPool():RemoveTrinket(trinket) == true then
-            local newposition = Game():GetRoom():FindFreePickupSpawnPosition(position, 1)
+            local newposition = Game():GetRoom():FindFreePickupSpawnPosition(position, 0, true, false)
             Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinket, newposition, Vector.Zero, nil)
             return true
         end
