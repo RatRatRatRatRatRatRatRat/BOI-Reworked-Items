@@ -49,3 +49,10 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ACID_BABY, "{{Pill}} Spawns a ran
 EID:addCollectible(CollectibleType.COLLECTIBLE_ANGRY_FLY, "Orbits a random enemy until that enemy dies#{{Bait}} Inflicts the enemy it orbits with the bait effect#Deals 30 contact damage per second to other enemies")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_LEPROSY, "Taking damage spawns a projectile blocking orbital#Caps at 3 orbitals#Orbitals are destroyed and spawn half red hearts if they take too much damage")
+
+--Cards and Runes
+
+EID:addCard(Card.RUNE_BERKANO, "Summons a random amount of blue flies and blue spiders#Amount summoned is always 3 or more and scales with luck")
+if FiendFolio then
+    EID:addCard(Card.RUNE_BERKANO, "Summons a random amount of blue flies, blue spiders, and blue scuzz#Amount summoned is always 3 or more and scales with luck")
+end
