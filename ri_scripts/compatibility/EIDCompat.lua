@@ -56,3 +56,5 @@ EID:addCard(Card.RUNE_BERKANO, "Summons a random amount of blue flies and blue s
 if FiendFolio then
     EID:addCard(Card.RUNE_BERKANO, "Summons a random amount of blue flies, blue spiders, and blue scuzz#Amount summoned is always 3 or more and scales with luck")
 end
+
+EID:addCard(Card.CARD_HUGE_GROWTH, "{{Collectible625}} Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 30 seconds and persists between rooms and floors")

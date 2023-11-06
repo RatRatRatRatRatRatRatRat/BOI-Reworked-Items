@@ -37,6 +37,8 @@ local scripts = {
     "items.actives.Flush",
     --"items.actives.MomsBracelet",
 
+    "cards.HugeGrowth.lua",
+
     "runes.Berkano",
 
     "slots.KeyMaster",

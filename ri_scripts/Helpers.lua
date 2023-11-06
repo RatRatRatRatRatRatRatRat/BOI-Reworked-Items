@@ -394,3 +394,14 @@ function mod:TryHoldPoop(player, poopVariant)
     player:TryHoldEntity(poop)
     SFXManager():Play(SoundEffect.SOUND_POOPITEM_HOLD)
 end
+
+---@param sfxid SoundEffect
+---@param useflags UseFlag
+function mod:TrySayAnnouncerLine(sfxid, useflags)
+	if not (useflags & UseFlag.USE_NOANNOUNCER > 0) then
+		local mode = Options.AnnouncerVoiceMode
+		if mode == 2 or (mode == 0 and math.random(2) == 1) then
+			SFXManager():Play(sfxid, 2, 60, false, 1)
+		end
+	end
+end
