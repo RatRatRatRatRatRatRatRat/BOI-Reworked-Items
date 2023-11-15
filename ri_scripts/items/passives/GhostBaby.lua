@@ -1,6 +1,6 @@
 ---@param tear EntityTear
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
-    if tear.SpawnerEntity and tear.SpawnerType == EntityType.ENTITY_FAMILIAR and tear.SpawnerVariant == FamiliarVariant.GHOST_BABY then
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, function(_, tear, familiar)
+    if familiar and familiar.Variant == FamiliarVariant.GHOST_BABY then
         tear:AddTearFlags(TearFlags.TEAR_PIERCING)
         tear:ChangeVariant(TearVariant.CUPID_BLUE)
     end
