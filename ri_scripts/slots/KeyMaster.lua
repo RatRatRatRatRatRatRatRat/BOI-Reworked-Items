@@ -2,7 +2,7 @@ local GoldenPrize = 1984
 
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_SLOT_COLLISION, function(_, slot, player)
     if player.Type ~= EntityType.ENTITY_PLAYER then return end
-    if slot:GetPrizeType() == GoldenPrize then return false end  
+    if slot:GetPrizeType() == GoldenPrize then return false end
     player = player:ToPlayer()
 
     if player:HasGoldenKey() and slot:GetState() == 1 then
