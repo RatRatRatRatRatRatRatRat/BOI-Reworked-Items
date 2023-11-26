@@ -74,7 +74,7 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb) --
     if pauseTime > 0 then
         bomb:GetSprite():Stop()
 
-        bomb.Position = bomb.Position --this makes bombs hard to push which isn't ideal. idk how to get megatroll bombs from not targetting the player otherwise
+        bomb.Velocity = Vector.Zero --this makes bombs hard to push which isn't ideal. idk how to get megatroll bombs from not targetting the player otherwise
         bomb:SetExplosionCountdown(bomb:GetExplosionCountdown()+1)
     end
 
