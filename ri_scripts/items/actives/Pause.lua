@@ -2,18 +2,20 @@
 local pauseTime = -1
 
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, item, rng, player, flags, slot, data)
-    MusicManager():PitchSlide(0)
+    if pauseTime == -1 then
+        MusicManager():PitchSlide(0)
 
-    local room = Game():GetRoom()
-    for ind = 0, room:GetGridSize() do
-        local grid = room:GetGridEntity(ind)
-        if grid and grid:GetType() == GridEntityType.GRID_DECORATION then
-            local sprite = grid:GetSprite()
-            sprite:Stop()
+        local room = Game():GetRoom()
+        for ind = 0, room:GetGridSize() do
+            local grid = room:GetGridEntity(ind)
+            if grid and grid:GetType() == GridEntityType.GRID_DECORATION then
+                local sprite = grid:GetSprite()
+                sprite:Stop()
+            end
         end
-    end
 
-    pauseTime = 900
+        pauseTime = 900
+    end
 end, CollectibleType.COLLECTIBLE_PAUSE)
 
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
@@ -73,7 +75,7 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb) --
     if pauseTime > 0 then
         bomb:GetSprite():Stop()
 
-        bomb.Vector = Vector.Zero --this makes bombs "sticky" which isn't ideal. idk how to get megatroll bombs from not targetting the player otherwise
+        bomb.Vector = Vector.Zero --this makes bombs hard to push which isn't ideal. idk how to get megatroll bombs from not targetting the player otherwise
         bomb:SetExplosionCountdown(bomb:GetExplosionCountdown()+1)
     end
 
