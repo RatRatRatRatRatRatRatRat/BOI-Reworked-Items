@@ -47,38 +47,37 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
     pauseTime = -1
 end)
 
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect) --freeze if effect spawns while already paused
     if pauseTime > 0 then
-        if effect.FrameCount == 1 then
-            if (effect.SpawnerType and effect.SpawnerType == EntityType.ENTITY_PLAYER) then
-                effect:SetPauseTime(pauseTime)
-            else
-                effect:Remove()
-            end
-        end
+        effect:SetPauseTime(pauseTime)
     end
 end)
 
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_NPC_UPDATE, function(_, npc)
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc) --freeze if projectile spawns while already paused
     if pauseTime > 0 then
-        if npc.FrameCount == 1 then
-            if (npc.SpawnerType and npc.SpawnerType == EntityType.ENTITY_PLAYER) then
-                npc:SetPauseTime(pauseTime)
-            else
-                npc:Remove()
-            end
-        end
+        npc:SetPauseTime(pauseTime)
     end
 end)
 
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, function(_, proj)
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PROJECTILE_INIT, function(_, proj) --freeze if projectile spawns while already paused
     if pauseTime > 0 then
-        if proj.FrameCount == 1 then
-            if (proj.SpawnerType and proj.SpawnerType == EntityType.ENTITY_PLAYER) then
-                proj:SetPauseTime(pauseTime)
-            else
-                proj:Remove()
-            end
-        end
+        proj:SetPauseTime(pauseTime)
+    end
+end)
+
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb) --new: bombs now freeze
+    if bomb:GetPauseTime() == 0 and pauseTime > -1 then
+        bomb:SetPauseTime(pauseTime)
+    end
+
+    if pauseTime > 0 then
+        bomb:GetSprite():Stop()
+
+        bomb.Vector = Vector.Zero --this makes bombs "sticky" which isn't ideal. idk how to get megatroll bombs from not targetting the player otherwise
+        bomb:SetExplosionCountdown(bomb:GetExplosionCountdown()+1)
+    end
+
+    if pauseTime == 0 then
+        bomb:GetSprite():Continue()
     end
 end)
