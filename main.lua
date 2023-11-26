@@ -36,6 +36,7 @@ local scripts = {
     "items.actives.SpiderButt",
     "items.actives.Flush",
     --"items.actives.MomsBracelet",
+    "items.actives.Pause",
 
     "cards.HugeGrowth.lua",
 
