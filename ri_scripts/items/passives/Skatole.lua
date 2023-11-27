@@ -4,21 +4,8 @@ local manager = Game():GetPlayerManager()
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, function(_, npc)
     if not manager:AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) then return end
     if npc:IsDead() then
-        local data = XMLData.GetEntityByTypeVarSub(npc.Type, npc.Variant).tags
-        local strng = ""
-        if data then
-            for i = 1, #data do
-                local charact = string.sub(data, i, i)
-                if charact == " " then
-                    strng = ""
-                else
-                    strng = strng..charact
-                end
-
-                if strng == "fly" then
-                    return true
-                end
-            end
+        if EntityConfig.GetEntity(npc.Type):HasEntityTags(EntityTag.FLY) then
+            return true
         end
     end
 end)
