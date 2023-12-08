@@ -59,3 +59,5 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player
         print(heldEntity.Type.. "." ..heldEntity.Variant.. "." ..heldEntity.SubType)
     end
 end)
+
+--test
