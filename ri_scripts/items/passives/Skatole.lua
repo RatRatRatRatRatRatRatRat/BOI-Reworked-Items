@@ -1,8 +1,6 @@
-local manager = Game():GetPlayerManager()
-
 ---@param npc EntityNPC
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, function(_, npc)
-    if not manager:AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) then return end
+    if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) then return end
     if npc:IsDead() then
         if EntityConfig.GetEntity(npc.Type):HasEntityTags(EntityTag.FLY) then
             return true
@@ -12,7 +10,7 @@ end)
 
 ---@param npc EntityNPC
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_NPC_UPDATE, function(_, npc)
-    if not manager:AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) then return end
+    if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) then return end
     if npc.Type == EntityType.ENTITY_SUCKER and npc.Variant == 4 then
         -- if npc.State == NpcState.STATE_ATTACK then -- causes mama fly to move around randomly without spawning the nests
         --     npc.State = NpcState.STATE_IDLE

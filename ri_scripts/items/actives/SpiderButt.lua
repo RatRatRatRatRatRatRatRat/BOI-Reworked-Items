@@ -1,7 +1,5 @@
-local manager = Game():GetPlayerManager()
-
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_UPDATE, function(_)
-    if not manager:AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SPIDER_BUTT) then return end
+    if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SPIDER_BUTT) then return end
     local frames = (math.sin(Game():GetFrameCount() * 8) + 1) * 0.15 + 0.1
 
     for _, entity in ipairs(Isaac.GetRoomEntities()) do
