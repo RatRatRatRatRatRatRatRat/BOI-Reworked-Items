@@ -2,7 +2,7 @@
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, function(_, npc)
     if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) then return end
     if npc:IsDead() then
-        if EntityConfig.GetEntity(npc.Type):HasEntityTags(EntityTag.FLY) then
+        if EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType):HasEntityTags(EntityTag.FLY) then
             return true
         end
     end
