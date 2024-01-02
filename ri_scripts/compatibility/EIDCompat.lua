@@ -44,6 +44,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_DEAD_TOOTH, "{{Poison}} While fir
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_SHARD_OF_GLASS, "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{BleedingOut}} Isaac bleeds, spewing tears in the direction he is shooting#The bleeding does half a Red Heart of damage every 20 seconds#The bleeding stops if any heart is picked up, all Red Hearts are empty, or the next damage would kill Isaac")
 
+--EID:addCollectible(CollectibleType.COLLECTIBLE_PAUSE, "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds") -- Change isn't mentioned in EID
+
 EID:addCollectible(CollectibleType.COLLECTIBLE_ACID_BABY, "{{Pill}} Spawns a random pill every 7 rooms#{{Pill}} Identifies all pills#{{Poison}} Using a pill poisons all enemies in the room")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_ANGRY_FLY, "Orbits a random enemy until that enemy dies#{{Bait}} Inflicts the enemy it orbits with the bait effect#Deals 30 contact damage per second to other enemies")

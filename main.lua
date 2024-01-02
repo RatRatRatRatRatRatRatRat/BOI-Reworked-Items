@@ -30,6 +30,7 @@ local scripts = {
     "items.passives.AcidBaby",
     "items.passives.AngryFly",
     "items.passives.Leprosy",
+    --"items.passives.Duality",
 
     "items.actives.ThePoop",
 	"items.actives.Teleport",
@@ -49,7 +50,7 @@ local scripts = {
 }
 
 for i = 1 , #scripts do
-    require("ri_scripts."..scripts[i])
+    include("ri_scripts."..scripts[i])
 end
 
 ---@param player EntityPlayer
