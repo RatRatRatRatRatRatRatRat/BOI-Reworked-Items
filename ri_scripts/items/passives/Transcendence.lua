@@ -1,25 +1,7 @@
-local numTranscendence = {}
 local flyvariant = Isaac.GetEntityVariantByName("Fly Orbital [Transendence]")
 
----@param player EntityPlayer
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
-    local id = tostring(player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TRANSCENDENCE):GetSeed())
-    if numTranscendence[id] == nil then
-        numTranscendence[id] = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE)
-    elseif numTranscendence[id] ~= player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE) then
-        numTranscendence[id] = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE)
-        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
-    end
-end)
-
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_)
-    for i = 0, Game():GetNumPlayers() - 1 do
-        local player = Game():GetPlayer(i)
-        if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TRANSCENDENCE) > 0 then
-            player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
-        end
-    end
-end)
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE).Type = ItemType.ITEM_FAMILIAR
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE).CacheFlags = CacheFlag.CACHE_FAMILIARS | CacheFlag.CACHE_FLYING
 
 ---@param player EntityPlayer
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
