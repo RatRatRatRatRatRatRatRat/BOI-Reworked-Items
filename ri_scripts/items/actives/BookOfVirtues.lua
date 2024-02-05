@@ -1,0 +1,1 @@
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES).MaxCharges = 2

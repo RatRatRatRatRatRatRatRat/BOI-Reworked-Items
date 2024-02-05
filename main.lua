@@ -39,6 +39,7 @@ local scripts = {
     "items.actives.Flush",
     --"items.actives.MomsBracelet",
     "items.actives.Pause",
+    "items.actives.BookOfVirtues",
 
     "cards.HugeGrowth",
 
