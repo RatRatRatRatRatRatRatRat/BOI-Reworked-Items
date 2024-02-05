@@ -66,7 +66,11 @@ REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriori
         end
     end
 
-    player.Damage = player.Damage - damage * multi
+    if player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+        player.Damage = player.Damage - damage * multi * 0.75
+    else
+        player.Damage = player.Damage - damage * multi
+    end
 
 end, CacheFlag.CACHE_DAMAGE)
 

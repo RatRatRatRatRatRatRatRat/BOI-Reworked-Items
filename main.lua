@@ -28,6 +28,7 @@ local scripts = {
     "items.passives.DeadTooth",
     "items.passives.ShardOfGlass",
     "items.passives.AcidBaby",
+    "items.passives.DadsLostCoin",
     "items.passives.AngryFly",
     "items.passives.Leprosy",
     --"items.passives.Duality",
@@ -39,9 +40,11 @@ local scripts = {
     --"items.actives.MomsBracelet",
     "items.actives.Pause",
 
-    "cards.HugeGrowth.lua",
+    "cards.HugeGrowth",
 
     "runes.Berkano",
+
+    --"pills.Horf",
 
     "slots.KeyMaster",
     "slots.BombBum",
