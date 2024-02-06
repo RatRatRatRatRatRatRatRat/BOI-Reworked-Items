@@ -38,10 +38,12 @@ local scripts = {
 	"items.actives.Teleport",
     "items.actives.SpiderButt",
     "items.actives.Flush",
+    "items.actives.MegaBlast",
     "items.actives.Void",
     "items.actives.Pause",
     "items.actives.BookOfVirtues",
     --"items.actives.MomsBracelet",
+    "items.actives.MegaMush",
 
     "cards.HugeGrowth",
 
