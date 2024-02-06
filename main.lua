@@ -16,6 +16,7 @@ local scripts = {
     "items.passives.GhostBaby",
     --"items.passives.RainbowBaby",
     "items.passives.StemCells",
+    "items.passives.Fate",
     --"items.passives.DeadDove",
     "items.passives.Abel",
     "items.passives.SpiderBaby",
@@ -37,18 +38,23 @@ local scripts = {
 	"items.actives.Teleport",
     "items.actives.SpiderButt",
     "items.actives.Flush",
-    --"items.actives.MomsBracelet",
+    "items.actives.Void",
     "items.actives.Pause",
     "items.actives.BookOfVirtues",
+    --"items.actives.MomsBracelet",
 
     "cards.HugeGrowth",
 
-    "runes.Berkano",
-
     --"pills.Horf",
+
+    "runes.Berkano",
 
     "slots.KeyMaster",
     "slots.BombBum",
+
+    "characters.Eve",
+    "characters.Samson",
+    "characters.Apollyon",
 
     "compatibility.EIDCompat",
 }

@@ -46,6 +46,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_SHARD_OF_GLASS, "Upon taking dama
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_PAUSE, "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds") -- Change isn't mentioned in EID
 
+EID:addCollectible(CollectibleType.COLLECTIBLE_VOID, "Consumes all pedestal items in the room#↑ Grants 2 random stats up for each item consumed")
+
 EID:addCollectible(CollectibleType.COLLECTIBLE_ACID_BABY, "{{Pill}} Spawns a random pill every 7 rooms#{{Pill}} Identifies all pills#{{Poison}} Using a pill poisons all enemies in the room")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_ANGRY_FLY, "Orbits a random enemy until that enemy dies#{{Bait}} Inflicts the enemy it orbits with the bait effect#Deals 30 contact damage per second to other enemies")

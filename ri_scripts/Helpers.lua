@@ -265,7 +265,7 @@ function mod:GetTearMultiplier(player, tearsup)
 end
 
 ---@param player EntityPlayer
-function mod:AddFlatRange(player, range)
+function mod:GetRangeMultiplier(player)
     local multi = 1
 
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_NUMBER_ONE) > 0 then
@@ -295,11 +295,11 @@ function mod:AddFlatRange(player, range)
         end
     end
 
-    player.TearRange = player.TearRange + range * multi * 40
+    return multi
 end
 
 ---@param player EntityPlayer
-function mod:AddFlatSpeed(player, speed)
+function mod:GetSpeedMultiplier(player)
     local multi = 1
 
     if REPENTOGON then
@@ -313,11 +313,11 @@ function mod:AddFlatSpeed(player, speed)
         end
     end
 
-    player.MoveSpeed = player.MoveSpeed + speed * multi
+    return multi
 end
 
 ---@param player EntityPlayer
-function mod:AddFlatShotSpeed(player, shotspeed)
+function mod:GetShotSpeedMultiplier(player)
     local multi = 1
 
     local crown = player:GetTrinketMultiplier(TrinketType.TRINKET_CRACKED_CROWN)
@@ -327,7 +327,7 @@ function mod:AddFlatShotSpeed(player, shotspeed)
         end
     end
 
-    player.ShotSpeed = player.ShotSpeed + shotspeed * multi
+    return multi
 end
 
 
