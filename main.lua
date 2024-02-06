@@ -10,6 +10,7 @@ local scripts = {
     "items.passives.MomsLipstick",
     "items.passives.Steven",
     "items.passives.LittleSteven",
+    "items.passives.PageantBoy",
     "items.passives.Ipecac",
     "items.passives.ToughLove",
     --"items.passives.SpiritOfTheNight",
