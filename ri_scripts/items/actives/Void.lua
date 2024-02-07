@@ -68,6 +68,8 @@ mod:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.IMPO
         for _, player in pairs(PlayerManager.GetPlayers()) do
             player:AddCacheFlags(cache, true)
         end
+    else
+        PlayerVoidedCollectibleData = {}
     end
 end)
 
@@ -171,7 +173,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 
     if flags & CacheFlag.CACHE_FIREDELAY > 0 then
         local mult = REWORKEDITEMS:GetTearMultiplier(player)
         local tears = 30 / (player.MaxFireDelay + 1)
-        tears = tears + stats.FireRate + mult
+        tears = tears + stats.FireRate * mult
         player.MaxFireDelay = (30 / tears) - 1
     end
     if flags & CacheFlag.CACHE_SPEED > 0 then
