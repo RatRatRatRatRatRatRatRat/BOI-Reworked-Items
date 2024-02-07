@@ -43,7 +43,7 @@ local scripts = {
     "items.actives.Void",
     "items.actives.Pause",
     "items.actives.BookOfVirtues",
-    --"items.actives.MomsBracelet",
+    "items.actives.MomsBracelet",
     "items.actives.MegaMush",
 
     "cards.HugeGrowth",
@@ -65,11 +65,3 @@ local scripts = {
 for i = 1 , #scripts do
     include("ri_scripts."..scripts[i])
 end
-
----@param player EntityPlayer
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
-    local heldEntity = player:GetHeldEntity()
-    if heldEntity then
-        print(heldEntity.Type.. "." ..heldEntity.Variant.. "." ..heldEntity.SubType)
-    end
-end)
