@@ -6,8 +6,11 @@ local TryHoldDistance = 40
 
 function mod:UseMomsBracelet(type, rng, player, flags, itemSlot, customdata)
     for _, slot in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT)) do
-        if player.Position:Distance(slot.Position) <= TryHoldDistance then
+        if player.Position:Distance(slot.Position) <= TryHoldDistance
+        and not player:GetData().HeldSlotData -- Previous slot isn't still held / midair
+        and (slot:ToSlot():GetState() == 1 or slot:ToSlot():GetState() == 3) then -- Only pick them up when they're idle or destroyed
             local slot = slot:ToSlot()
+            local slotSprite = slot:GetSprite()
 
             -- Create the helper entity to hold
             local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GRID_ENTITY_PROJECTILE_HELPER, 0, slot.Position, Vector.Zero, player)
@@ -16,7 +19,7 @@ function mod:UseMomsBracelet(type, rng, player, flags, itemSlot, customdata)
 
 
             -- Store the slot's data
-            helper:GetData().HeldSlotData = {
+            player:GetData().HeldSlotData = {
                 Variant       = slot.Variant,
                 SubType       = slot.SubType,
                 Seed          = slot.DropSeed,
@@ -31,12 +34,14 @@ function mod:UseMomsBracelet(type, rng, player, flags, itemSlot, customdata)
 
 
             -- Store the slot's sprite data
-            local slotSprite = slot:GetSprite()
             local helperSprite = helper:GetSprite()
-
             helperSprite:Load(slotSprite:GetFilename())
+
             helperSprite:Play(slotSprite:GetAnimation(), true)
             helperSprite:SetFrame(slotSprite:GetFrame())
+            helperSprite:PlayOverlay(slotSprite:GetOverlayAnimation(), true)
+            helperSprite:SetOverlayFrame(slotSprite:GetOverlayFrame())
+
             helperSprite.PlaybackSpeed = 0
             helper.PositionOffset = slot.PositionOffset
 
@@ -57,10 +62,10 @@ mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.UseMomsBracelet, CollectibleTy
 
 
 function mod:ThrownSlotConvert(tear)
+    local data = tear.SpawnerEntity:GetData().HeldSlotData
     local tearSprite = tear:GetSprite()
 
     -- Create the slot
-    local data = tear:GetData().HeldSlotData
     local slot = Game():Spawn(EntityType.ENTITY_SLOT, data.Variant, tear.Position, Vector.Zero, tear.SpawnerEntity, data.SubType, data.Seed):ToSlot()
     local slotSprite = slot:GetSprite()
 
@@ -123,9 +128,11 @@ function mod:ThrownSlotConvert(tear)
         slot:SetTimeout(data.Timeout)
         slot:SetTouch(data.Touch)
 
-        -- Load sprite
+        -- Load the sprite data
         slotSprite:Play(tearSprite:GetAnimation(), true)
         slotSprite:SetFrame(tearSprite:GetFrame())
+        slotSprite:PlayOverlay(tearSprite:GetOverlayAnimation(), true)
+        slotSprite:SetOverlayFrame(tearSprite:GetOverlayFrame())
 
         for i, layer in pairs(tearSprite:GetAllLayers()) do
             slotSprite:ReplaceSpritesheet(i - 1, layer:GetSpritesheetPath())
@@ -133,15 +140,17 @@ function mod:ThrownSlotConvert(tear)
         slotSprite:LoadGraphics()
     end
 
-    tear:GetData().HeldSlotData = nil
+
+    tear.SpawnerEntity:GetData().HeldSlotData = nil
+    tear:Remove()
 end
 
 
 
 function mod:ThrownSlotUpdate(tear)
-    if tear:GetData().HeldSlotData then
-        local data = tear:GetData().HeldSlotData
+    local data = tear.SpawnerEntity:GetData().HeldSlotData
 
+    if data then
         -- Set the shadow size
         local config = EntityConfig.GetEntity(EntityType.ENTITY_SLOT, data.Variant)
         tear:SetShadowSize(config:GetShadowSize())
@@ -153,23 +162,13 @@ function mod:ThrownSlotUpdate(tear)
         if tear:IsDead() then
             mod:ThrownSlotConvert(tear)
         end
-
-
-    -- Get the slot data from the helper
-    elseif tear.FrameCount <= 0 then
-        for _, helper in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.GRID_ENTITY_PROJECTILE_HELPER)) do
-            if helper.Parent.Index == tear.SpawnerEntity.Index and helper:GetData().HeldSlotData then
-                tear:GetData().HeldSlotData = helper:GetData().HeldSlotData
-                break
-            end
-        end
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.ThrownSlotUpdate, TearVariant.GRIDENT)
 
 -- On collision with an entity
 function mod:ThrownSlotCollision(tear, target, bool)
-    if tear:GetData().HeldSlotData then
+    if tear.SpawnerEntity:GetData().HeldSlotData then
         mod:ThrownSlotConvert(tear)
     end
 end
