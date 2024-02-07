@@ -15,7 +15,7 @@ local scripts = {
     "items.passives.ToughLove",
     --"items.passives.SpiritOfTheNight",
     "items.passives.GhostBaby",
-    --"items.passives.RainbowBaby",
+    "items.passives.RainbowBaby",
     "items.passives.StemCells",
     "items.passives.Fate",
     --"items.passives.DeadDove",
