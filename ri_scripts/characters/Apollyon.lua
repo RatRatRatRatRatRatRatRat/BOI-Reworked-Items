@@ -1,6 +1,6 @@
 ---@param player EntityPlayer
 ---@param flags CacheFlag
-REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, function(_, player, flags)
+REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 20, function(_, player, flags)
     if player:GetPlayerType() == PlayerType.PLAYER_APOLLYON or player:GetPlayerType() == PlayerType.PLAYER_APOLLYON_B then
         if flags & CacheFlag.CACHE_DAMAGE > 0 then
             local mult = REWORKEDITEMS:GetDamageMultiplier(player)
