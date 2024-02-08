@@ -165,6 +165,9 @@ end, CollectibleType.COLLECTIBLE_VOID)
 ---@param player EntityPlayer
 mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 10, function(_, player, flags)
     local id = tostring(player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SAD_ONION):GetSeed())
+    if PlayerVoidedCollectibleData[id] == nil then
+        AddPlayerVoidData(player)
+    end
     local stats = PlayerVoidedCollectibleData[id].Stats
     if flags & CacheFlag.CACHE_DAMAGE > 0 then
         local mult = REWORKEDITEMS:GetDamageMultiplier(player)

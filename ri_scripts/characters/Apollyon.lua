@@ -1,15 +1,17 @@
+local mod = REWORKEDITEMS
+
 ---@param player EntityPlayer
 ---@param flags CacheFlag
-REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 20, function(_, player, flags)
+mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 20, function(_, player, flags)
     if player:GetPlayerType() == PlayerType.PLAYER_APOLLYON or player:GetPlayerType() == PlayerType.PLAYER_APOLLYON_B then
         if flags & CacheFlag.CACHE_DAMAGE > 0 then
-            local mult = REWORKEDITEMS:GetDamageMultiplier(player)
+            local mult = mod:GetDamageMultiplier(player)
             if player.Damage > 3.5 * mult then
                 player.Damage = 3.5 * mult + (player.Damage - 3.5 * mult) * 0.75
             end
         end
         if flags & CacheFlag.CACHE_FIREDELAY > 0 then
-            local mult = REWORKEDITEMS:GetTearMultiplier(player)
+            local mult = mod:GetTearMultiplier(player)
             local tears = 30 / (player.MaxFireDelay + 1)
             if tears > (30/11) * mult then
                 tears = (30/11) * mult + (tears - (30/11) * mult) * 0.75
@@ -17,19 +19,19 @@ REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriori
             end
         end
         if flags & CacheFlag.CACHE_SPEED > 0 then
-            local mult = REWORKEDITEMS:GetSpeedMultiplier(player)
+            local mult = mod:GetSpeedMultiplier(player)
             if player.MoveSpeed > mult then
                 player.MoveSpeed = mult + (player.MoveSpeed - mult) * 0.75
             end
         end
         if flags & CacheFlag.CACHE_RANGE > 0 then
-            local mult = REWORKEDITEMS:GetRangeMultiplier(player)
+            local mult = mod:GetRangeMultiplier(player)
             if player.TearRange > 260 * mult then
                 player.TearRange = 260 * mult + (player.TearRange - 260 * mult) * 0.75
             end
         end
         if flags & CacheFlag.CACHE_SHOTSPEED > 0 then
-            local mult = REWORKEDITEMS:GetShotSpeedMultiplier(player)
+            local mult = mod:GetShotSpeedMultiplier(player)
             if player.ShotSpeed > mult then
                 player.ShotSpeed = mult + (player.ShotSpeed - mult) * 0.75
             end
@@ -41,3 +43,23 @@ REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriori
         end
     end
 end)
+
+--[[
+---@param player EntityPlayer
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
+    if player:GetType() == PlayerType.PLAYER_APOLLYON and Game():GetLevel():GetStage() > LevelStage.STAGE3_2 then
+        player.CanFly = true
+        player:AddCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_BIBLE))
+    end
+end, CacheFlag.CACHE_FLYING)
+]]
+
+---@param player EntityPlayer
+local function AddFlight(_, player)
+    if Game():GetLevel():GetStage() > LevelStage.STAGE3_2 and not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_BIBLE) then
+        player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_BIBLE)
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, AddFlight, PlayerType.PLAYER_APOLLYON)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, --[[YO!!!]] AddFlight, PlayerType.PLAYER_APOLLYON)
