@@ -35,12 +35,13 @@ local scripts = {
     "items.passives.Leprosy",
     --"items.passives.Duality",
 
+    "items.actives.Necronomicon",
     "items.actives.ThePoop",
 	"items.actives.Teleport",
     "items.actives.SpiderButt",
     "items.actives.Flush",
     "items.actives.MegaBlast",
-    "items.actives.Void",
+    --"items.actives.Void",
     "items.actives.Pause",
     "items.actives.BookOfVirtues",
     "items.actives.MomsBracelet",
@@ -57,7 +58,9 @@ local scripts = {
 
     "characters.Eve",
     "characters.Samson",
-    "characters.Apollyon",
+    --"characters.Apollyon",
+
+    "rooms.Library",
 
     "compatibility.EIDCompat",
 }

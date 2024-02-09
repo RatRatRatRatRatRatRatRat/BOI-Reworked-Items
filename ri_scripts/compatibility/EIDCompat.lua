@@ -8,6 +8,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE, "Flight#+1 Fly orb
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_MOMS_LIPSTICK, "↑ {{Range}} +3.75 Range#{{UnknownHeart}} Spawns 1 random heart#{{Trinket156}} 5% chance to spawn Mother's Kiss trinket instead")
 
+EID:addCollectible(CollectibleType.COLLECTIBLE_NECRONOMICON, "Deals 40 damage to all enemies in the room#{{Trinket48}} Higher chance for the Missing Page trinket to spawn while held#{{Collectible262}} Higher chance for the Missing Page 2 item to spawn while held")
+
 EID:addCollectible(CollectibleType.COLLECTIBLE_POOP, "Throws a poop")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_TELEPORT, "Teleports Isaac into a random room on the map#Direction of the teleport can be influenced with the movement keys")
