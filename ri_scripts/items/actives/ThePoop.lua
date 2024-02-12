@@ -1,3 +1,4 @@
+---@param player EntityPlayer
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, collectible, rng, player, flags, slot, data)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_MIDAS_TOUCH) then
         REWORKEDITEMS:TryHoldPoop(player, 1)
@@ -9,7 +10,7 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, collectible,
         REWORKEDITEMS:TryHoldPoop(player, 13)
     elseif player:HasTrinket(TrinketType.TRINKET_MECONIUM) then
         REWORKEDITEMS:TryHoldPoop(player, 15)
-    elseif player:HasTrinket(TrinketType.TRINKET_BROWN_CAP) then
+    elseif player:HasTrinket(TrinketType.TRINKET_BROWN_CAP) or player:HasPlayerForm(PlayerForm.PLAYERFORM_BOB) then
         REWORKEDITEMS:TryHoldPoop(player, 14)
     elseif player:HasTrinket(TrinketType.TRINKET_PETRIFIED_POOP) then
         REWORKEDITEMS:TryHoldPoop(player, 11)

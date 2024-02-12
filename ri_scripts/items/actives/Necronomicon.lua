@@ -1,7 +1,7 @@
 local mod = REWORKEDITEMS
 
 local A_MISSING_PAGE_REPLACEMENT_CHANCE = 0.1
-local MISSING_PAGE_2_REPLACEMENT_CHANCE = 0.05
+local MISSING_PAGE_2_REPLACEMENT_CHANCE = (1/15)
 
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_SELECTION, function(_, _, variant, subtype)
     if variant == PickupVariant.PICKUP_TRINKET and subtype ~= TrinketType.TRINKET_MISSING_PAGE then
@@ -15,7 +15,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PICKUP_SELECTION, function(_, _, variant, s
                 end
             end
         end
-    end  
+    end
 end)
 
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, function(_)

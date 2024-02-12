@@ -7,10 +7,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 
         if flags & CacheFlag.CACHE_DAMAGE > 0 then
             local mult = mod:GetDamageMultiplier(player)
             if player.Damage > 3.5 * mult then
-                print(mult)
-                print(player.Damage)
                 player.Damage = 3.5 * mult + (player.Damage - 3.5 * mult) * 0.75
-                print(player.Damage)
             end
         end
         if flags & CacheFlag.CACHE_FIREDELAY > 0 then

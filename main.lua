@@ -38,6 +38,7 @@ local scripts = {
     "items.actives.Necronomicon",
     "items.actives.ThePoop",
 	"items.actives.Teleport",
+    "items.actives.MonstrosTooth",
     "items.actives.SpiderButt",
     "items.actives.Flush",
     "items.actives.MegaBlast",
