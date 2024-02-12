@@ -1,4 +1,22 @@
 local mod = REWORKEDITEMS
+local portalvariant = Isaac.GetEntityVariantByName("Locust Portal")
+
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 4
+
+---@param rng RNG
+---@param player EntityPlayer
+mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player)
+    for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
+        pickup = pickup:ToPickup()
+        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not pickup:IsShopItem() and not pickup.Touched then
+            pickup:Remove()
+            Isaac.Spawn(EntityType.ENTITY_EFFECT, portalvariant, 0, pickup.Position, Vector.Zero, nil)
+        end
+    end
+
+    player:AnimateCollectible(CollectibleType.COLLECTIBLE_VOID, "UseItem")
+    return true
+end, CollectibleType.COLLECTIBLE_VOID)
 
 ---@param player EntityPlayer
 ---@param flags CacheFlag
@@ -44,22 +62,55 @@ mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 
     end
 end)
 
---[[
----@param player EntityPlayer
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
-    if player:GetType() == PlayerType.PLAYER_APOLLYON and Game():GetLevel():GetStage() > LevelStage.STAGE3_2 then
-        player.CanFly = true
-        player:AddCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_BIBLE))
+---@params tear EntityTear
+mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
+    if npc:IsEnemy() and PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_APOLLYON) then
+        local rng = npc:GetDropRNG()
+        if rng:RandomFloat() < 0.1 then
+            Isaac.Spawn(EntityType.ENTITY_EFFECT, portalvariant, 0, npc.Position, Vector.Zero, nil)
+        end
     end
-end, CacheFlag.CACHE_FLYING)
-]]
+end)
 
----@param player EntityPlayer
-local function AddFlight(_, player)
-    if Game():GetLevel():GetStage() > LevelStage.STAGE3_2 and not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_BIBLE) then
-        player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_BIBLE)
+---@params effect EntityEffect
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect)
+    local data = effect:GetData()
+    data.maxflies = 3
+    data.cooldown = 30
+    effect.DepthOffset = -99
+end, portalvariant)
+
+---@params effect EntityEffect
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
+    local sprite = effect:GetSprite()
+    local data = effect:GetData()
+
+    if sprite:IsFinished("Spawn") then
+        sprite:Play("Idle")
     end
-end
 
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, AddFlight, PlayerType.PLAYER_APOLLYON)
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, --[[YO!!!]] AddFlight, PlayerType.PLAYER_APOLLYON)
+    if sprite:IsPlaying("Idle") then
+        if sprite:IsOverlayPlaying() then
+            if sprite:IsOverlayEventTriggered("Shoot") then
+                local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 0, effect.Position, Vector.Zero, effect):ToFamiliar()
+                fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+                fly:PickEnemyTarget(9999)
+                fly:SetColor(Color(0, 0, 0, 1, 0.63, 0.38, 0.94), 30, 1, true, true)
+            end
+        else
+            if data.maxflies == 0 then
+                sprite:Play("Death")
+            elseif data.cooldown > 0 then            
+                data.cooldown = data.cooldown - 1
+            else
+                data.cooldown = 30
+                data.maxflies = data.maxflies - 1
+                sprite:PlayOverlay("SpawnOverlay", true)
+            end
+        end
+    end
+
+    if sprite:IsFinished("Death") then
+        effect:Remove()
+    end
+end, portalvariant)

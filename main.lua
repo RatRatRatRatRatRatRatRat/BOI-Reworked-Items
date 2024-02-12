@@ -42,7 +42,7 @@ local scripts = {
     "items.actives.SpiderButt",
     "items.actives.Flush",
     "items.actives.MegaBlast",
-    "items.actives.Void",
+    --"items.actives.Void",
     "items.actives.Pause",
     "items.actives.BookOfVirtues",
     "items.actives.MomsBracelet",
@@ -59,7 +59,7 @@ local scripts = {
 
     "characters.Eve",
     "characters.Samson",
-    --"characters.Apollyon",
+    "characters.Apollyon",
 
     "rooms.Library",
 

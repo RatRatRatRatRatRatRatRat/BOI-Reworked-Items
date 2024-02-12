@@ -1,7 +1,7 @@
 ---@param player EntityPlayer
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_USE_CARD, function(_, _, player, _)
     local rng = player:GetCardRNG(Card.RUNE_BERKANO)
-    local highest = math.min(4 + player.Luck, 12)
+    local highest = math.min(4 + math.floor(player.Luck), 12)
 
     local flies = rng:RandomInt(highest)
     local spiders = rng:RandomInt(highest)
