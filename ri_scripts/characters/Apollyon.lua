@@ -8,7 +8,7 @@ Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharge
 mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player)
     for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
         pickup = pickup:ToPickup()
-        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not pickup:IsShopItem() and not pickup.Touched then
+        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not pickup:IsShopItem() then
             pickup:Remove()
             Isaac.Spawn(EntityType.ENTITY_EFFECT, portalvariant, 0, pickup.Position, Vector.Zero, nil)
         end
@@ -76,7 +76,7 @@ end)
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect)
     local data = effect:GetData()
     data.maxflies = 3
-    data.cooldown = 30
+    data.cooldown = 20
     effect.DepthOffset = -99
 end, portalvariant)
 
@@ -92,10 +92,12 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
     if sprite:IsPlaying("Idle") then
         if sprite:IsOverlayPlaying() then
             if sprite:IsOverlayEventTriggered("Shoot") then
-                local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 0, effect.Position, Vector.Zero, effect):ToFamiliar()
-                fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-                fly:PickEnemyTarget(9999)
-                fly:SetColor(Color(0, 0, 0, 1, 0.63, 0.38, 0.94), 30, 1, true, true)
+                for i = 0, 2 do
+                local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 0, effect.Position, Vector(12, 0):Rotated(i * 120), effect):ToFamiliar()
+                    fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+                    fly:PickEnemyTarget(9999)
+                    fly:SetColor(Color(0, 0, 0, 1, 0.63, 0.38, 0.94), 30, 1, true, true)
+                end
             end
         else
             if data.maxflies == 0 then
@@ -104,7 +106,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
                 data.cooldown = data.cooldown - 1
             else
                 data.cooldown = 30
-                data.maxflies = data.maxflies - 1
+                data.maxflies = data.maxflies - 3
                 sprite:PlayOverlay("SpawnOverlay", true)
             end
         end
