@@ -1,5 +1,6 @@
 local mod = REWORKEDITEMS
 
+--[[
 ---@param player EntityPlayer
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
     if player:HasWeaponType(WeaponType.WEAPON_KNIFE) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_DR_FETUS) > 0 then
@@ -7,6 +8,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player)
         player:EnableWeaponType(WeaponType.WEAPON_BOMBS, true)
     end
 end, CacheFlag.CACHE_WEAPON)
+]]
 
 ---@param bomb EntityBomb
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, function(_, bomb)

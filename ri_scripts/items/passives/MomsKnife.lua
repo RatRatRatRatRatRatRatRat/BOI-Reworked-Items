@@ -26,7 +26,12 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function(_)
                             door:SetLocked(false)
                             SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
                             Game():SpawnParticles(door.Position, EffectVariant.BLOOD_PARTICLE, 30, 8)    
-                            break                 
+                            
+                            local player = knife.Parent:ToPlayer() or knife.Parent:ToFamiliar().Player
+                            if player then
+                                player:RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
+                            end
+                            break
                         end
                     end
                 end
