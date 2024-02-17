@@ -16,6 +16,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_TELEPORT, "Teleports Isaac into a
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_STEVEN, "↑ {{Damage}} +1 Damage") -- Change is only visual, not mentioned in EID
 
+EID:addCollectible(CollectibleType.COLLECTIBLE_MONSTROS_TOOTH, "Monstro falls on an enemy and instantly kills them#Bosses and surrounding enemies take 120 damage#Monstro fires a volley of shots if the first enemy was killed#{{Warning}} Monstro falls on Isaac if the room has no enemies")
+
 EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_STEVEN, "Shoots homing tears#Deals 3.5 damage per tear#{{Collectible50}} Deals 4.5 damage if Isaac has Steven")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_IPECAC, "↑ {{Damage}} +Damage x 10 (If the damage is less than 40)#↑ {{Damage}} +Damage x 5 + 20 (If the damage is greater than 40)#↓ {{Tears}} x0.33 Fire rate multiplier#↓ {{Range}} x0.8 Range multiplier#↓ {{Shotspeed}} -0.2 Shot speed#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land")
@@ -46,9 +48,11 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_DEAD_TOOTH, "{{Poison}} While fir
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_SHARD_OF_GLASS, "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{BleedingOut}} Isaac bleeds, spewing tears in the direction he is shooting#The bleeding does half a Red Heart of damage every 20 seconds#The bleeding stops if any heart is picked up, all Red Hearts are empty, or the next damage would kill Isaac")
 
---EID:addCollectible(CollectibleType.COLLECTIBLE_PAUSE, "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds") -- Change isn't mentioned in EID
+EID:addCollectible(CollectibleType.COLLECTIBLE_DADS_LOST_COIN, "↑ {{Range}} +2.5 Range#{{Luck}} Spawns a Lucky Penny#Increased chance for Lucky Pennies to spawn")
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_VOID, "Consumes all pedestal items in the room#↑ Grants 2 random stats up for each item consumed")
+
+--EID:addCollectible(CollectibleType.COLLECTIBLE_PAUSE, "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds") -- Change isn't mentioned in EID
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_ACID_BABY, "{{Pill}} Spawns a random pill every 7 rooms#{{Pill}} Identifies all pills#{{Poison}} Using a pill poisons all enemies in the room")
 

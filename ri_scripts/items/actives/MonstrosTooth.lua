@@ -32,7 +32,7 @@ local function MonstroBossProjectiles(effect)
 
     for _ = 1, 12 do
         local speed = 4.5 + rng:RandomFloat() * 6
-        local angle = rng:RandomInt(-20, 20)
+        local angle = rng:RandomInt(-10, 10)
         local velocity = ((targetposition - position):Rotated(angle)):Resized(speed)
         local projectile = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLOOD, 0, effect.Position, velocity, nil):ToTear()
         projectile.Height = -23

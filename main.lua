@@ -61,6 +61,7 @@ local scripts = {
 
     "characters.Eve",
     "characters.Samson",
+    "characters.Lazarus",
     "characters.Apollyon",
 
     "rooms.Library",
