@@ -45,13 +45,15 @@ REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriori
     REWORKEDITEMS:IsInHallowedCreep(player)
     REWORKEDITEMS:IsInHallowedGroundAura(player)
     if data.PeterModInStarAura and data.PeterModInStarAura > 0 then
-        multi = multi * 1.8
+        multi = multi * 1.5
     end
+    --[[
     if data.PeterModInHallowedCreep and data.PeterModInHallowedCreep > 0 then
         multi = multi * 1.2
     elseif data.PeterModInHallowedAura and data.PeterModInHallowedAura > 0 then
         multi = multi * 1.2
     end
+    ]]
 
 	for _, familiar in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.SUCCUBUS)) do
 		if (player.Position - familiar.Position):Length() < 100 then
