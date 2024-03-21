@@ -55,9 +55,9 @@ mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
     if optionscount then
         if optionscount >= 8 then
             NextCollectibleOption(pickup)
-        elseif optionscount >= 4 and data.FakeFrameCount >= 5 then
+        elseif optionscount >= 4 and data.FakeFrameCount >= 6 then
             NextCollectibleOption(pickup)
-        elseif optionscount > 0 and data.FakeFrameCount >= 29 then
+        elseif optionscount > 0 and data.FakeFrameCount >= 30 then
             NextCollectibleOption(pickup)
         end
     end
