@@ -4,6 +4,7 @@ local scripts = {
     "Helpers",
     "Enums",
 
+    --Rebirth Passives
     "items.passives.NumberOne",
     "items.passives.Skatole",
     "items.passives.Transcendence",
@@ -23,11 +24,17 @@ local scripts = {
     --"items.passives.DeadDove",
     "items.passives.Abel",
     "items.passives.SpiderBaby",
+    --"items.passives.Anemic",
+    --"items.passives.MonstrosLung",
     "items.passives.TheBody",
+
+    --Afterbirth Passives
     "items.passives.MomsPearls",
     "items.passives.Zodiac",
     "items.passives.GodsFlesh",
     "items.passives.LilLoki",
+
+    --Afterbirth+ Passives
     "items.passives.DarkPrincesCrown",
     "items.passives.DeadTooth",
     "items.passives.ShardOfGlass",
@@ -37,33 +44,49 @@ local scripts = {
     "items.passives.Leprosy",
     --"items.passives.Duality",
 
+    --Repentance Passives
+    "items.passives.SpiritSword",
+    "items.passives.GlitchedCrown",
+
+
+    --Rebirth Actives
     "items.actives.Necronomicon",
     "items.actives.ThePoop",
 	"items.actives.Teleport",
     "items.actives.MonstrosTooth",
     "items.actives.SpiderButt",
     "items.actives.Flush",
+
+    --Afertbirth Actives
     "items.actives.MegaBlast",
+
+    --Afertbirth+ Actives
     --"items.actives.Void",
     "items.actives.Pause",
+
+    --Repentance Actives
     "items.actives.BookOfVirtues",
     "items.actives.MomsBracelet",
     "items.actives.MegaMush",
+    "items.actives.BagOfCrafting",
+
+
 
     "cards.HugeGrowth",
 
-    --"pills.Horf",
+    "pills.Horf",
 
     "runes.Berkano",
 
     "slots.KeyMaster",
     "slots.BombBum",
 
-    "characters.Eve",
-    "characters.Samson",
-    "characters.Lazarus",
-    "characters.Apollyon",
+    --"characters.Eve",
+    --"characters.Samson",
+    --"characters.Lazarus",
+    --"characters.Apollyon",
 
+    "rooms.Secret",
     "rooms.Library",
 
     "compatibility.EIDCompat",

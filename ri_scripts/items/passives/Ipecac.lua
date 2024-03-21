@@ -4,7 +4,7 @@ REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriori
     local effects = player:GetEffects()
     local data = player:GetData()
     local multi = 1
-    local damage = 40
+    local damage = 38
 
     if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE) > 0 or
     player:GetCollectibleNum(CollectibleType.COLLECTIBLE_DR_FETUS) > 0 or
@@ -12,7 +12,7 @@ REWORKEDITEMS:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriori
     player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECH_X) > 0 or
     player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECHNOLOGY) > 0 or
     player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then
-        damage = 2
+        return
     end
 
 	if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_EVES_MASCARA) > 0 then

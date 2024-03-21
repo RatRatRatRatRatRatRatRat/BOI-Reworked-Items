@@ -1,6 +1,39 @@
-local firstdoor = nil;
-local startcount = nil;
+local mod = REWORKEDITEMS
+local game = Game()
 
+
+
+mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
+    local room = game:GetRoom()
+    if room:GetType() ~= RoomType.ROOM_BOSS then return end
+
+    for slot = 0, DoorSlot.NUM_DOOR_SLOTS - 1 do
+        local door = room:GetDoor(slot)
+        if door and door.Desc and door.TargetRoomType == RoomType.ROOM_ANGEL or door.TargetRoomType == RoomType.ROOM_DEVIL then
+            room:RemoveDoor(slot)        
+        end
+    end
+    room:TrySpawnDevilRoomDoor(true, true)
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+    local room = game:GetRoom()
+    if room:GetType() ~= RoomType.ROOM_BOSS then return end
+
+    for slot = 0, DoorSlot.NUM_DOOR_SLOTS - 1 do
+        local door = room:GetDoor(slot)
+        if door then  
+            if door.Desc and door.TargetRoomType == RoomType.ROOM_ANGEL or door.TargetRoomType == RoomType.ROOM_DEVIL then
+                room:RemoveDoor(slot)    
+                print("A")
+            end
+        end
+    end
+    game:GetLevel():InitializeDevilAngelRoom(true, false)
+    --room:TrySpawnDevilRoomDoor(false, true)
+end)
+
+--[[
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_DOOR_UPDATE, function(_, door)
     if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_DUALITY) then return end
 
@@ -50,3 +83,4 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
     firstdoor = nil;
     startcount = nil;
 end)
+]]

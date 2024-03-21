@@ -7,8 +7,7 @@ Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharge
 ---@param player EntityPlayer
 mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player)
     for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
-        pickup = pickup:ToPickup()
-        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not pickup:IsShopItem() then
+        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not pickup:ToPickup():IsShopItem() then
             pickup:Remove()
             Isaac.Spawn(EntityType.ENTITY_EFFECT, portalvariant, 0, pickup.Position, Vector.Zero, nil)
         end
@@ -62,7 +61,7 @@ mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE - 
     end
 end)
 
----@params tear EntityTear
+---@param npc EntityNPC
 mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
     if npc:IsEnemy() and PlayerManager.AnyoneIsPlayerType(PlayerType.PLAYER_APOLLYON) then
         local rng = npc:GetDropRNG()
@@ -71,48 +70,3 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
         end
     end
 end)
-
----@params effect EntityEffect
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect)
-    local data = effect:GetData()
-    data.maxflies = 3
-    data.cooldown = 20
-    effect.DepthOffset = -99
-end, portalvariant)
-
----@params effect EntityEffect
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
-    local sprite = effect:GetSprite()
-    local data = effect:GetData()
-
-    if sprite:IsFinished("Spawn") then
-        sprite:Play("Idle")
-    end
-
-    if sprite:IsPlaying("Idle") then
-        if sprite:IsOverlayPlaying() then
-            if sprite:IsOverlayEventTriggered("Shoot") then
-                for i = 0, 2 do
-                local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 0, effect.Position, Vector(12, 0):Rotated(i * 120), effect):ToFamiliar()
-                    fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-                    fly:PickEnemyTarget(9999)
-                    fly:SetColor(Color(0, 0, 0, 1, 0.63, 0.38, 0.94), 30, 1, true, true)
-                end
-            end
-        else
-            if data.maxflies == 0 then
-                sprite:Play("Death")
-            elseif data.cooldown > 0 then            
-                data.cooldown = data.cooldown - 1
-            else
-                data.cooldown = 30
-                data.maxflies = data.maxflies - 3
-                sprite:PlayOverlay("SpawnOverlay", true)
-            end
-        end
-    end
-
-    if sprite:IsFinished("Death") then
-        effect:Remove()
-    end
-end, portalvariant)

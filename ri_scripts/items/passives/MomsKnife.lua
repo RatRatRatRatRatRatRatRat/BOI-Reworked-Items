@@ -23,9 +23,15 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function(_)
                 if door and door:IsLocked() and door.TargetRoomType == RoomType.ROOM_BOSS then
                     for _, knife in pairs(Isaac.FindByType(EntityType.ENTITY_KNIFE)) do
                         if knife.Position:Distance(door.Position) < 16 then
-                            door:SetLocked(false)
-                            SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
-                            Game():SpawnParticles(door.Position, EffectVariant.BLOOD_PARTICLE, 30, 8)    
+                            if knife.SpawnerEntity and knife.SpawnerType == EntityType.ENTITY_PLAYER then
+                                local player = knife.SpawnerEntity:ToPlayer()
+                                if player and player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE, false) then
+                                    door:SetLocked(false)
+                                    SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
+                                    Game():SpawnParticles(door.Position, EffectVariant.BLOOD_PARTICLE, 30, 8) 
+                                    break
+                                end
+                            end
                         end
                     end
                 end

@@ -29,6 +29,17 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, function(_, bomb)
     end
 end)
 
+---@param collider Entity
+mod:AddCallback(ModCallbacks.MC_PRE_LASER_COLLISION, function(_, _, collider)
+    if collider.Type == EntityType.ENTITY_BOMB then
+        local bomb = collider:ToBomb()
+
+        if bomb and bomb:HasTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB) then
+            return true
+        end
+    end
+end)
+
 ---@param bomb EntityBomb
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb)
     if not bomb.SpawnerEntity and bomb.SpawnerEntity ~= EntityType.ENTITY_PLAYER then return end

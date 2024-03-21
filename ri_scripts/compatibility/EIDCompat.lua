@@ -20,7 +20,11 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MONSTROS_TOOTH, "Monstro falls on
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_STEVEN, "Shoots homing tears#Deals 3.5 damage per tear#{{Collectible50}} Deals 4.5 damage if Isaac has Steven")
 
-EID:addCollectible(CollectibleType.COLLECTIBLE_IPECAC, "↑ {{Damage}} +Damage x 10 (If the damage is less than 40)#↑ {{Damage}} +Damage x 5 + 20 (If the damage is greater than 40)#↓ {{Tears}} x0.33 Fire rate multiplier#↓ {{Range}} x0.8 Range multiplier#↓ {{Shotspeed}} -0.2 Shot speed#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land")
+EID:addCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE, "Isaac's tears are replaced by a throwable knife#{{Damage}} The knife deals 2x Isaac's damage while held and caps at 6x damage at 1/3 charge#Charging further only increases throwing range#Damage reduces to 2x when returning to Isaac#The knife can open a door made of flesh")
+
+EID:addCollectible(CollectibleType.COLLECTIBLE_IPECAC, "↑ {{Damage}} +2 Damage#↓ {{Tears}} x0.33 Fire rate multiplier#↓ {{Range}} x0.8 Range multiplier#↓ {{Shotspeed}} -0.2 Shot speed#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land#{{Damage}} Those tears deal 10x Isaac's tear damage#If that results in over 40 damage, they instead deal 5x damage +20")
+
+--↑ {{Damage}} +Damage x 10 (If the damage is less than 40)#↑ {{Damage}} +Damage x 5 + 20 (If the damage is greater than 40)#
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_GHOST_BABY, "Shoots piercing + spectral tears#Deals 3.5 damage per tear")
 
@@ -68,3 +72,5 @@ if FiendFolio then
 end
 
 EID:addCard(Card.CARD_HUGE_GROWTH, "{{Collectible625}} Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 30 seconds and persists between rooms and floors")
+
+EID:addPill(PillEffect.PILLEFFECT_HORF, "{{Collectible149}} Gives Ipecac for the room")

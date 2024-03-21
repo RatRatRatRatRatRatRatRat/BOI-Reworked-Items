@@ -1,7 +1,7 @@
 ---@param tear EntityTear
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, function(_, tear)
     local familiar = tear.SpawnerEntity:ToFamiliar()
-    if familiar.Player then
+    if familiar and familiar.Player then
         local player = familiar.Player
         if player:HasCollectible(CollectibleType.COLLECTIBLE_STEVEN) then
             if player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then
@@ -13,4 +13,4 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, functio
             end
         end
     end
-end)
+end, FamiliarVariant.LITTLE_STEVEN)
