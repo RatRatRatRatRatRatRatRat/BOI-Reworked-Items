@@ -1,5 +1,7 @@
+local mod = REWORKEDITEMS
+
 ---@param tear EntityTear
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, function(_, tear)
+function mod:AbelFireTear(tear)
     local familiar = tear.SpawnerEntity:ToFamiliar()
     if familiar and familiar.Player then
         local player = familiar.Player
@@ -15,4 +17,6 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, functio
             tear:ChangeVariant(TearVariant.BLOOD)
         end
     end
-end, FamiliarVariant.ABEL)
+end
+
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, mod.AbelFireTear, FamiliarVariant.ABEL)

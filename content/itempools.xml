@@ -1,0 +1,123 @@
+<ItemPools>
+	<Pool Name="blue">
+		<!--Brother Bobby-->
+		<Item Id="8" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Teleport-->
+		<Item Id="44" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--The Relic-->
+		<Item Id="98" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Forever Alone-->
+		<Item Id="128" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--The Mulligan-->
+		<Item Id="151" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--The Candle-->
+		<Item Id="164" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Polyphemus-->
+		<Item Id="169" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Holy Water-->
+		<Item Id="178" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Fate-->
+		<Item Id="179" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Anti Gravity-->
+		<Item Id="222" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Stop Watch-->
+		<Item Id="232" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Blue Map-->
+		<Item Id="246" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Hive Mind-->
+		<Item Id="248" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Sissy Long Legs-->
+		<Item Id="280" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Taurus-->
+		<Item Id="299" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Aries-->
+		<Item Id="300" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	    <!--Cancer-->
+		<Item Id="301" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Leo-->
+		<Item Id="302" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Virgo-->
+		<Item Id="303" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Libra-->
+		<Item Id="304" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Scorpio-->
+		<Item Id="305" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Sagittarius-->
+		<Item Id="306" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Capricorn-->
+		<Item Id="307" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Aquarius-->
+		<Item Id="308" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Pisces-->
+		<Item Id="309" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Holy Mantle-->
+		<Item Id="313" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Gemini-->
+		<Item Id="318" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--???'s Only Friend-->
+		<Item Id="320" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Isaac's Tears-->
+		<Item Id="323" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--The Soul-->
+		<Item Id="335" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Broken Watch-->
+		<Item Id="337" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Boomerang-->
+		<Item Id="338" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Blue Cap-->
+		<Item Id="342" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<!--Fate's Reward-->
+		<Item Id="361" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Epiphora-->
+		<Item Id="368" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Tear Detonator-->
+		<Item Id="383" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--D12-->
+		<Item Id="386" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Seraphim-->
+		<Item Id="390" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Tractor Beam-->
+		<Item Id="397" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Evil Eye-->
+		<Item Id="410" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Crown of Light-->
+		<Item Id="415" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Glowning Hour Glass-->
+		<Item Id="422" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Pjs-->
+		<Item Id="428" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Papa Fly-->
+		<Item Id="430" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Binky-->
+		<Item Id="438" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<!--Parasitoid-->
+		<Item Id="461" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Shade-->
+		<Item Id="468" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Hushy-->
+		<Item Id="470" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--King Baby-->
+		<Item Id="472" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Telekinesis-->
+		<Item Id="522" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Blanket-->
+		<Item Id="535" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<!--Almond Milk-->
+		<Item Id="561" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Evil Charm-->
+		<Item Id="632" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Revelation-->
+		<Item Id="643" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Cube Baby-->
+		<Item Id="652" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Soul Locket-->
+		<Item Id="686" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Keeper's Kin-->
+		<Item Id="717" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<!--Glass Eye-->
+		<Item Id="730" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+</ItemPools>

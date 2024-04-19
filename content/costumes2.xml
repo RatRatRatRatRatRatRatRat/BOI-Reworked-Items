@@ -1,0 +1,3 @@
+<costumes anm2root="gfx/characters/">
+	<costume anm2path="020_transcendence_2.anm2" type="none" priority="100" isFlying="true" forceHeadColor="true" forceBodyColor="true" />
+</costumes>

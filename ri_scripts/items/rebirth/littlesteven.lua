@@ -1,5 +1,7 @@
+local mod = REWORKEDITEMS
+
 ---@param tear EntityTear
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, function(_, tear)
+function mod:LittleStevenFireTear(tear)
     local familiar = tear.SpawnerEntity:ToFamiliar()
     if familiar and familiar.Player then
         local player = familiar.Player
@@ -13,4 +15,6 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, functio
             end
         end
     end
-end, FamiliarVariant.LITTLE_STEVEN)
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_FIRE_PROJECTILE, mod.LittleStevenFireTear, FamiliarVariant.LITTLE_STEVEN)
