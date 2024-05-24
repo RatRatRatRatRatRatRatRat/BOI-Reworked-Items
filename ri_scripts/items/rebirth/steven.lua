@@ -8,6 +8,7 @@ local StevenTearVariantOverride = {
 
 ---@param tear EntityTear
 function mod:StevenFireTear(tear)
+    if not tear.SpawnerEntity then return end
     local player = tear.SpawnerEntity:ToPlayer()
     if player and player:HasCollectible(CollectibleType.COLLECTIBLE_STEVEN) then
         if StevenTearVariantOverride[tear.Variant] then

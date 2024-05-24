@@ -1,6 +1,7 @@
+local mod = REWORKEDITEMS
 local gamedata = Isaac.GetPersistentGameData()
 
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, Type, Charge, FirstTime, Slot, VarData, Player)
+function mod:PageantBoyPickup(Type, Charge, FirstTime, Slot, VarData, Player)
     if FirstTime then
         local rng = RNG()
         rng:SetSeed(Player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_PAGEANT_BOY):GetSeed())
@@ -14,17 +15,18 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, Type,
         if gamedata:Unlocked(Achievement.STICKY_NICKELS) then RCG:AddOutcomeWeight(CoinSubType.COIN_STICKYNICKEL, 1) end
         if gamedata:Unlocked(Achievement.GOLDEN_PENNY) then RCG:AddOutcomeWeight(CoinSubType.COIN_GOLDEN, 1) end
 
-        for i = 1, 4 do
+        for i = 1, 6 do
             local position = Game():GetRoom():FindFreePickupSpawnPosition(Player.Position, 1, true)
             local subtype = CoinSubType.COIN_PENNY
             Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, subtype, position, Vector.Zero, Player):ToPickup():SetDropDelay(i)
         end
-        for i = 5, 7 do
-            local position = Game():GetRoom():FindFreePickupSpawnPosition(Player.Position, 1, true)
-            local subtype = RCG:PickOutcome(rng)
-            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, subtype, position, Vector.Zero, Player):ToPickup():SetDropDelay(i)
-        end
+
+        local position = Game():GetRoom():FindFreePickupSpawnPosition(Player.Position, 1, true)
+        local subtype = RCG:PickOutcome(rng)
+        Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, subtype, position, Vector.Zero, Player):ToPickup():SetDropDelay(i)
 
         return {Type, 0, false, Slot, VarData}  
     end
-end, CollectibleType.COLLECTIBLE_PAGEANT_BOY)
+end
+
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, mod.PageantBoyPickup, CollectibleType.COLLECTIBLE_PAGEANT_BOY)

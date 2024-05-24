@@ -1,14 +1,6 @@
 local mod = REWORKEDITEMS
 local game = Game()
 
-local BloodLust = {
-    Timer = 3600,
-    MaxCount = 6,
-
-    SamsonTimer = 2700,
-    MaxCountBirthright = 14,
-}
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
     if player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
         local data = player:GetData()

@@ -19,5 +19,5 @@ local function AddWhoreOfBabylon(_, player)
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, AddWhoreOfBabylon, PlayerType.PLAYER_EVE)
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, --[[YO!!!]] AddWhoreOfBabylon, PlayerType.PLAYER_EVE)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, AddWhoreOfBabylon)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, --[[YO!!!]] AddWhoreOfBabylon)

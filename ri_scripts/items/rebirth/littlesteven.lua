@@ -2,6 +2,7 @@ local mod = REWORKEDITEMS
 
 ---@param tear EntityTear
 function mod:LittleStevenFireTear(tear)
+    if not tear.SpawnerEntity then return end
     local familiar = tear.SpawnerEntity:ToFamiliar()
     if familiar and familiar.Player then
         local player = familiar.Player

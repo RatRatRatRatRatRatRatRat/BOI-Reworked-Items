@@ -1,5 +1,10 @@
 local mod = REWORKEDITEMS
 
+
+
+
+
+--[[
 ---@param player EntityPlayer
 function mod:EpicFetusWeaponCache(player)
     if  player:HasWeaponType(WeaponType.WEAPON_ROCKETS) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_EPIC_FETUS) > 0 then
@@ -42,3 +47,4 @@ end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.EpicFetusWeaponCache, CacheFlag.CACHE_WEAPON)
 mod:AddPriorityCallback(ModCallbacks.MC_POST_FIRE_BOMB, CallbackPriority.LATE, mod.FireEpicFetusBomb)
+]]
