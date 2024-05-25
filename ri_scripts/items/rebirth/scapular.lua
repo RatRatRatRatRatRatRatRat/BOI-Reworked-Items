@@ -24,7 +24,6 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.ScapularN
 ---@param entity Entity
 function mod:ScapularTakeDmg(entity)
     local player = entity:ToPlayer()
-    print("A")
 
     if player and player:HasCollectible(CollectibleType.COLLECTIBLE_SCAPULAR, false, true) then
         if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() <= 2 then

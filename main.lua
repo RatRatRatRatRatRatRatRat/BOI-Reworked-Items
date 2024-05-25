@@ -16,7 +16,7 @@ local scripts = {
     },
 
     characters = {
-        --eve = include("ri_scripts.characters.eve"),
+        eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
         --apollyon
 

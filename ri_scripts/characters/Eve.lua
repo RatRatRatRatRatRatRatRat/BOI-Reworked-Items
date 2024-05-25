@@ -1,23 +1,17 @@
 local mod = REWORKEDITEMS
 
 ---@param player EntityPlayer
-mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, function(_, player)
+function mod:EveInitLevelStats(player)
     player:RemoveCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON)
-end, PlayerType.PLAYER_EVE)
+end
+
+mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, mod.EveInitLevelStats, PlayerType.PLAYER_EVE)
 
 ---@param player EntityPlayer
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
-            if player:GetHearts() <= 2 and not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
-                player:UseCard(Card.CARD_EMPRESS, UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOANIM)
-            end
-end, PlayerType.PLAYER_EVE)
-
----@param player EntityPlayer
-local function AddWhoreOfBabylon(_, player)
-    if player:GetHearts() <= 2 and not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
-        player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON)
+function mod:EvePeffectUpdate(player)
+    if player:GetPlayerType() == PlayerType.PLAYER_EVE and not player:HasCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
+        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON, 1)
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, AddWhoreOfBabylon)
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, --[[YO!!!]] AddWhoreOfBabylon)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EvePeffectUpdate, PlayerVariant.PLAYER)
