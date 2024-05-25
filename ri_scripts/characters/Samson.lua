@@ -10,23 +10,21 @@ mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, mod.SamsonIni
 
 ---@param player EntityPlayer
 function mod:SamsonPeffectUpdate(player)
-    if player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
-        local data = player:GetData()
-        if data.SamsonContactDamageCooldown then
-            if data.SamsonContactDamageCooldown > 0 then
-                data.SamsonContactDamageCooldown = data.SamsonContactDamageCooldown - 1
-            end
-        else
-            data.SamsonContactDamageCooldown = 15
+    local data = player:GetData()
+    if data.SamsonContactDamageCooldown then
+        if data.SamsonContactDamageCooldown > 0 then
+            data.SamsonContactDamageCooldown = data.SamsonContactDamageCooldown - 1
         end
-        
-        if not player:HasCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
-            player:AddInnateCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST, 1)
-        end
+    else
+        data.SamsonContactDamageCooldown = 15
+    end
+    
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST) then
+        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST, 1)
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.SamsonPeffectUpdate, PlayerVariant.PLAYER)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.SamsonPeffectUpdate, PlayerType.PLAYER_SAMSON)
 
 ---@param npc EntityNPC
 mod:AddCallback(ModCallbacks.MC_POST_TAKE_DMG, function(_, npc)
