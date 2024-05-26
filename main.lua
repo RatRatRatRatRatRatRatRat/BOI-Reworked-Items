@@ -57,6 +57,7 @@ local scripts = {
             monstroslung = include("ri_scripts.items.rebirth.monstroslung"),
             --bffs
             --little baggy
+            drybaby = include("ri_scripts.items.rebirth.drybaby"),
             --dark bum
             flush = include("ri_scripts.items.rebirth.flush"),
             --pandoras box
