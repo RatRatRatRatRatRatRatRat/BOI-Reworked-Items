@@ -23,14 +23,27 @@ function mod:VoidItems(type, rng, player, flags, slot, customdata)
             if pickup:CanReroll() then
                 pickup:Remove()
                 Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+                
                 local rng = pickup:GetDropRNG()
-                local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, rng:RandomInt(5) + 1, pickup.Position, Vector.Zero, player):ToFamiliar()
-                fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-                fly.Player = player
+                local subtype = rng:RandomInt(5) + 1
+
+                if subtype ~= LocustSubtypes.LOCUST_OF_CONQUEST then
+                    local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, rng:RandomInt(5) + 1, pickup.Position, Vector.Zero, player):ToFamiliar()
+                    fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+                    fly.Player = player
+                else
+                    local count = rng:RandomInt(4) + 1
+                    local offset  = rng:RandomInt(46)
+                    for i = 1, count do
+                        local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, subtype, pickup.Position, Vector(12, 0):Rotated(i * (360 / (count)) + offset), player):ToFamiliar()
+                        fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+                        fly.Player = player
+                    end
+                end
             end
         end
     end
-    
+
     for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)) do
         pickup = pickup:ToPickup()
         if pickup.SubType ~= 0 and pickup.Price == 0 then
