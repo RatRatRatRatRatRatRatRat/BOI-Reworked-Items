@@ -18,7 +18,7 @@ local scripts = {
     characters = {
         eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
-        --apollyon
+        apollyon = include("ri_scripts.characters.apollyon")
 
         --cain B (make his bag of crafting swing damage scale ???)
         --apollyon B

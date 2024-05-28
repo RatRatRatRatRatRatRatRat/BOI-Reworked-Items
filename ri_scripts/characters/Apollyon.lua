@@ -1,7 +1,86 @@
 local mod = REWORKEDITEMS
-local portalvariant = Isaac.GetEntityVariantByName("Locust Portal")
+local game = Game()
+local config = Isaac.GetItemConfig()
 
-Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 4
+config:GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 3
+
+---@param player EntityPlayer
+function mod:ApollyonBattery(player)
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY) then
+        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_BATTERY, 1)
+        player:RemoveCostume(config:GetCollectible(CollectibleType.COLLECTIBLE_BATTERY))
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.ApollyonBattery, PlayerType.PLAYER_APOLLYON)
+
+---@param player EntityPlayer
+function mod:VoidItems(type, rng, player, flags, slot, customdata)
+    local indexes = {}
+    for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
+        pickup = pickup:ToPickup()
+        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and pickup.Price == 0 then
+            if pickup:CanReroll() then
+                pickup:Remove()
+                Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+                local rng = pickup:GetDropRNG()
+                local fly = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, rng:RandomInt(5) + 1, pickup.Position, Vector.Zero, player):ToFamiliar()
+                fly:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+                fly.Player = player
+            end
+        end
+    end
+    
+    for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)) do
+        pickup = pickup:ToPickup()
+        if pickup.SubType ~= 0 and pickup.Price == 0 then
+            local index = pickup.Index
+            if index > 0 then
+                if indexes[index] then
+                    pickup:TryRemoveCollectible()
+                else
+                    player:SalvageCollectible(pickup)
+                    Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+                    indexes[index] = true
+                end
+            else
+                player:SalvageCollectible(pickup)
+                Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+            end
+        end
+    end
+
+    local QueuedItemData = player.QueuedItem
+    if QueuedItemData.Item then
+        player:SalvageCollectible(QueuedItemData.Item.ID)
+        QueuedItemData.Item = nil
+        player.QueuedItem = QueuedItemData
+    end
+
+    player:AnimateCollectible(CollectibleType.COLLECTIBLE_VOID, "UseItem")
+    return true
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.VoidItems, CollectibleType.COLLECTIBLE_VOID)
+
+
+
+
+--[[
+
+config:GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 4
+config:GetCollectible(CollectibleType.COLLECTIBLE_VOID).Type = ItemType.ITEM_PASSIVE
+
+---@param player EntityPlayer
+function mod:RenderVoid(player)
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_VOID) then
+
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.RenderVoid)
+
+
 
 ---@param rng RNG
 ---@param player EntityPlayer
@@ -70,3 +149,5 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
         end
     end
 end)
+
+]]

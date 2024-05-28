@@ -1,7 +1,7 @@
 local mod = REWORKEDITEMS
 local portalvariant = Isaac.GetEntityVariantByName("Locust Portal")
 
-Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 4
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 2
 
 ---@param rng RNG
 ---@param player EntityPlayer
