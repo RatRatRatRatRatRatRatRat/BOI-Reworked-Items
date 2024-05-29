@@ -19,3 +19,20 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.TranscendencePickup, CollectibleType.COLLECTIBLE_TRANSCENDENCE)
 mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, mod.TranscendenceRemove, CollectibleType.COLLECTIBLE_TRANSCENDENCE)
+
+---@param player EntityPlayer
+function mod:UseHangedMan(_, player, _)
+    player:AddNullCostume(newcostume)
+end
+
+---@param player EntityPlayer
+function mod:NewRoomTranscendenceCostume(player)
+    if player:IsNullItemCostumeVisible(newcostume, "body") and
+    not (player:HasCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE) or
+    player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_TRANSCENDENCE)) then
+        player:TryRemoveNullCostume(newcostume)
+    end    
+end
+
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseHangedMan, Card.CARD_HANGED_MAN)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.NewRoomTranscendenceCostume)

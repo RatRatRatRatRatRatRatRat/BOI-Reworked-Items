@@ -2,12 +2,7 @@ REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
 local game = Game()
 
---[[
-TODO LIST:
-
-REBIRTH COLLECTIBLE CHANGES
-TOGGLES
-]]
+include("ri_scripts.savedata")(mod)
 
 local scripts = {
     cards = {
@@ -62,9 +57,9 @@ local scripts = {
             flush = include("ri_scripts.items.rebirth.flush"),
             --pandoras box
             --taurus
-            --holy mantle
-            --lazarus rags
-            --the body
+            holymantle = include("ri_scripts.items.rebirth.holymantle"),
+            lazarusrags = include("ri_scripts.items.rebirth.lazarusrags"),
+            thebody = include("ri_scripts.items.rebirth.thebody")
         },
         afterbirth = {
             --mega bean

@@ -2,7 +2,19 @@ local mod = REWORKEDITEMS
 local game = Game()
 local config = Isaac.GetItemConfig()
 
-config:GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 3
+config:GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 6
+
+function mod:VoidRender(player, slot, offset)
+    if player:GetPlayerType() == PlayerType.PLAYER_APOLLYON then
+  --      local sprite = Sprite()
+--        sprite:Render(offset)      
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, mod.VoidRender)
+
+
+--[[
 
 ---@param player EntityPlayer
 function mod:ApollyonBattery(player)
@@ -77,7 +89,7 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.VoidItems, CollectibleType.COLLECTIBLE_VOID)
 
 
-
+]]
 
 --[[
 
