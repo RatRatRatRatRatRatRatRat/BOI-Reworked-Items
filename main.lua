@@ -103,20 +103,19 @@ local scripts = {
             --pop            
         },
         repentance = {
-            --spirit sword
+            spiritsword = include("ri_scripts.items.repentance.spiritsword"),
             --book of virtues
             --jupiter (this ones fine but people hate it? weird...)
             --mega mush
-            --r key
+            rkey = include("ri_scripts.items.repentance.rkey"),
             --lil portal
-            --glitched miner (i mean crown)
-            --bag of crafting (make the range not change)
-            --spindown dice (indicator)
+            glitchedcrown = include("ri_scripts.items.repentance.glitchedcrown"),
+            bagofcrafting = include("ri_scripts.items.repentance.bagofcrafting"),
         },
     },
 
     pickups = {
-        --goldenhearts
+        --goldenhearts = include("ri_scripts.pickups.goldenhearts")
         bonehearts = include("ri_scripts.pickups.bonehearts"),
         rottenhearts = include("ri_scripts.pickups.rottenhearts"),
         stickynickel = include("ri_scripts.pickups.stickynickel"),

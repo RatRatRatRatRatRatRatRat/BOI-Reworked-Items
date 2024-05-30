@@ -12,7 +12,7 @@ mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, mod.LostInitM
 function mod:PlayerUpdateMantle(player)
     local data = mod.GetPlayerData(player)
     if data.HolyMantleCharged == nil then
-        data.HolyMantleCharged = false
+        data.HolyMantleCharged = true
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.PlayerUpdateMantle)
