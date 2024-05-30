@@ -5,9 +5,13 @@ local game = Game()
 include("ri_scripts.savedata")(mod)
 
 local scripts = {
+    achievements = {},
+
     cards = {
         --the world
+        hugegrowth = include("ri_scripts.cards.hugegrowth"),
         --the world?
+        soulofazazel = include("ri_scripts.cards.soulofazazel"),
     },
 
     characters = {
@@ -72,7 +76,7 @@ local scripts = {
             --gods flesh: squish enemies are no longer do things when kill
             --gb bug
             --milk: make the milk puddle give tear multiplier
-            --mega satan
+            megablast = include("ri_scripts.items.afterbirth.megablast")
         },
         afterbirthplus = {
             --dark princes crown
@@ -106,7 +110,7 @@ local scripts = {
             spiritsword = include("ri_scripts.items.repentance.spiritsword"),
             --book of virtues
             --jupiter (this ones fine but people hate it? weird...)
-            --mega mush
+            megamush = include("ri_scripts.items.repentance.megamush"),
             rkey = include("ri_scripts.items.repentance.rkey"),
             --lil portal
             glitchedcrown = include("ri_scripts.items.repentance.glitchedcrown"),

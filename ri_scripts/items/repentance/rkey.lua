@@ -18,6 +18,9 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseRKEY, CollectibleType.COLLECTIB
 
 ---@param player EntityPlayer
 function mod:RKEYTakeDMG(player, dmg, flags, ref, count)
+    if not mod.Data.RKEYUSED then
+        mod.Data.RKEYUSED = 0
+    end
     if dmg == 1 and mod.Data.RKEYUSED > 0 then
         player:TakeDamage(2, flags, ref, count)
         return false
