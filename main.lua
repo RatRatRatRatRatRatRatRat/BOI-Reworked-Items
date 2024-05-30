@@ -13,6 +13,7 @@ local scripts = {
     characters = {
         eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
+        lost = include("ri_scripts.characters.lost"),
         apollyon = include("ri_scripts.characters.apollyon")
 
         --cain B (make his bag of crafting swing damage scale ???)
@@ -116,6 +117,8 @@ local scripts = {
 
     pickups = {
         --goldenhearts
+        bonehearts = include("ri_scripts.pickups.bonehearts"),
+        rottenhearts = include("ri_scripts.pickups.rottenhearts"),
         stickynickel = include("ri_scripts.pickups.stickynickel"),
         --goldenkey = include("ri_scripts.pickups.goldenkey"),
         --goldenbomb = include("ri_scripts.pickups.goldenbomb"),

@@ -2,6 +2,13 @@ local mod = REWORKEDITEMS
 local sfx = SFXManager()
 
 ---@param player EntityPlayer
+function mod:LostInitMantle(player)
+    local data = mod.GetPlayerData(player)
+    data.HolyMantleCharged = true
+end
+mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, mod.LostInitMantle, PlayerType.PLAYER_THELOST)
+
+---@param player EntityPlayer
 function mod:PlayerUpdateMantle(player)
     local data = mod.GetPlayerData(player)
     if data.HolyMantleCharged == nil then
@@ -39,7 +46,7 @@ mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.MantlePickup, Collecti
 function mod:HolyMantleRemove(player)
     local data = mod.GetPlayerData(player)
     data.HolyMantleCharged = false
-    player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+    --player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 end
 mod:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, mod.HolyMantleRemove, CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 
@@ -82,7 +89,7 @@ function mod:MantlePreventDamage(player)
         if data.HolyMantleCharged then
             data.HolyMantleCharged = false
         else
-            if effects:GetNullEffectNum(NullItemID.ID_HOLY_CARD) <= effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_MANTLE) then
+            if effects:GetNullEffectNum(NullItemID.ID_HOLY_CARD) <= effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
                 effects:RemoveNullEffect(NullItemID.ID_HOLY_CARD)
             end
         end
