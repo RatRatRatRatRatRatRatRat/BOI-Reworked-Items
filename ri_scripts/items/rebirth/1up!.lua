@@ -1,24 +1,33 @@
 local mod = REWORKEDITEMS
 
+--Lazarus Rags and Soul of Lazarus take priority.
 ---@param player EntityPlayer
-function mod:PreRevive1UP(player)
-    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_1UP)
-    if count > 0 then
-        player:GetData().Num1UP = count
+function mod:OneUpRevive(player)
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_1UP, false, true) 
+    and not player:HasCollectible(CollectibleType.COLLECTIBLE_LAZARUS_RAGS, false, true) then
+        local canrevive = true
+        for i = PillCardSlot.PRIMARY, PillCardSlot.QUATERNARY do
+            if player:GetCard(i) == Card.CARD_SOUL_LAZARUS then
+                canrevive = false
+                break
+            end
+        end
+
+        if canrevive then
+            player:Revive()
+
+            --local level = Game():GetLevel()
+            --level:ChangeRoom(level:GetPreviousRoomIndex())
+
+            player:AnimateCollectible(CollectibleType.COLLECTIBLE_1UP)
+            player:RemoveCollectible(CollectibleType.COLLECTIBLE_1UP)
+
+            player:AddHearts(12)
+            local maxhp = player:GetMaxHearts()
+            if maxhp < 12 then
+                player:AddSoulHearts(12 - maxhp)
+            end
+        end
     end
 end
-
----@param player EntityPlayer
-function mod:Revive1UP(player)
-    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_1UP)
-    local data = player:GetData()
-
-    if count < data.Num1UP then
-        print("WAHHH")
-    end
-
-    print()
-end
-
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_REVIVE,  mod.PreRevive1UP)
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_REVIVE, mod.Revive1UP)
+mod:AddCallback(ModCallbacks.MC_PRE_TRIGGER_PLAYER_DEATH, mod.OneUpRevive)
