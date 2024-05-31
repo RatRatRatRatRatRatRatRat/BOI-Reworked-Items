@@ -1,4 +1,6 @@
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_UPDATE, function(_)
+local mod = REWORKEDITEMS
+
+function mod:SpiderButtFlashWhite()
     if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SPIDER_BUTT) then return end
     local frames = (math.sin(Game():GetFrameCount() * 8) + 1) * 0.15 + 0.1
 
@@ -7,4 +9,6 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_UPDATE, function(_)
             entity:SetColor(Color(1, 1, 1, 1, frames, frames, frames), 1, 1, true, true)
         end
     end
-end)
+end
+
+REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.SpiderButtFlashWhite)

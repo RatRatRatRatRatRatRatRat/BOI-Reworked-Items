@@ -47,7 +47,7 @@ local scripts = {
             scapular = include("ri_scripts.items.rebirth.scapular"),
             --bum friend should drop items hell yeah
             --epic fetus target shouldnt vanish methinks
-            --spider butt lol funny
+            spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
             bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
             epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
             abel = include("ri_scripts.items.rebirth.abel"),
@@ -95,7 +95,7 @@ local scripts = {
             --plan c
             --void
             --dataminer
-            --clicker
+            --clicker = include("ri_scripts.items.afterbirth+.clicker"),
             --acid baby
             --duality
             --make eucharist easier to get
@@ -110,6 +110,7 @@ local scripts = {
             spiritsword = include("ri_scripts.items.repentance.spiritsword"),
             --book of virtues
             --jupiter (this ones fine but people hate it? weird...)
+            momsbracelet = include("ri_scripts.items.repentance.momsbracelet"),
             megamush = include("ri_scripts.items.repentance.megamush"),
             rkey = include("ri_scripts.items.repentance.rkey"),
             --lil portal

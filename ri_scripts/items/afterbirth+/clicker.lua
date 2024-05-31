@@ -45,7 +45,7 @@ local ClickerCharge = 4
 mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player, flags, slot)
     local room = game:GetRoom()
     local level = game:GetLevel()
-    local desc = level:GetCurrentRoomDesc()
+    local desc = level:GetRoomByIdx(level:GetCurrentRoomIndex())
 
     if not ClickerRoomCharge[desc.Data.Type] then return end
     if desc.GridIndex == 84 then return end --starting room
@@ -59,18 +59,33 @@ mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player, flags,
 
     if data then
         for i = 0, room:GetGridSize() - 1 do
-            room:RemoveGridEntityImmediate(i, 0, false)
+            print("erm what the sigma")
+            if room:GetGridEntity(i) and not room:GetGridEntity(i):ToDoor() and not room:GetGridEntity(i):ToWall() then
+                room:RemoveGridEntityImmediate(i, 0, false)
+            end
         end
-    
+   
+        desc.Data = data
+        level:ChangeRoom(level:GetCurrentRoomIndex(), -1)
+
         for _, entity in pairs(Isaac.GetRoomEntities()) do
             if entity.Type > EntityType.ENTITY_FAMILIAR then
                 entity:Remove()     
             end
         end
 
-        desc.Data = data
-        level:ChangeRoom(level:GetCurrentRoomIndex(), -1)
-        player:UseActiveItem(CollectibleType.COLLECTIBLE_D7, UseFlag.USE_NOANIM)
+        if data.Spawns then
+            for i = 1, data.Spawns.Size - 1 do
+                local spawns = data.Spawns:Get(i)
+                local entry = spawns:PickEntry(0)
+                if entry then
+                    print(i)
+                    print(entry.Type.." "..entry.Variant.." "..entry.Subtype)
+                    --Isaac.Spawn(entry.Type, entry.Variant, entry.Subtype, Vector(340, 340), Vector.Zero, nil)
+                end
+            end
+        end
+
     end
 
     if flags & UseFlag.USE_OWNED > 0 and slot then
