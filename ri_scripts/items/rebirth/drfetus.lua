@@ -20,6 +20,7 @@ function mod:FireDrFetusBomb(bomb)
         end
 
         if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KNIFE) > 0 and not bomb:HasTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB) then
+            bomb:AddTearFlags(TearFlags.TEAR_FETUS_BOMBER)
             --data.IsMomsKnifeBomb = true
         end
     end
@@ -36,7 +37,7 @@ function mod:PreventBrimstoneBombLaserCollision(laser, coll)
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.DrFetusWeaponCache, CacheFlag.CACHE_WEAPON)
+--mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.DrFetusWeaponCache, CacheFlag.CACHE_WEAPON)
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, mod.FireDrFetusBomb)
 mod:AddCallback(ModCallbacks.MC_PRE_LASER_COLLISION, mod.PreventBrimstoneBombLaserCollision)
 
