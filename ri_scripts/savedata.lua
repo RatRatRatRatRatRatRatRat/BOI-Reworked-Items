@@ -100,6 +100,7 @@ Mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveStorage)
 local function LoadStorage(_,savestate)
 	if savestate then
 		if Mod:HasData() then
+			print("A")
 			local loaded = json.decode(Mod:LoadData())
 			Mod.Data = loaded.Data
 			Mod.LastData = DeepCopy(loaded.Data) -- glowing hourglass forgets things when you save/continue
@@ -117,12 +118,20 @@ local function LoadStorage(_,savestate)
 		end
 	else
 		-- fresh run, clear out the data, but load the config and persistent
-		local loaded = json.decode(Mod:LoadData())
-		Mod.Data = {}
-		Mod.LastData = {}
-		Mod.Config = loaded.Config
-		Mod.Persistent = loaded.Persistent
-		ReloadAllCache() -- should not matter, but I SWEAR I had a bug related to it once so let's be safe
+		if Mod:HasData() then
+			local loaded = json.decode(Mod:LoadData())
+			Mod.Data = {}
+			Mod.LastData = {}
+			Mod.Config = loaded.Config
+			Mod.Persistent = loaded.Persistent
+			ReloadAllCache() -- should not matter, but I SWEAR I had a bug related to it once so let's be safe
+		else
+			-- continuing an existing run right after getting the mod. Pretty bad idea, hypothetical player doing this, but it shouldn't crash maybe
+			Mod.Data = {}
+			Mod.LastData = {}
+			Mod.Config = {}
+			Mod.Persistent = {}
+		end
 	end
 end
 Mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, LoadStorage)
