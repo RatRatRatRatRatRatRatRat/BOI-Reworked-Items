@@ -100,7 +100,6 @@ Mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveStorage)
 local function LoadStorage(_,savestate)
 	if savestate then
 		if Mod:HasData() then
-			print("A")
 			local loaded = json.decode(Mod:LoadData())
 			Mod.Data = loaded.Data
 			Mod.LastData = DeepCopy(loaded.Data) -- glowing hourglass forgets things when you save/continue

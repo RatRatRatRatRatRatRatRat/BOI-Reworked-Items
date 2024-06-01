@@ -1,5 +1,7 @@
+local mod = REWORKEDITEMS
+
 ---@param player EntityPlayer
-REWORKEDITEMS:AddCallback(ModCallbacks.MC_USE_CARD, function(_, _, player, _)
+function mod:UseBerkano(_, player, _)
     local rng = player:GetCardRNG(Card.RUNE_BERKANO)
     local highest = math.min(4 + math.floor(player.Luck), 12)
 
@@ -23,4 +25,6 @@ REWORKEDITEMS:AddCallback(ModCallbacks.MC_USE_CARD, function(_, _, player, _)
             end
         end
     end
-end, Card.RUNE_BERKANO)
+end
+
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseBerkano, Card.RUNE_BERKANO)

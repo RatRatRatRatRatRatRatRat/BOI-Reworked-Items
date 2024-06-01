@@ -8,9 +8,10 @@ local scripts = {
     achievements = {},
 
     cards = {
-        --the world
+        theworld = include("ri_scripts.cards.theworld"),
+        berkano = include("ri_scripts.cards.berkano"),
         hugegrowth = include("ri_scripts.cards.hugegrowth"),
-        --the world?
+        reverseworld = include("ri_scripts.cards.reverseworld"),
         soulofazazel = include("ri_scripts.cards.soulofazazel"),
     },
 
@@ -108,7 +109,6 @@ local scripts = {
         },
         repentance = {
             spiritsword = include("ri_scripts.items.repentance.spiritsword"),
-            --book of virtues
             --jupiter (this ones fine but people hate it? weird...)
             momsbracelet = include("ri_scripts.items.repentance.momsbracelet"),
             megamush = include("ri_scripts.items.repentance.megamush"),
