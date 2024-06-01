@@ -105,7 +105,8 @@ local scripts = {
             --mystery gift? wait this is fine nvm. or is it?
             --telekenesis sucks
             --leprosy
-            --pop            
+            --pop 
+            --plan B (baby shoots out of issac)           
         },
         repentance = {
             spiritsword = include("ri_scripts.items.repentance.spiritsword"),

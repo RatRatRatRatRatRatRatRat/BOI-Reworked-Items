@@ -1,5 +1,6 @@
 local mod = REWORKEDITEMS
 local game = Game()
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_DARK_PRINCES_CROWN).Quality = 2
 
 ---@param player EntityPlayer
 function mod:BlockDarkCrown(player)
@@ -44,9 +45,9 @@ function mod:RenderDarkCrown(player, offset)
         end
 
         if player:HasCollectible(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT, false, true) then
-            sprite:Render(Isaac.WorldToRenderPosition(player.Position + Vector(0, -10)) + offset)
+            sprite:Render(offset + Vector(0, -6))
         else
-            sprite:Render(Isaac.WorldToRenderPosition(player.Position) + offset)
+            sprite:Render(offset)
         end
     end
 end
@@ -57,4 +58,4 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, --[[YO!!!!!]] mod.AddDarkCr
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.AddDarkCrown)
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, --[[YO!!!]] mod.AddDarkCrown)
 
-mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_RENDER, mod.RenderDarkCrown)
+mod:AddCallback(ModCallbacks.MC_PRE_RENDER_PLAYER_HEAD, mod.RenderDarkCrown)
