@@ -18,7 +18,7 @@ local scripts = {
         eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
         lost = include("ri_scripts.characters.lost"),
-        apollyon = include("ri_scripts.characters.apollyon")
+        --apollyon = include("ri_scripts.characters.apollyon")
 
         --cain B (make his bag of crafting swing damage scale ???)
         --apollyon B
@@ -72,8 +72,8 @@ local scripts = {
             --no. 2
             --bumbo?
             --key bum
-            --zodiac
-            --gods flesh: squish enemies are no longer do things when kill
+            zodiac = include("ri_scripts.items.afterbirth.zodiac"),
+            godsflesh = include("ri_scripts.items.afterbirth.godsflesh"),
             --gb bug
             --milk: make the milk puddle give tear multiplier
             megablast = include("ri_scripts.items.afterbirth.megablast")
