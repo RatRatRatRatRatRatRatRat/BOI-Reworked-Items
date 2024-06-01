@@ -10,7 +10,7 @@ end
 
 ---@param bomb EntityBomb
 function mod:FireDrFetusBomb(bomb)
-    if not bomb.SpawnerEntity and bomb.SpawnerEntity ~= EntityType.ENTITY_PLAYER then return end
+    if not bomb.SpawnerEntity and bomb.SpawnerType ~= EntityType.ENTITY_PLAYER then return end
     local player = bomb.SpawnerEntity:ToPlayer()
 
     if player then

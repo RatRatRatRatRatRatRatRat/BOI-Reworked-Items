@@ -76,13 +76,13 @@ local scripts = {
             zodiac = include("ri_scripts.items.afterbirth.zodiac"),
             godsflesh = include("ri_scripts.items.afterbirth.godsflesh"),
             --gb bug
-            --milk: make the milk puddle give tear multiplier
+            milk = include("ri_scripts.items.afterbirth.milk"),
             megablast = include("ri_scripts.items.afterbirth.megablast")
         },
         afterbirthplus = {
-            --dark princes crown
-            --apple
-            --dead tooth
+            darkprincescrown = include("ri_scripts.items.afterbirth+.darkprincescrown"),
+            apple = include("ri_scripts.items.afterbirth+.apple"),
+            deadtooth = include("ri_scripts.items.afterbirth+.deadtooth"),
             --linger bean
             --glass of shard
             --tarot cloth (more synergies)
