@@ -47,6 +47,7 @@ local scripts = {
             pageantboy = include("ri_scripts.items.rebirth.pageantboy"),
             scapular = include("ri_scripts.items.rebirth.scapular"),
             --bum friend should drop items hell yeah
+            ipecac = include("ri_scripts.items.rebirth.ipecac"),
             --epic fetus target shouldnt vanish methinks
             spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
             bloodlust = include("ri_scripts.items.rebirth.bloodlust"),

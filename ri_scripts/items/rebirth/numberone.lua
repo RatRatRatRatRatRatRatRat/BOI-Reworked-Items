@@ -1,4 +1,5 @@
 local mod = REWORKEDITEMS
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_NUMBER_ONE).Quality = 3
 
 ---@param player EntityPlayer
 function mod:NumberOneCache(player, cache)
