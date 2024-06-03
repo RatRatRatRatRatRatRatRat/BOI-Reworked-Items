@@ -97,7 +97,6 @@ local scripts = {
             --void
             --dataminer
             --clicker = include("ri_scripts.items.afterbirth+.clicker"),
-            acidbaby = include("ri_scripts.items.afterbirth+.acidbaby"),
             --duality
             --make eucharist easier to get
             --brown nugget i hate it so much
