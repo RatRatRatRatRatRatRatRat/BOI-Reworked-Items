@@ -5,8 +5,6 @@ Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_MEGA_MUSH).MaxC
 ---@param useflag UseFlag
 function mod:UseMegaMush(_, _, player, useflag)
     if useflag & UseFlag.USE_OWNED then
-        local peffect = player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH)
-        peffect.Cooldown = peffect.Cooldown + 1800
         return {
             Remove = true
         }
