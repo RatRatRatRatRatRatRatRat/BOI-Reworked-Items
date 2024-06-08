@@ -1,0 +1,14 @@
+local mod = REWORKEDITEMS
+local game = Game()
+
+---@param familiar EntityFamiliar
+---@param coll Entity
+function mod:GameBreakingCollision(familiar, coll)
+    local npc = coll:ToNPC()
+    if npc and npc:CanReroll() then
+        familiar.SubType = 1
+        game:DevolveEnemy(npc)
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, mod.GameBreakingCollision, FamiliarVariant.GB_BUG)

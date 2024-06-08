@@ -69,13 +69,13 @@ local scripts = {
         },
         afterbirth = {
             --mega bean
-            --lil chest
+            --lilchest = include("ri_scripts.items.afterbirth.lilchest"),
             --no. 2
             --bumbo?
             --key bum
             zodiac = include("ri_scripts.items.afterbirth.zodiac"),
             godsflesh = include("ri_scripts.items.afterbirth.godsflesh"),
-            --gb bug
+            gbbug = include("ri_scripts.items.afterbirth.gbbug"),
             milk = include("ri_scripts.items.afterbirth.milk"),
             megablast = include("ri_scripts.items.afterbirth.megablast")
         },
