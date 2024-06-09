@@ -4,6 +4,8 @@ local mod = REWORKEDITEMS
 include("ri_scripts.savedata")(mod)
 
 local scripts = {
+    helpers = include("ri_scripts.Helpers"),
+
     achievements = {},
 
     cards = {
@@ -23,6 +25,7 @@ local scripts = {
         --cain B (make his bag of crafting swing damage scale ???)
         --apollyon B
 
+        --mechanics = include("ri_scripts.characters.mechanics")
         --coop = include("ri_scripts.characters.coop")
     },
 
@@ -32,7 +35,7 @@ local scripts = {
             skatole = include("ri_scripts.items.rebirth.skatole"),
             oneup = include("ri_scripts.items.rebirth.1up!"),
             transcendence = include("ri_scripts.items.rebirth.transcendence"),
-            --thepoop = include("ri_scripts.items.rebirth.thepoop"),
+            thepoop = include("ri_scripts.items.rebirth.thepoop"),
             kamikaze = include("ri_scripts.items.rebirth.kamikaze"),
             teleport = include("ri_scripts.items.rebirth.teleport"),
             steven = include("ri_scripts.items.rebirth.steven"),
@@ -54,10 +57,10 @@ local scripts = {
             abel = include("ri_scripts.items.rebirth.abel"),
             telepathyfordummies = include("ri_scripts.items.rebirth.telepathyfordummies"),
             spiderbaby = include("ri_scripts.items.rebirth.spiderbaby"),
-            --placenta should be better? i think
+            placenta = include("ri_scripts.items.rebirth.placenta"),
             monstroslung = include("ri_scripts.items.rebirth.monstroslung"),
             --bffs
-            --little baggy
+            littlebaggy = include("ri_scripts.items.rebirth.littlebaggy"),
             drybaby = include("ri_scripts.items.rebirth.drybaby"),
             --dark bum
             flush = include("ri_scripts.items.rebirth.flush"),
@@ -69,7 +72,7 @@ local scripts = {
         },
         afterbirth = {
             --mega bean
-            --lilchest = include("ri_scripts.items.afterbirth.lilchest"),
+            lilchest = include("ri_scripts.items.afterbirth.lilchest"),
             --no. 2
             --bumbo?
             --key bum

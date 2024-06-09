@@ -2,7 +2,7 @@ local mod = REWORKEDITEMS
 
 ---@param player EntityPlayer
 function mod:UsePoop(collectible, rng, player, flags, slot, data)
-    if flags & UseFlag.USE_OWNED then
+    if flags & UseFlag.USE_OWNED > 0 then
         if player:HasCollectible(CollectibleType.COLLECTIBLE_MIDAS_TOUCH) then
             REWORKEDITEMS:TryHoldPoop(player, 1)
         elseif player:HasCollectible(CollectibleType.COLLECTIBLE_HALLOWED_GROUND) then

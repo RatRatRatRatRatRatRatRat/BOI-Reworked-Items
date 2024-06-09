@@ -43,3 +43,12 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_COLLISION, function(_, npc, coll)
         player:GetData().SamsonContactDamageCooldown = 15
     end
 end)
+
+---@param player EntityPlayer
+function mod:PreSamsonClicker(_, rng, player, flags, slot)
+    if player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
+        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST, -1)
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.PreSamsonClicker, CollectibleType.COLLECTIBLE_CLICKER)
