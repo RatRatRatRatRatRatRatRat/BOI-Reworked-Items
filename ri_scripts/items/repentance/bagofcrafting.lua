@@ -21,7 +21,7 @@ local function PostKnifeUpdate(_, knife)
         knife.Velocity = Vector.Zero;
         local player = parent:ToPlayer()
         if player and player:GetPlayerType() == PlayerType.PLAYER_CAIN_B then
-            knife.CollisionDamage = player.Damage / 3
+            knife.CollisionDamage = player.Damage
         end
     end
 end
