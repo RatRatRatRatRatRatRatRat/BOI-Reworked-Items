@@ -17,8 +17,10 @@ local function PostKnifeUpdate(_, knife)
         end
     end
     if (parent) then
-        knife.Position = parent.Position + Vector.FromAngle(knife.Rotation) * 8;
-        knife.Velocity = Vector.Zero;
+        local player = parent:ToPlayer()
+        if player and player:GetPlayerType() == PlayerType.PLAYER_CAIN_B then
+            knife.CollisionDamage = player.Damage
+        end
     end
 end
 REWORKEDITEMS:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, PostKnifeUpdate, 4)

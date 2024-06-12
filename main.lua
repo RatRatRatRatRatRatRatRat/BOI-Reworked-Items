@@ -22,7 +22,7 @@ local scripts = {
         lost = include("ri_scripts.characters.lost"),
         --apollyon = include("ri_scripts.characters.apollyon")
 
-        --cain B (make his bag of crafting swing damage scale ???)
+        cainb = include("ri_scripts.characters.cainb")
         --apollyon B
 
         --mechanics = include("ri_scripts.characters.mechanics")
