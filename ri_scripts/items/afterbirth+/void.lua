@@ -1,22 +1,48 @@
 local mod = REWORKEDITEMS
-local portalvariant = Isaac.GetEntityVariantByName("Locust Portal")
+local config = Isaac.GetItemConfig()
+config:GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 4
 
-Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_VOID).MaxCharges = 2
-
----@param rng RNG
 ---@param player EntityPlayer
-mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player)
-    for _, pickup in pairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
-        pickup = pickup:ToPickup()
-        if pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not pickup:IsShopItem() then
-            pickup:Remove()
-            Isaac.Spawn(EntityType.ENTITY_EFFECT, portalvariant, 0, pickup.Position, Vector.Zero, nil)
-        end
+function mod:VoidRoomEntry(player)
+    local items = player:GetVoidedCollectiblesList()
+    if #items > 0 then
+        for _, id in pairs(items) do
+            local item = config:GetCollectible(id)
+            if item.ChargeType == ItemConfig.CHARGE_NORMAL then
+                player:GetEffects():AddCollectibleEffect(id)
+            end
+        end        
     end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.VoidRoomEntry)
 
-    player:AnimateCollectible(CollectibleType.COLLECTIBLE_VOID, "UseItem")
-    return true
-end, CollectibleType.COLLECTIBLE_VOID)
+function mod:PreUseVoid(_, _, _, flags)
+    if flags & UseFlag.USE_VOID > 0 then
+        return true
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.PreUseVoid)
+
+--[[
+---@param player EntityPlayer
+function mod:VoidDamageCache(player)
+    local data = mod.GetPlayerData(player)
+    if data.VoidDamageUps then
+        player.Damage = player.Damage + data.VoidDamageUps
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.VoidDamageCache, CacheFlag.CACHE_DAMAGE)
+
+---@param player EntityPlayer
+function mod:VoidTearCache(player)
+    local data = mod.GetPlayerData(player)
+    if data.VoidDamageUps then
+        local tears = 30 / (player.MaxFireDelay + 1)
+        tears = tears + data.VoidDamageUps * 0.5
+        player.MaxFireDelay = (30 / tears) - 1
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.VoidTearCache, CacheFlag.CACHE_FIREDELAY)
 
 ---@param effect EntityEffect
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, effect)

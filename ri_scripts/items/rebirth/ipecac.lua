@@ -34,27 +34,29 @@ function mod:IpecacFlatDamage(player)
                 mult = mult * 1.5
             end
 
-            if player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA) then
-                mult = mult * 2
-            end
-
-            if player:GetHallowedGroundCountdown() > 0 then
-                mult = mult * 1.5
-            end
-
             for _, succubus in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.SUCCUBUS)) do
                 if (player.Position - succubus.Position):Length() < 100 then
                     mult = mult * 1.5
                 end
             end
 
-            local crown = 1 + 0.2 * player:GetTrinketMultiplier(TrinketType.TRINKET_CRACKED_CROWN)
-            if player.Damage / crown > 3.5 then
-                mult = mult * crown
+            if player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA) then
+                mult = mult * 2
             end
 
             if player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
                 mult = mult * 0.75
+            end
+
+            --repentogon ones
+
+            if player:GetHallowedGroundCountdown() > 0 then
+                mult = mult * 1.5
+            end
+
+            local crown = 1 + 0.2 * player:GetTrinketMultiplier(TrinketType.TRINKET_CRACKED_CROWN)
+            if player.Damage / crown > 3.5 then
+                mult = mult * crown
             end
 
             mult = mult * player:GetD8DamageModifier()

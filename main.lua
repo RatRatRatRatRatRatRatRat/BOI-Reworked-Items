@@ -17,13 +17,17 @@ local scripts = {
     },
 
     characters = {
-        eve = include("ri_scripts.characters.eve"),
+        --maggy
+        --judas
+        --eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
+        --azazel
         lost = include("ri_scripts.characters.lost"),
         --apollyon = include("ri_scripts.characters.apollyon")
 
         cainb = include("ri_scripts.characters.cainb")
-        --apollyon B
+        --lazarusb
+        --apollyonb
 
         --mechanics = include("ri_scripts.characters.mechanics")
         --coop = include("ri_scripts.characters.coop")
@@ -97,7 +101,7 @@ local scripts = {
             --king baby?
             --maybe even big chhubby??? who knows
             --plan c
-            --void
+            void = include("ri_scripts.items.afterbirth+.void"),
             --dataminer
             --clicker = include("ri_scripts.items.afterbirth+.clicker"),
             --duality = include("ri_scripts.items.afterbirth+.duality"),

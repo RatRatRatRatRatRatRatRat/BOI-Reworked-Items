@@ -1,39 +1,5 @@
 local mod = REWORKEDITEMS
-local game = Game()
-
 local SamsonCollision = false
-
----@param player EntityPlayer
-function mod:SamsonInitLevelStats(player)
-    player:RemoveCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST)
-end
-
-mod:AddCallback(ModCallbacks.MC_PLAYER_INIT_POST_LEVEL_INIT_STATS, mod.SamsonInitLevelStats, PlayerType.PLAYER_EVE)
-
----@param player EntityPlayer
-function mod:SamsonPeffectUpdate(player)
-    local data = player:GetData()
-
-    if player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
-        data.IsPlayerSamson = true
-
-        if data.SamsonContactDamageCooldown then
-            if data.SamsonContactDamageCooldown > 0 then
-                data.SamsonContactDamageCooldown = data.SamsonContactDamageCooldown - 1
-            end
-        else
-            data.SamsonContactDamageCooldown = 15
-        end
-        
-        if not player:HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST) then
-            player:AddInnateCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST, 1)
-        end
-    elseif data.IsPlayerSamson then
-        data.IsPlayerSamson = false
-        player:AddInnateCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST, -1)
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.SamsonPeffectUpdate)
 
 ---@param player EntityPlayer
 ---@param coll Entity
