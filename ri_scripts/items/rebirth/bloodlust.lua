@@ -11,7 +11,6 @@ local BloodLustTimerFlashIntervals = {
     [300] = true,
 }
 
-
 ---@param player EntityPlayer
 function mod:UpdateBloodLustCounter(player)
     local data = player:GetData()
@@ -36,11 +35,7 @@ function mod:BloodLustTimer(player)
             mod:UpdateBloodLustCounter(player)
 
             if data.BloodLustCounter > 0 then
-                if player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
-                    data.BloodLustTimer = 45 * 30
-                else
-                    data.BloodLustTimer = 60 * 30
-                end
+                data.BloodLustTimer = 60 * 30
             end
         end
     end
@@ -65,15 +60,10 @@ function mod:BloodLustTakeDmg(entity)
 
     if player and (player:HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_LUST) or player:HasCollectible(CollectibleType.COLLECTIBLE_BLOODY_GUST)) then
         local data = player:GetData()
-        if player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
-            data.BloodLustTimer = 45 * 30
-            if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-                data.BloodLustCounter = math.min(14, data.BloodLustCounter + 1)
-            else
-                data.BloodLustCounter = math.min(6, data.BloodLustCounter + 1)          
-            end
+        data.BloodLustTimer = 60 * 30
+        if player:GetPlayerType() == PlayerType.PLAYER_SAMSON and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+            data.BloodLustCounter = math.min(14, data.BloodLustCounter + 1)
         else
-            data.BloodLustTimer = 60 * 30
             data.BloodLustCounter = math.min(6, data.BloodLustCounter + 1)
         end
         mod:UpdateBloodLustCounter(player)

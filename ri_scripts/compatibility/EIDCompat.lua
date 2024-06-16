@@ -1,8 +1,35 @@
 if not EID then return end
 
-EID:addCollectible(CollectibleType.COLLECTIBLE_NUMBER_ONE, "↑ {{Tears}} +1.5 Tears#↑ {{Tears}} x1.2 Tears multiplier#↓ {{Range}} -1.5 Range#↓ {{Range}} x0.8 Range multiplier")
+
+local ItemDescriptionsEnglish = {
+    [CollectibleType.COLLECTIBLE_NUMBER_ONE] = "↑ {{Tears}} +1.5 Tears#↑ {{Tears}} x1.2 Tears multiplier#↓ {{Range}} -1.5 Range#↓ {{Range}} x0.8 Range multiplier#Isaac's tears leave creep#The creep deals 30 damage per second",
+}
+
+
+for id, desc in pairs(ItemDescriptionsEnglish) do
+    EID:addCollectible(id, desc)
+end
+
+
+
+
+
+
+
+
 
 --EID:addCollectible(CollectibleType.COLLECTIBLE_SKATOLE, "All fly enemies are friendly") -- Change isn't mentioned in EID
+
+
+
+
+
+
+
+
+
+
+--[[
 
 EID:addCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE, "Flight#+1 Fly orbital")
 
@@ -74,3 +101,6 @@ end
 EID:addCard(Card.CARD_HUGE_GROWTH, "{{Collectible625}} Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 30 seconds and persists between rooms and floors")
 
 EID:addPill(PillEffect.PILLEFFECT_HORF, "{{Collectible149}} Gives Ipecac for the room")
+]]
+
+print("WAHHH")

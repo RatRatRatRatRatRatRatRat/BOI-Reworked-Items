@@ -26,7 +26,7 @@ function mod:SamsonCollisionDamage(entity, amount, flags, source, countdown)
     end
 
     local npc = entity:ToNPC()
-    if npc and flags & DamageFlag.DAMAGE_COUNTDOWN > 0 and source then
+    if npc and flags & DamageFlag.DAMAGE_COUNTDOWN > 0 and source and source.Entity then
         local player = source.Entity:ToPlayer()
         if player and player:GetPlayerType() == PlayerType.PLAYER_SAMSON then
             SamsonCollision = true     

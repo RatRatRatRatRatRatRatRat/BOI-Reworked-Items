@@ -17,8 +17,7 @@ function mod:PageantBoyPickup(Type, Charge, FirstTime, Slot, VarData, Player)
 
         for i = 1, 6 do
             local position = Game():GetRoom():FindFreePickupSpawnPosition(Player.Position, 1, true)
-            local subtype = CoinSubType.COIN_PENNY
-            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, subtype, position, Vector.Zero, Player):ToPickup():SetDropDelay(i)
+            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, 0, position, Vector.Zero, Player):ToPickup():SetDropDelay(i)
         end
 
         local position = Game():GetRoom():FindFreePickupSpawnPosition(Player.Position, 1, true)

@@ -27,11 +27,10 @@ end
 
 ---@param player EntityPlayer
 function mod:NewRoomTranscendenceCostume(player)
-    if (not player.Variant == PlayerVariant.CO_OP_BABY) and player:IsNullItemCostumeVisible(newcostume, "body") and
-    not (player:HasCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE) or
-    player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_TRANSCENDENCE)) then
+    if (player.Variant ~= PlayerVariant.CO_OP_BABY) and
+    (not player:HasCollectible(CollectibleType.COLLECTIBLE_TRANSCENDENCE)) then
         player:TryRemoveNullCostume(newcostume)
-    end    
+    end
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseHangedMan, Card.CARD_HANGED_MAN)

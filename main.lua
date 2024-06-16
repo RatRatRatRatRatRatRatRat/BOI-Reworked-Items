@@ -1,5 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
+local game = Game()
 
 include("ri_scripts.savedata")(mod)
 
@@ -13,7 +14,7 @@ local scripts = {
         berkano = include("ri_scripts.cards.berkano"),
         hugegrowth = include("ri_scripts.cards.hugegrowth"),
         reverseworld = include("ri_scripts.cards.reverseworld"),
-        soulofazazel = include("ri_scripts.cards.soulofazazel"),
+        --soulofazazel = include("ri_scripts.cards.soulofazazel"),
     },
 
     characters = {
@@ -54,10 +55,9 @@ local scripts = {
             scapular = include("ri_scripts.items.rebirth.scapular"),
             --bum friend should drop items hell yeah
             ipecac = include("ri_scripts.items.rebirth.ipecac"),
-            --epic fetus target shouldnt vanish methinks
             spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
             bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
-            epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
+            --epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
             abel = include("ri_scripts.items.rebirth.abel"),
             telepathyfordummies = include("ri_scripts.items.rebirth.telepathyfordummies"),
             spiderbaby = include("ri_scripts.items.rebirth.spiderbaby"),
@@ -84,7 +84,7 @@ local scripts = {
             godsflesh = include("ri_scripts.items.afterbirth.godsflesh"),
             gbbug = include("ri_scripts.items.afterbirth.gbbug"),
             milk = include("ri_scripts.items.afterbirth.milk"),
-            megablast = include("ri_scripts.items.afterbirth.megablast")
+            --megablast = include("ri_scripts.items.afterbirth.megablast")
         },
         afterbirthplus = {
             darkprincescrown = include("ri_scripts.items.afterbirth+.darkprincescrown"),
@@ -101,7 +101,7 @@ local scripts = {
             --king baby?
             --maybe even big chhubby??? who knows
             --plan c
-            void = include("ri_scripts.items.afterbirth+.void"),
+            --void = include("ri_scripts.items.afterbirth+.void"),
             --dataminer
             --clicker = include("ri_scripts.items.afterbirth+.clicker"),
             --duality = include("ri_scripts.items.afterbirth+.duality"),
@@ -110,7 +110,7 @@ local scripts = {
             --deliriumous
             --telekenesis sucks
             --leprosy
-            --pop 
+            --pop
             --plan B (baby shoots out of issac)           
         },
         repentance = {
@@ -146,17 +146,18 @@ local scripts = {
     slots = {
         --fortunemachine = include("ri_scripts.slots.fortunemachine"),
         keymaster = include("ri_scripts.slots.keymaster"),
-        bombbum = include("ri_scripts.slots.bombbum")
+        bombbum = include("ri_scripts.slots.bombbum"),
         --maybe the rotten guy
     },
 
     trinkets = {},
 
-    --eid = include("ri_scripts.eid")
+    eid = include("ri_scripts.eid")
 }
 
---for i = 1 , #scripts do
-    --include("ri_scripts."..scripts[i])
---end
-
---	<trinket description="You feel stumped" gfx="trinket_unicornstump.png" id="1" name="Unicorn Stump" />
+local players = PlayerManager.GetPlayers()
+if players then
+    for _, player in pairs(players) do
+        player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
+    end
+end

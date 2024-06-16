@@ -22,7 +22,7 @@ function mod:FireNumberOneTear(tear)
     if not tear.SpawnerEntity then return end
 
     local player = tear.SpawnerEntity:ToPlayer()
-    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_NUMBER_ONE) then
+    if player and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_NUMBER_ONE) >= 2 then
         tear:GetData().PissTear = true
     end
 end

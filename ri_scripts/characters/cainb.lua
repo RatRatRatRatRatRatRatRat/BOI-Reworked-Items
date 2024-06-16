@@ -19,7 +19,7 @@ local function PostKnifeUpdate(_, knife)
     if (parent) then
         local player = parent:ToPlayer()
         if player and player:GetPlayerType() == PlayerType.PLAYER_CAIN_B then
-            knife.CollisionDamage = player.Damage
+            knife.CollisionDamage = player.Damage / 3
         end
     end
 end
