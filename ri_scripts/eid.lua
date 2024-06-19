@@ -43,7 +43,7 @@ local ItemDescriptionsEnglish = {
 local CardDescriptionsEnglish = {
     [Card.CARD_WORLD] = "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)#{{CurseLost}} Removes curse of the lost for the floor",
     [Card.RUNE_BERKANO] = "Summons a random amount of blue flies and blue spiders#Amount summoned is always 3 or more and scales with luck",
-    [Card.CARD_HUGE_GROWTH] = "Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 30 seconds and persists between rooms and floors",
+    [Card.CARD_HUGE_GROWTH] = "Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 15 seconds and persists between rooms and floors",
     [Card.CARD_REVERSE_WORLD] = "{{ErrorRoom}} Teleports Isaac to the Error Room",
     --[Card.CARD_SOUL_AZAZEL] = "{{Collectible441}} Fires a Mega Blast beam for 15 seconds",
 }
