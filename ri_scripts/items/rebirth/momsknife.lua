@@ -59,7 +59,6 @@ mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, mod.FetusKnifeFire, 0)
 function mod:FetusKnifeBomb(bomb)
     local data = bomb:GetData()
     if data.FetusKnife then
-        print("YAA")
         if bomb.Parent and bomb.Parent.Type == EntityType.ENTITY_KNIFE then
             local knife = bomb.Parent:ToKnife()
             if knife then
