@@ -7,6 +7,7 @@ local WhitelistVariants = {
     [11] = true,
 }
 
+---@param knife EntityKnife
 local function PostKnifeUpdate(_, knife)
     if (knife.FrameCount > 0) then
         return;
@@ -15,7 +16,8 @@ local function PostKnifeUpdate(_, knife)
         return;
     end
     local targetPosition = knife.TargetPosition;
-    local scale = targetPosition.X / 90 + 1;
+    local scale = (targetPosition.X / 120) + 1;
+    print(scale)
     knife.TargetPosition = Vector(4,0);
     knife.Scale = knife.Scale * scale;
     knife.SpriteScale = knife.SpriteScale * scale;
