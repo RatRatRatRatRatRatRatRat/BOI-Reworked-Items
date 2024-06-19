@@ -100,6 +100,7 @@ local scripts = {
             --maybe even big chhubby??? who knows
             --plan c
             --void = include("ri_scripts.items.afterbirth+.void"),
+            pause = include("ri_scripts.items.afterbirth+.pause"),
             --dataminer
             --clicker = include("ri_scripts.items.afterbirth+.clicker"),
             --duality = include("ri_scripts.items.afterbirth+.duality"),

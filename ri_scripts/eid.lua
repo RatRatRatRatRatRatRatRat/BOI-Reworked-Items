@@ -38,6 +38,7 @@ local ItemDescriptionsEnglish = {
     [CollectibleType.COLLECTIBLE_MOMS_BRACELET] = "Allows Isaac to pick up and throw rocks, TNT, poops, slots, friendly Dips, Hosts and other obstacles#Allows carrying them between rooms",
     [CollectibleType.COLLECTIBLE_MEGA_MUSH] = "{{Warning}} SINGLE USE {{Warning}}#Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 60 seconds and persists between rooms and floors",
     [CollectibleType.COLLECTIBLE_R_KEY] = "{{Warning}} SINGLE USE {{Warning}}#Restarts the entire run#All items, trinkets, stats and pickups collected are kept#The timer does not reset#{{Warning}} Isaac now takes full heart damage starting from the first floor",
+    [CollectibleType.COLLECTIBLE_BLOODY_GUST] = "When taking damage, receive:#↑ {{Speed}} Speed up#↑ {{Tears}} Fire rate up#Caps at +1.02 speed and +3 fire rate#{{Timer}} The number of stat ups decreases after not taking damage for a minute"
 }
 
 local CardDescriptionsEnglish = {
