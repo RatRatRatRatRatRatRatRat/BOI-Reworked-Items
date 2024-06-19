@@ -15,13 +15,15 @@ function mod:FireDrFetusBomb(bomb)
 
     if player then
         local data = bomb:GetData()
-        if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE) > 0 then
-            bomb:AddTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB)
-        end
 
-        if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KNIFE) > 0 and not bomb:HasTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB) then
-            bomb:AddTearFlags(TearFlags.TEAR_FETUS_BOMBER)
-            --data.IsMomsKnifeBomb = true
+        if not bomb:HasTearFlags(TearFlags.TEAR_SAD_BOMB) then
+            if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE) > 0 then
+                bomb:AddTearFlags(TearFlags.TEAR_BRIMSTONE_BOMB)
+            end
+
+            if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECHNOLOGY) > 0 then
+                data.TechnologyBomb = true
+            end
         end
     end
 end
@@ -37,29 +39,12 @@ function mod:PreventBrimstoneBombLaserCollision(laser, coll)
     end
 end
 
+---@param bomb EntityBomb
+function mod:DrFetusBombUpdate(bomb)
+
+end
+
+
 --mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.DrFetusWeaponCache, CacheFlag.CACHE_WEAPON)
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_BOMB, mod.FireDrFetusBomb)
 mod:AddCallback(ModCallbacks.MC_PRE_LASER_COLLISION, mod.PreventBrimstoneBombLaserCollision)
-
-
---[[
----@param bomb EntityBomb
-mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb)
-    if not bomb.SpawnerEntity and bomb.SpawnerEntity ~= EntityType.ENTITY_PLAYER then return end
-    local player = bomb.SpawnerEntity:ToPlayer()
-
-    if player then
-        local data = bomb:GetData()
-
-        if bomb:IsDead() then
-            if data.IsMomsKnifeBomb then
-                for i = 1, 4 do
-                    local newknife = player:FireKnife(player, 0.0, false, KnifeSubType.PROJECTILE, 0)
-                    newknife.Position = bomb.Position
-                    newknife.Rotation = 90 * i
-                end
-            end
-        end
-    end
-end)
-]]

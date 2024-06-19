@@ -18,12 +18,10 @@ local scripts = {
     },
 
     characters = {
-        --maggy
-        --judas
-        --eve = include("ri_scripts.characters.eve"),
+        eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
-        --azazel
-        lost = include("ri_scripts.characters.lost"),
+        --azazel = include("ri_scripts.characters.azazel")
+        --lost = include("ri_scripts.characters.lost"),
         --apollyon = include("ri_scripts.characters.apollyon")
 
         cainb = include("ri_scripts.characters.cainb")
@@ -42,7 +40,7 @@ local scripts = {
             transcendence = include("ri_scripts.items.rebirth.transcendence"),
             thepoop = include("ri_scripts.items.rebirth.thepoop"),
             kamikaze = include("ri_scripts.items.rebirth.kamikaze"),
-            teleport = include("ri_scripts.items.rebirth.teleport"),
+            --teleport = include("ri_scripts.items.rebirth.teleport"),
             steven = include("ri_scripts.items.rebirth.steven"),
             drfetus = include("ri_scripts.items.rebirth.drfetus"),
             --chocomilk needs more synergiess
@@ -127,8 +125,8 @@ local scripts = {
 
     pickups = {
         --goldenhearts = include("ri_scripts.pickups.goldenhearts")
-        bonehearts = include("ri_scripts.pickups.bonehearts"),
-        rottenhearts = include("ri_scripts.pickups.rottenhearts"),
+        --bonehearts = include("ri_scripts.pickups.bonehearts"),
+        --rottenhearts = include("ri_scripts.pickups.rottenhearts"),
         stickynickel = include("ri_scripts.pickups.stickynickel"),
         --goldenkey = include("ri_scripts.pickups.goldenkey"),
         --goldenbomb = include("ri_scripts.pickups.goldenbomb"),
@@ -140,7 +138,8 @@ local scripts = {
 
     rooms = {
         secret = include("ri_scripts.rooms.secret"),
-        library = include("ri_scripts.rooms.library")
+        library = include("ri_scripts.rooms.library"),
+        bossrush = include("ri_scripts.rooms.bossrush")
     },
 
     slots = {

@@ -10,7 +10,7 @@ local function PostKnifeUpdate(_, knife)
     local parent = knife.Parent;
     if (not parent) then
         for _, ent in ipairs(Isaac.FindByType(8,knife.Variant,0)) do
-            if (GetPtrHash(ent.SpawnerEntity) == GetPtrHash(knife.SpawnerEntity)) then
+            if ent.SpawnerEntity and (GetPtrHash(ent.SpawnerEntity) == GetPtrHash(knife.SpawnerEntity)) then
                 parent = ent;
                 break;
             end

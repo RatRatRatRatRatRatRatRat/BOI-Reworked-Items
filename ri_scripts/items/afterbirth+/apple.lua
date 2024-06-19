@@ -51,7 +51,7 @@ end
 
 ---@param knife EntityKnife
 function mod:FireAppleKnife(knife)
-    if not knife.SpawnerEntity and knife.SpawnerType ~= EntityType.ENTITY_PLAYER then return end
+    if not knife.SpawnerEntity or knife.SpawnerType ~= EntityType.ENTITY_PLAYER then return end
     local player = knife.SpawnerEntity:ToPlayer()
 
     if player and player:HasCollectible(CollectibleType.COLLECTIBLE_APPLE, false, true) then

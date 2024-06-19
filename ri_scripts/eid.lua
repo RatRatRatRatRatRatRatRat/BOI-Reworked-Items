@@ -19,6 +19,7 @@ local ItemDescriptionsEnglish = {
     --abel
     [CollectibleType.COLLECTIBLE_SPIDERBABY] = "Taking damage spawns 4-8 blue spiders",
     [CollectibleType.COLLECTIBLE_PLACENTA] = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{HalfHeart}} 10% chance to heal half a heart on room clear",
+    [CollectibleType.COLLECTIBLE_MONSTROS_LUNG] = "↓ {{Tears}} x0.23 Fire rate multiplier#↓ {{Range}} x0.67 Range multiplier#{{Chargeable}} Tears are charged and released in a shotgun style attack",
     [CollectibleType.COLLECTIBLE_LITTLE_BAGGY] = "{{Pill}} Identifies all pills#{{Pill}} Spawns 1 pill on pickup#Isaac can carry 2 pills#Turns all cards into pills",
     [CollectibleType.COLLECTIBLE_HOLY_MANTLE] = "Negates the first hit taken once before clearing a room",
     [CollectibleType.COLLECTIBLE_LAZARUS_RAGS] = "Once per floor, when you die:#Resurrect with half a heart#Lose 1 Red Heart container#",
