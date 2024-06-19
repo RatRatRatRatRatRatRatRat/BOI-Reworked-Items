@@ -6,7 +6,7 @@ Isaac.GetItemConfig():GetCard(Card.CARD_HUGE_GROWTH).MimicCharge = 12
 function mod:PreUseHugeGrowth(_, player, useflag)
     player:UseActiveItem(CollectibleType.COLLECTIBLE_MEGA_MUSH)
     local peffect = player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH)
-    peffect.Cooldown = peffect.Cooldown - 450
+    peffect.Cooldown = peffect.Cooldown - 1350
     player:AnimateCard(Card.CARD_HUGE_GROWTH, "UseItem")
     mod:TrySayAnnouncerLine(SoundEffect.SOUND_HUGE_GROWTH, useflag)
     return true
