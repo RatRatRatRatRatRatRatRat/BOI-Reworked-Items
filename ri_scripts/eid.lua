@@ -25,7 +25,7 @@ local ItemDescriptionsEnglish = {
     [CollectibleType.COLLECTIBLE_LAZARUS_RAGS] = "Once per floor, when you die:#Resurrect with half a heart#Lose 1 Red Heart container#",
     [CollectibleType.COLLECTIBLE_BODY] = "↑ {{Heart}} +3 Health#{{Heart}}Red Hearts have a 50% chance to be doubled",
 
-    [CollectibleType.COLLECTIBLE_LIL_CHEST] = "{{Chest}} Spawns the contents of a chest every 8 rooms",
+    [CollectibleType.COLLECTIBLE_LIL_CHEST] = "{{Chest}} Clearing a room has a 17% chance to spawn the contents of a chest#Chest contents have a 50% chance to include an additional trinket",
     [CollectibleType.COLLECTIBLE_GB_BUG] = "{{Throwable}} Throwable (double-tap shoot)#Downgrades enemies and rerolls pickups it comes in contact with",
     [CollectibleType.COLLECTIBLE_MILK] = "{{Tears}} Taking damage grants +1 Fire rate for the duration of the room and spawns a puddle of milk#↑ Standing in the puddle of milk grants a x2 Fire rate multiplier",
     --[CollectibleType.COLLECTIBLE_MEGA_BLAST] = "{{Warning}} SINGLE USE {{Warning}}#{{Timer}} Fires a huge Mega Satan blood beam for 30 seconds#The beam persists between rooms and floors",

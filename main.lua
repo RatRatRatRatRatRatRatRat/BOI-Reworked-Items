@@ -1,6 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
-mod.Version = "1.0.0"
+mod.Version = "1.0.1"
 
 include("ri_scripts.savedata")(mod)
 
