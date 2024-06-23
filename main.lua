@@ -1,6 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
-mod.Version = "1.0.1"
+mod.Version = "1.0.2"
 
 include("ri_scripts.savedata")(mod)
 
@@ -38,6 +38,7 @@ local scripts = {
             skatole = include("ri_scripts.items.rebirth.skatole"),
             oneup = include("ri_scripts.items.rebirth.1up!"),
             transcendence = include("ri_scripts.items.rebirth.transcendence"),
+            thebible = include("ri_scripts.items.rebirth.thebible"),
             thepoop = include("ri_scripts.items.rebirth.thepoop"),
             kamikaze = include("ri_scripts.items.rebirth.kamikaze"),
             --teleport = include("ri_scripts.items.rebirth.teleport"),
@@ -111,6 +112,7 @@ local scripts = {
             --leprosy
             --pop
             --plan B (baby shoots out of issac)           
+            --bookofthedead = include("ri_scripts.items.afterbirth+.bookofthedead"),
         },
         repentance = {
             spiritsword = include("ri_scripts.items.repentance.spiritsword"),
@@ -161,3 +163,5 @@ if players then
         player:AddCacheFlags(CacheFlag.CACHE_ALL, true)
     end
 end
+
+print("Isaac Rebalanced "..mod.Version.." Initialized")

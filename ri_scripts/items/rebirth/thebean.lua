@@ -93,6 +93,9 @@ function mod:BeanSynergyEffects(player, id, flags)
     elseif id == CollectibleType.COLLECTIBLE_KIDNEY_BEAN then
         game:CharmFart(player.Position, 85, player)
         return true
+
+    elseif config:GetCollectible(id).ChargeType ~= 0 then
+        return false
     end
 end
 
