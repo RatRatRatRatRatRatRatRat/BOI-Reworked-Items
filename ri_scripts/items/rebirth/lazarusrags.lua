@@ -1,5 +1,6 @@
 local mod = REWORKEDITEMS
 local config = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_LAZARUS_RAGS)
+config.Quality = 2
 
 ---@param player EntityPlayer
 function mod:PlayerUpdateRags(player)

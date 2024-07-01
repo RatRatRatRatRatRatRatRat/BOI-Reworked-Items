@@ -31,7 +31,7 @@ local ItemDescriptionsEnglish = {
     --[CollectibleType.COLLECTIBLE_MEGA_BLAST] = "{{Warning}} SINGLE USE {{Warning}}#{{Timer}} Fires a huge Mega Satan blood beam for 30 seconds#The beam persists between rooms and floors",
 
     [CollectibleType.COLLECTIBLE_DARK_PRINCES_CROWN] = "When on 1 Red Heart or less:#↑ {{Tears}} +2 Fire rate#↑ {{Range}} +1.5 Range#↑ {{Shotspeed}} +0.2 Shot speed",
-    [CollectibleType.COLLECTIBLE_APPLE] = "{{BleedingOut}} 10% chance to shoot razors that cause bleeding, which deals 10% of the enemy's max health in damage every 5 seconds#{{Luck}} 100% chance at 9 luck",
+    [CollectibleType.COLLECTIBLE_APPLE] = "{{BleedingOut}} 10% chance to shoot razors that cause bleeding, which makes enemies take damage when they move#{{Luck}} 100% chance at 9 luck",
     [CollectibleType.COLLECTIBLE_DEAD_TOOTH] = "{{Poison}} While firing, Isaac is surrounded by a growing green aura that poisons enemies#The aura grows to double the size after 1 second",
     [CollectibleType.COLLECTIBLE_SHARD_OF_GLASS] = "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{BleedingOut}} Isaac bleeds, spewing tears in the direction he is shooting#The bleeding does half a Red Heart of damage every 20 seconds#The bleeding stops if any heart is picked up, all Red Hearts are empty, or the next damage would kill Isaac",
 

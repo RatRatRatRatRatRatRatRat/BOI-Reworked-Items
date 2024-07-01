@@ -10,6 +10,7 @@ local scripts = {
     achievements = {},
 
     cards = {
+        thedevil = include("ri_scripts.cards.thedevil"),
         theworld = include("ri_scripts.cards.theworld"),
         berkano = include("ri_scripts.cards.berkano"),
         hugegrowth = include("ri_scripts.cards.hugegrowth"),
@@ -18,15 +19,24 @@ local scripts = {
     },
 
     characters = {
+        --maggy
+        judas = include("ri_scripts.characters.judas"),
         eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
-        --azazel = include("ri_scripts.characters.azazel")
+        --azazel = include("ri_scripts.characters.azazel"),
         --lost = include("ri_scripts.characters.lost"),
-        --apollyon = include("ri_scripts.characters.apollyon")
+        --lilith = include("ri_scripts.characters.lilith"),
 
-        cainb = include("ri_scripts.characters.cainb")
+        cainb = include("ri_scripts.characters.cainb"),
+        judasb = include("ri_scripts.characters.judasb"),
         --lazarusb
         --apollyonb
+
+
+        --JUST apollyon mechanics.
+        apollyon = include("ri_scripts.characters.apollyon.apollyon"),
+        voidturrets = include("ri_scripts.characters.apollyon.voidturrets"),
+        --void = include("ri_scripts.characters.apollyon.void"),
 
         --mechanics = include("ri_scripts.characters.mechanics")
         --coop = include("ri_scripts.characters.coop")
