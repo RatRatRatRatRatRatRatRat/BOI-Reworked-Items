@@ -36,7 +36,7 @@ local scripts = {
         --JUST apollyon mechanics.
         apollyon = include("ri_scripts.characters.apollyon.apollyon"),
         voidturrets = include("ri_scripts.characters.apollyon.voidturrets"),
-        --void = include("ri_scripts.characters.apollyon.void"),
+        void = include("ri_scripts.characters.apollyon.void"),
 
         --mechanics = include("ri_scripts.characters.mechanics")
         --coop = include("ri_scripts.characters.coop")
