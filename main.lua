@@ -1,6 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
-mod.Version = "1.0.2a"
+mod.Version = "1.0.2b"
 
 include("ri_scripts.savedata")(mod)
 
@@ -66,7 +66,7 @@ local scripts = {
             --bum friend should drop items hell yeah
             ipecac = include("ri_scripts.items.rebirth.ipecac"),
             spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
-            bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
+            --bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
             --epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
             abel = include("ri_scripts.items.rebirth.abel"),
             telepathyfordummies = include("ri_scripts.items.rebirth.telepathyfordummies"),
@@ -105,7 +105,7 @@ local scripts = {
             --tarot cloth (more synergies)
             --belly button
             --contagion
-            --shade
+            shade = include("ri_scripts.items.afterbirth+.shade"),
             --depression
             --hushy
             --king baby?
