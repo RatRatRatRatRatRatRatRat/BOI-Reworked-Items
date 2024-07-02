@@ -1,6 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
-mod.Version = "1.0.2"
+mod.Version = "1.0.2a"
 
 include("ri_scripts.savedata")(mod)
 
@@ -26,17 +26,18 @@ local scripts = {
         --azazel = include("ri_scripts.characters.azazel"),
         --lost = include("ri_scripts.characters.lost"),
         --lilith = include("ri_scripts.characters.lilith"),
+        --forgotten = include("ri_scripts.characters.forgotten"),
 
         cainb = include("ri_scripts.characters.cainb"),
-        judasb = include("ri_scripts.characters.judasb"),
+        --judasb = include("ri_scripts.characters.judasb"),
         --lazarusb
         --apollyonb
-
+        --forgottenb = include("ri_scripts.characters.forgottenb"),
 
         --JUST apollyon mechanics.
-        apollyon = include("ri_scripts.characters.apollyon.apollyon"),
-        voidturrets = include("ri_scripts.characters.apollyon.voidturrets"),
-        void = include("ri_scripts.characters.apollyon.void"),
+        --apollyon = include("ri_scripts.characters.apollyon.apollyon"),
+        --voidturrets = include("ri_scripts.characters.apollyon.voidturrets"),
+        --void = include("ri_scripts.characters.apollyon.void"),
 
         --mechanics = include("ri_scripts.characters.mechanics")
         --coop = include("ri_scripts.characters.coop")

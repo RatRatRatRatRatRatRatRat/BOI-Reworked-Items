@@ -28,7 +28,6 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.LostHealthBoneHearts, 
 ---@param player EntityPlayer
 function mod:BoneHeartHealthConversion(player, bones, healthtype)
     if player:GetHealthType() == HealthType.LOST then
-        print("WAH")
     end
 end
 mod:AddCallback(1009, mod.BoneHeartHealthConversion, AddHealthType.BONE)

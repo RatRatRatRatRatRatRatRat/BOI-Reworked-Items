@@ -53,6 +53,7 @@ if FiendFolio then
     CardDescriptionsEnglish[Card.RUNE_BERKANO] = "Summons a random amount of blue flies, blue spiders, and blue scuzz#Amount summoned is always 3 or more and scales with luck"
 end
 
+EID.descriptions["en_us"].CharacterInfo[3] = {"Judas", "Cards that spawn have a 10% chance to be a Devil Card"}
 EID.descriptions["en_us"].CharacterInfo[5] = {"Eve", "Eve has a +6.25% chance for heart drops to be {{SoulHeart}} Soul Hearts"}
 EID.descriptions["en_us"].CharacterInfo[6] = {"Samson", "Samson deals 24 contact damage per second"}
 EID.descriptions["en_us"].CharacterInfo[23] = {"Tainted Cain", "Touching an item pedestal turns it into a variety of pickups#Gain collectibles by crafting 8 pickups together in the Bag of Crafting#The Bag's contents can be shifted with {{ButtonRT}} to replace specific pickups when full#The Bag's swing deals Isaac's damage"}

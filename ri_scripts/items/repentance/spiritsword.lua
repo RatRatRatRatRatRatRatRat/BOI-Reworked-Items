@@ -17,7 +17,6 @@ local function PostKnifeUpdate(_, knife)
     end
     local targetPosition = knife.TargetPosition;
     local scale = (targetPosition.X / 120) + 1;
-    print(scale)
     knife.TargetPosition = Vector(4,0);
     knife.Scale = knife.Scale * scale;
     knife.SpriteScale = knife.SpriteScale * scale;
