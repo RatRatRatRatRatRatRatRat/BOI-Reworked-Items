@@ -1,6 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
-mod.Version = "1.0.2b"
+mod.Version = "1.0.3"
 
 include("ri_scripts.savedata")(mod)
 
@@ -84,7 +84,7 @@ local scripts = {
         afterbirth = {
             --mega bean
             lilchest = include("ri_scripts.items.afterbirth.lilchest"),
-            burstingsack = include("ri_scripts.afterbirth.burstingsack"),
+            --burstingsack = include("ri_scripts.afterbirth.burstingsack"),
             --number two
             --bumbo?
             --key bum
@@ -114,7 +114,7 @@ local scripts = {
             --dataminer
             clicker = include("ri_scripts.items.afterbirth+.clicker"),
             duality = include("ri_scripts.items.afterbirth+.duality"),
-            --make eucharist easier to get
+			--make eucharist easier to get
             --brown nugget i hate it so much
             --deliriumous
             --telekenesis sucks
