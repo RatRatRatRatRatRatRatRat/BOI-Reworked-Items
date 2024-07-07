@@ -120,7 +120,7 @@ local scripts = {
             --telekenesis sucks
             --leprosy
             --pop
-            --plan B (baby shoots out of issac)           
+            --plan B (baby shoots out of issac)
             --bookofthedead = include("ri_scripts.items.afterbirth+.bookofthedead"),
         },
         repentance = {
