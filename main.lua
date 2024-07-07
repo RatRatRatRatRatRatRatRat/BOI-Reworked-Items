@@ -63,7 +63,6 @@ local scripts = {
             ipecac = include("ri_scripts.items.rebirth.ipecac"),
             spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
             --bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
-            ghostbaby = include("ri_scripts.items.rebirth.ghostbaby"),
             --epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
             abel = include("ri_scripts.items.rebirth.abel"),
             telepathyfordummies = include("ri_scripts.items.rebirth.telepathyfordummies"),
@@ -84,7 +83,7 @@ local scripts = {
         afterbirth = {
             --mega bean
             lilchest = include("ri_scripts.items.afterbirth.lilchest"),
-            --burstingsack = include("ri_scripts.afterbirth.burstingsack"),
+            burstingsack = include("ri_scripts.afterbirth.burstingsack"),
             --number two
             --bumbo?
             --key bum
@@ -112,15 +111,15 @@ local scripts = {
             --void = include("ri_scripts.items.afterbirth+.void"),
             pause = include("ri_scripts.items.afterbirth+.pause"),
             --dataminer
-            clicker = include("ri_scripts.items.afterbirth+.clicker"),
+            --clicker = include("ri_scripts.items.afterbirth+.clicker"),
             duality = include("ri_scripts.items.afterbirth+.duality"),
-			--make eucharist easier to get
+            --make eucharist easier to get
             --brown nugget i hate it so much
             --deliriumous
             --telekenesis sucks
             --leprosy
             --pop
-            --plan B (baby shoots out of issac)
+            --plan B (baby shoots out of issac)           
             --bookofthedead = include("ri_scripts.items.afterbirth+.bookofthedead"),
         },
         repentance = {
