@@ -9,5 +9,4 @@ local function TaintedLazarusSwap(_, player)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, TaintedLazarusSwap, PlayerVariant.PLAYER)

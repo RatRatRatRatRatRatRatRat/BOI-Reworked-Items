@@ -21,7 +21,7 @@ local scripts = {
     characters = {
         --maggy
         judas = include("ri_scripts.characters.judas"),
-        eve = include("ri_scripts.characters.eve"),
+        --eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
         --azazel = include("ri_scripts.characters.azazel"),
         --lost = include("ri_scripts.characters.lost"),
@@ -30,15 +30,10 @@ local scripts = {
 
         cainb = include("ri_scripts.characters.cainb"),
         --judasb = include("ri_scripts.characters.judasb"),
-        eveb = include("ri_scripts.characters.eveb")
-        --lazarusb
+        eveb = include("ri_scripts.characters.eveb"),
+        lazarusb = include("ri_scripts.characters.lazarusb"),
         --apollyonb
         --forgottenb = include("ri_scripts.characters.forgottenb"),
-
-        --JUST apollyon mechanics.
-        --apollyon = include("ri_scripts.characters.apollyon.apollyon"),
-        --voidturrets = include("ri_scripts.characters.apollyon.voidturrets"),
-        --void = include("ri_scripts.characters.apollyon.void"),
 
         --mechanics = include("ri_scripts.characters.mechanics")
         --coop = include("ri_scripts.characters.coop")
@@ -53,7 +48,7 @@ local scripts = {
             thebible = include("ri_scripts.items.rebirth.thebible"),
             thepoop = include("ri_scripts.items.rebirth.thepoop"),
             kamikaze = include("ri_scripts.items.rebirth.kamikaze"),
-            --teleport = include("ri_scripts.items.rebirth.teleport"),
+            teleport = include("ri_scripts.items.rebirth.teleport"),
             steven = include("ri_scripts.items.rebirth.steven"),
             drfetus = include("ri_scripts.items.rebirth.drfetus"),
             --chocomilk needs more synergiess
@@ -68,11 +63,12 @@ local scripts = {
             ipecac = include("ri_scripts.items.rebirth.ipecac"),
             spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
             --bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
+            ghostbaby = include("ri_scripts.items.rebirth.ghostbaby"),
             --epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
             abel = include("ri_scripts.items.rebirth.abel"),
             telepathyfordummies = include("ri_scripts.items.rebirth.telepathyfordummies"),
             spiderbaby = include("ri_scripts.items.rebirth.spiderbaby"),
-            placenta = include("ri_scripts.items.rebirth.placenta"),
+            --placenta = include("ri_scripts.items.rebirth.placenta"),
             monstroslung = include("ri_scripts.items.rebirth.monstroslung"),
             --bffs
             littlebaggy = include("ri_scripts.items.rebirth.littlebaggy"),
@@ -88,7 +84,8 @@ local scripts = {
         afterbirth = {
             --mega bean
             lilchest = include("ri_scripts.items.afterbirth.lilchest"),
-            --no. 2
+            burstingsack = include("ri_scripts.afterbirth.burstingsack"),
+            --number two
             --bumbo?
             --key bum
             zodiac = include("ri_scripts.items.afterbirth.zodiac"),
@@ -115,7 +112,7 @@ local scripts = {
             --void = include("ri_scripts.items.afterbirth+.void"),
             pause = include("ri_scripts.items.afterbirth+.pause"),
             --dataminer
-            --clicker = include("ri_scripts.items.afterbirth+.clicker"),
+            clicker = include("ri_scripts.items.afterbirth+.clicker"),
             --duality = include("ri_scripts.items.afterbirth+.duality"),
             --make eucharist easier to get
             --brown nugget i hate it so much

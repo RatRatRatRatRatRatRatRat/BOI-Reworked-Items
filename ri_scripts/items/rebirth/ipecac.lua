@@ -62,7 +62,7 @@ function mod:IpecacFlatDamage(player)
             mult = mult * player:GetD8DamageModifier()
             mult = mult * (1 + player:GetDeadEyeCharge() / 8)
 
-            player.Damage = player.Damage - 38 * mult
+            player.Damage = player.Damage - 36 * mult
         end
     end
 end

@@ -1,4 +1,5 @@
 local mod = REWORKEDITEMS
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_SHADE).Quality = 2
 
 ---@param player EntityPlayer
 function mod:ShadeCache(player)
