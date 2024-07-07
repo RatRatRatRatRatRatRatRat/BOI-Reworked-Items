@@ -47,8 +47,10 @@ mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, _, rng, player, flags,
             end
         end
 
+        local index = level:GetCurrentRoomIndex()
+        level:ChangeRoom(84, -1)
         desc.Data = data
-        level:ChangeRoom(level:GetCurrentRoomIndex(), -1)
+        level:ChangeRoom(index, -1)
 
         player:UseActiveItem(CollectibleType.COLLECTIBLE_D7, UseFlag.USE_NOANIM)
     end
