@@ -8,7 +8,7 @@ function mod:ShadeCache(player)
         if data.ShadeHits == nil then
             data.ShadeHits = 0
         end
-        count = math.min(6, data.ShadeHits + count + player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS) - 1)
+        count = math.min(5, data.ShadeHits + count - 1)
         player:CheckFamiliar(FamiliarVariant.SHADE, count, player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SHADE))
     end
 end
@@ -23,12 +23,13 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.ShadeUpdate, FamiliarVarian
 ---@param player EntityPlayer
 function mod:ShadeReset(player)
     local data = mod.GetPlayerData(player)
-    if data.ShadeHits then
+    if data.ShadeHits and data.ShadeHits < 5 then
         data.ShadeHits = data.ShadeHits + 1
+        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     else
         data.ShadeHits = 1
+        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
-    player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, mod.ShadeReset)
 

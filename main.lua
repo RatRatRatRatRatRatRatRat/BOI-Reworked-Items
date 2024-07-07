@@ -30,6 +30,7 @@ local scripts = {
 
         cainb = include("ri_scripts.characters.cainb"),
         --judasb = include("ri_scripts.characters.judasb"),
+        eveb = include("ri_scripts.characters.eveb")
         --lazarusb
         --apollyonb
         --forgottenb = include("ri_scripts.characters.forgottenb"),
@@ -158,6 +159,7 @@ local scripts = {
 
     slots = {
         --fortunemachine = include("ri_scripts.slots.fortunemachine"),
+        --shellgame = include("ri_scripts.slots.shellgame"),
         keymaster = include("ri_scripts.slots.keymaster"),
         bombbum = include("ri_scripts.slots.bombbum"),
         --maybe the rotten guy

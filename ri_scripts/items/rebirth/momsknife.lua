@@ -13,7 +13,7 @@ function mod:MomsKnifeFleshDoor()
                 for _, knife in pairs(Isaac.FindByType(EntityType.ENTITY_KNIFE)) do
                     if knife.SpawnerEntity and knife.SpawnerType == EntityType.ENTITY_PLAYER and knife.Position:Distance(door.Position) < 16 then
                         local player = knife.SpawnerEntity:ToPlayer()
-                        if player and player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE, false) then
+                        if player and (player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE, false) or player:GetEffects():HasNullEffect(NullItemID.ID_BLOODY_BABYLON)) then
                             door:SetLocked(false)
                             game:SpawnParticles(door.Position, EffectVariant.BLOOD_PARTICLE, 30, 8) 
                             sfx:Play(SoundEffect.SOUND_DEATH_BURST_LARGE)

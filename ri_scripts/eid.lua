@@ -34,7 +34,7 @@ local ItemDescriptionsEnglish = {
     [CollectibleType.COLLECTIBLE_APPLE] = "{{BleedingOut}} 10% chance to shoot razors that cause bleeding, which makes enemies take damage when they move#{{Luck}} 100% chance at 9 luck",
     [CollectibleType.COLLECTIBLE_DEAD_TOOTH] = "{{Poison}} While firing, Isaac is surrounded by a growing green aura that poisons enemies#The aura grows to double the size after 1 second",
     [CollectibleType.COLLECTIBLE_SHARD_OF_GLASS] = "Upon taking damage:#{{Heart}} 25% chance to spawn a Red Heart#{{BleedingOut}} Isaac bleeds, spewing tears in the direction he is shooting#The bleeding does half a Red Heart of damage every 20 seconds#The bleeding stops if any heart is picked up, all Red Hearts are empty, or the next damage would kill Isaac",
-    [CollectibleType.COLLECTIBLE_SHADE] = "Clearing a room grants a familiar which follows Isaac's movement on a 0.66 second delay and deals 75 contact damage per second#Caps at 6 familiars",
+    [CollectibleType.COLLECTIBLE_SHADE] = "Clearing a room grants a familiar which follows Isaac's movement on a 0.66 second delay and deals 75 contact damage per second#Caps at 5 familiars",
 
     [CollectibleType.COLLECTIBLE_MOMS_BRACELET] = "Allows Isaac to pick up and throw rocks, TNT, poops, slots, friendly Dips, Hosts and other obstacles#Allows carrying them between rooms",
     [CollectibleType.COLLECTIBLE_MEGA_MUSH] = "{{Warning}} SINGLE USE {{Warning}}#Gigantifies Isaac and grants:#↑ {{Damage}} x4 Damage multiplier#↑ {{Range}} +2 Range#↓ {{Tears}} -1.9 Tears#Invincibility#Ability to crush enemies and obstacles#{{Timer}} Lasts for 60 seconds and persists between rooms and floors",
