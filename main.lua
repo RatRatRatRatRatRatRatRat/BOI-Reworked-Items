@@ -63,6 +63,7 @@ local scripts = {
             ipecac = include("ri_scripts.items.rebirth.ipecac"),
             spiderbutt = include("ri_scripts.items.rebirth.spiderbutt"),
             --bloodlust = include("ri_scripts.items.rebirth.bloodlust"),
+            ghostbaby = include("ri_scripts.items.rebirth.ghostbaby"),
             --epicfetus = include("ri_scripts.items.rebirth.epicfetus"),
             abel = include("ri_scripts.items.rebirth.abel"),
             telepathyfordummies = include("ri_scripts.items.rebirth.telepathyfordummies"),
