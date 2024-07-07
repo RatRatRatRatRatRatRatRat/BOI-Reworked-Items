@@ -16,6 +16,7 @@ local ItemDescriptionsEnglish = {
     [CollectibleType.COLLECTIBLE_IPECAC] = "↑ {{Damage}} +2 Damage#↑ {{Damage}} x1.5 Damage multiplier#↓ {{Tears}} x0.33 Fire rate multiplier#↓ {{Range}} x0.8 Range multiplier#↓ {{Shotspeed}} x0.8 Shot speed multiplier#Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land",
     [CollectibleType.COLLECTIBLE_SPIDER_BUTT] = "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies#Enemies with 10 HP or less gain a slight white tint while holding#Enemies killed by the item spawn blue spiders",
     --[CollectibleType.COLLECTIBLE_BLOODY_LUST] = "↑ {{Damage}} Taking damage grants a damage up#Applies up to 6 times#{{Timer}} The number of damage ups decreases after not taking damage for a minute",
+    [CollectibleType.COLLECTIBLE_GHOST_BABY] = "Shoots spectral and piercing tears#Deals 3.5 damage per tear",
     --abel
     [CollectibleType.COLLECTIBLE_SPIDERBABY] = "Taking damage spawns 4-8 blue spiders",
     [CollectibleType.COLLECTIBLE_PLACENTA] = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#{{HalfHeart}} 10% chance to heal half a heart on room clear",
