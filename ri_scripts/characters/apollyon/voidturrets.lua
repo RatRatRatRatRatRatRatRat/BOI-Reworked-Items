@@ -19,7 +19,7 @@ function mod:ApollyonPortalInit(effect)
     if player then
         effect.Parent = player
     else
-        player = game:GetPlayer()
+        player = game:GetPlayer(0)
         if player then
             effect.Parent = player
         else
@@ -76,7 +76,7 @@ function mod:ApollyonPortalUpdate(effect)
                 end
             end
         end
-    
+
         effect.Target = closestnpc
         local target = effect.Target
 
@@ -129,7 +129,7 @@ function mod:VoidRoomEntry(player)
             if item.ChargeType == ItemConfig.CHARGE_NORMAL then
                 player:GetEffects():AddCollectibleEffect(id)
             end
-        end        
+        end
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.VoidRoomEntry)
@@ -204,7 +204,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
                 sprite:StopOverlay()
             end
         else
-            if data.cooldown > 0 then            
+            if data.cooldown > 0 then
                 data.cooldown = data.cooldown - 1
             else
                 data.cooldown = 30

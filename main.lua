@@ -113,7 +113,7 @@ local scripts = {
             pause = include("ri_scripts.items.afterbirth+.pause"),
             --dataminer
             clicker = include("ri_scripts.items.afterbirth+.clicker"),
-            --duality = include("ri_scripts.items.afterbirth+.duality"),
+            duality = include("ri_scripts.items.afterbirth+.duality"),
             --make eucharist easier to get
             --brown nugget i hate it so much
             --deliriumous
