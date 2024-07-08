@@ -1,10 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<name>!Isaac Rebalanced</name>
-	<directory>reworkeditems</directory>
-	<description>[h1] Requires REPENTOGON! [h1]	
-	For more information, visit https://repentogon.com/
-	</description>
-	<version>1.0</version>
-	<visibility/>
-</metadata>
+    <name>!Isaac Rebalanced</name>
+    <directory>reworkeditems</directory>
+    <id>3284360004</id>
+    <description>[h1] Requires REPENTOGON! [/h1]	
+For more information, visit https://repentogon.com/
+	
+[hr][/hr]
+Isaac Rebalanced is a mod which changes many aspects of the game with the goal of making it feel more fair and fun to play. These aspects include...
 
+[h2] Item Changes [/h2]
+Many useless and boring items have been given reworks to make them much more exciting to find in runs, with many more receiving slight tweaks to fine tune them.
+
+[h2] Character Changes [/h2]
+Characters which lack much depth have been given changes to make them stand out amongst the roster. Samson for example is now able to crush any foes which come near him with his new contact damage!
+
+[h2] And More! [/h2]
+Many more changes are included in the mod, and will be added in the future! A full list of the current changes can be found [url=https://docs.google.com/spreadsheets/d/1BG75xmgnpYOk0uOvLAzqSLArSYpAof_uPz0uvJwztPM/edit?gid=0#gid=0]here[/url].
+
+[hr][/hr]
+Have any bugs or suggestions? Let us know in the pinned discussion thread!</description>
+    <version>1.2</version>
+    <visibility>Friends Only</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Trinkets"/>
+    <tag id="Pills"/>
+    <tag id="Cards"/>
+    <tag id="Pickups"/>
+    <tag id="Player Characters"/>
+    <tag id="Familiars"/>
+    <tag id="Babies"/>
+    <tag id="Rooms"/>
+    <tag id="Tweaks"/>
+    <tag id="Graphics"/>
+</metadata>
