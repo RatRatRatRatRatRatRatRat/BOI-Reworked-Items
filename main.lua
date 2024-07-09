@@ -130,6 +130,7 @@ local scripts = {
         },
         repentance = {
             spiritsword = include("ri_scripts.items.repentance.spiritsword"),
+            thestairway = include("ri_scripts.items.repentance.thestairway"),
             --jupiter (this ones fine but people hate it? weird...)
             momsbracelet = include("ri_scripts.items.repentance.momsbracelet"),
             megamush = include("ri_scripts.items.repentance.megamush"),
