@@ -2,25 +2,24 @@ local mod = REWORKEDITEMS
 local game = Game()
 
 local stump = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_UNICORN_STUMP)
-stump.Hidden = true
---game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_UNICORN_STUMP)
+stump.Type = ItemType.ITEM_PASSIVE
 
-TrinketType.TRINKET_UNICORN_STUMP = Isaac.GetTrinketIdByName("Unicorn Stump")
+---@param player EntityPlayer
+function mod:UnicornStumpRecharge(player)
+    player:GetData().UnicornStump = false
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.UnicornStumpRecharge)
+
 --I love you sooooooooooooooooo much
----@param entity Entity
-function mod:UnicornStumpTakeDamage(entity)
-    local player = entity:ToPlayer()
-
-    if player then
-        local count = player:GetTrinketMultiplier(TrinketType.TRINKET_UNICORN_STUMP)
-        if count > 0 then
-            local rng = player:GetTrinketRNG(TrinketType.TRINKET_UNICORN_STUMP)
-
-            if rng:RandomFloat() < 0.05 * count + math.max(0, player.Luck / 40) then
-                player:UseActiveItem(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN, UseFlag.USE_NOANIM)
-            end
+---@param player EntityPlayer
+---@param coll Entity
+function mod:UnicornStumpCollision(player, coll)
+    if coll:IsActiveEnemy() and player:HasCollectible(CollectibleType.COLLECTIBLE_UNICORN_STUMP) then
+        local data = player:GetData()
+        if not data.UnicornStump then
+            player:UseActiveItem(CollectibleType.COLLECTIBLE_UNICORN_STUMP)
+            data.UnicornStump = true
         end
     end
 end
-
-mod:AddCallback(ModCallbacks.MC_POST_TAKE_DMG, mod.UnicornStumpTakeDamage, EntityType.ENTITY_PLAYER)
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, CallbackPriority.EARLY - 200, mod.UnicornStumpCollision, coll)

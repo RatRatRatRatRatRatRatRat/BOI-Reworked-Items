@@ -1,4 +1,5 @@
 local mod = REWORKEDITEMS
+local game = Game()
 local sfx = SFXManager()
 
 ---@param player EntityPlayer
@@ -16,7 +17,7 @@ function mod:MantleNewRoom(player)
         data.HolyMantleCharged = true  
     end
     local effects = player:GetEffects()
-    if (player:GetPlayerType() == PlayerType.PLAYER_THELOST or effects:HasNullEffect(NullItemID.ID_LOST_CURSE)) and not data.HolyMantleCharged then
+    if ((player:GetPlayerType() == PlayerType.PLAYER_THELOST and Isaac:GetPersistentGameData():Unlocked(Achievement.LOST_HOLDS_HOLY_MANTLE)) or effects:HasNullEffect(NullItemID.ID_LOST_CURSE)) and not data.HolyMantleCharged then
         effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
     elseif player:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false, true) and data.HolyMantleCharged == true then
         effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
@@ -26,11 +27,13 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.MantleNew
 
 ---@param player EntityPlayer
 function mod:MantleRecharge(player)
-    if player:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false, true) or player:GetPlayerType() == PlayerType.PLAYER_THELOST then
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false, true) or (player:GetPlayerType() == PlayerType.PLAYER_THELOST and Isaac:GetPersistentGameData():Unlocked(Achievement.LOST_HOLDS_HOLY_MANTLE)) then
         local data = mod.GetPlayerData(player)
         
         if not data.HolyMantleCharged then
             data.HolyMantleCharged = true
+
+            player:SetColor(Color(1, 1, 1, 1, 2, 2, 2), 3, 1, true, true)
             player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
         end
     end
@@ -41,7 +44,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_REVIVE, mod.MantleRecharge)
 ---@param player EntityPlayer
 ---@param source EntityRef
 function mod:MantlePreventDamage(player, _, flags, source)
-    if flags & DamageFlag.DAMAGE_IV_BAG > 0 then return end
+    if flags & DamageFlag.DAMAGE_RED_HEARTS > 0 then return end
     if source and source.Type == EntityType.ENTITY_FIREPLACE and source.Variant == 4 then return end
 
     local data = mod.GetPlayerData(player)

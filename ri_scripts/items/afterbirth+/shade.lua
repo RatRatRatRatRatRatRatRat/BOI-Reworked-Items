@@ -1,5 +1,7 @@
 local mod = REWORKEDITEMS
-Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_SHADE).Quality = 2
+local config = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_SHADE)
+config.Description = "They follow"
+config.Quality = 2
 
 ---@param player EntityPlayer
 function mod:ShadeCache(player)
@@ -9,7 +11,7 @@ function mod:ShadeCache(player)
         if data.ShadeHits == nil then
             data.ShadeHits = 0
         end
-        count = math.min(5, data.ShadeHits + count - 1)
+        count = math.min(5, data.ShadeHits)
         player:CheckFamiliar(FamiliarVariant.SHADE, count, player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SHADE))
     end
 end
@@ -24,11 +26,12 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.ShadeUpdate, FamiliarVarian
 ---@param player EntityPlayer
 function mod:ShadeReset(player)
     local data = mod.GetPlayerData(player)
+    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SHADE)
     if data.ShadeHits and data.ShadeHits < 5 then
         data.ShadeHits = data.ShadeHits + 1
         player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     else
-        data.ShadeHits = 1
+        data.ShadeHits = math.min(5, count)
         player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
 end

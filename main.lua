@@ -1,6 +1,6 @@
 REWORKEDITEMS = RegisterMod("Reworked Items", 1)
 local mod = REWORKEDITEMS
-mod.Version = "1.0.3"
+mod.Version = "1.0.3a"
 
 include("ri_scripts.savedata")(mod)
 
@@ -18,9 +18,13 @@ local scripts = {
         --soulofazazel = include("ri_scripts.cards.soulofazazel"),
     },
 
+    challenges = {
+
+    },
+
     characters = {
         --maggy
-        judas = include("ri_scripts.characters.judas"),
+        --judas = include("ri_scripts.characters.judas"),
         --eve = include("ri_scripts.characters.eve"),
         samson = include("ri_scripts.characters.samson"),
         --azazel = include("ri_scripts.characters.azazel"),
@@ -76,6 +80,7 @@ local scripts = {
             --dark bum
             flush = include("ri_scripts.items.rebirth.flush"),
             --pandoras box
+            --unicornstump = include("ri_scripts.items.rebirth.unicornstump"),
             --taurus
             holymantle = include("ri_scripts.items.rebirth.holymantle"),
             lazarusrags = include("ri_scripts.items.rebirth.lazarusrags"),
@@ -84,7 +89,7 @@ local scripts = {
         afterbirth = {
             --mega bean
             lilchest = include("ri_scripts.items.afterbirth.lilchest"),
-            burstingsack = include("ri_scripts.afterbirth.burstingsack"),
+            burstingsack = include("ri_scripts.items.afterbirth.burstingsack"),
             --number two
             --bumbo?
             --key bum
@@ -145,7 +150,7 @@ local scripts = {
     },
 
     pills = {
-        --horf = include("ri_scripts.pills.horf") --30s ipecac (similar to r u a wizard) ?
+        horf = include("ri_scripts.pills.horf")
     },
 
     rooms = {
@@ -155,7 +160,7 @@ local scripts = {
     },
 
     slots = {
-        --fortunemachine = include("ri_scripts.slots.fortunemachine"),
+        fortunemachine = include("ri_scripts.slots.fortunemachine"),
         --shellgame = include("ri_scripts.slots.shellgame"),
         keymaster = include("ri_scripts.slots.keymaster"),
         bombbum = include("ri_scripts.slots.bombbum"),

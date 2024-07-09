@@ -3,9 +3,30 @@ local game = Game()
 local config = Isaac.GetItemConfig()
 config:GetCollectible(CollectibleType.COLLECTIBLE_BEAN).Type = ItemType.ITEM_PASSIVE
 
+
 ---@param player EntityPlayer
 function mod:BeanUseActive(id, rng, player, flags, slot)
-    if id ~= CollectibleType.COLLECTIBLE_BEAN and player:HasCollectible(CollectibleType.COLLECTIBLE_BEAN) and not (flags & UseFlag.USE_VOID > 0) then
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_BEAN) and not (flags & UseFlag.USE_VOID > 0) and (flags & UseFlag.USE_OWNED > 0) then
+        local item = config:GetCollectible(id)
+        local charges = player:GetActiveCharge(slot)
+        if item.ChargeType == 0 and item.MaxCharges > 0 and charges > 0 then
+            game:Fart(player.Position, 85 * math.sqrt(charges), player, math.sqrt(charges))
+        end
+    end
+end
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_USE_ITEM, CallbackPriority.LATE, mod.BeanUseActive)
+
+--[[
+---@param player EntityPlayer
+function mod:BeanCooldown(player)
+    local data = player:GetData()
+    if data.BeanCooldown and data.BeanCooldown > 0 then
+        data.BeanCooldown = data.BeanCooldown - 1
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.BeanUseActive)
+
         local data = player:GetData()
         print(id)
         data.BeanCooldown = data.BeanCooldown or 0
@@ -17,18 +38,9 @@ function mod:BeanUseActive(id, rng, player, flags, slot)
                 return true
             end
         end
-    end
-end
+]]
 
----@param player EntityPlayer
-function mod:BeanCooldown(player)
-    local data = player:GetData()
-    if data.BeanCooldown and data.BeanCooldown > 0 then
-        data.BeanCooldown = data.BeanCooldown - 1
-    end
-end
-
-mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.BeanUseActive)
+--[[
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.BeanCooldown)
 
 ---@param player EntityPlayer
@@ -100,3 +112,4 @@ function mod:BeanSynergyEffects(player, id, flags)
 end
 
 mod:AddCallback("MC_BEAN_ACTIVE", mod.BeanSynergyEffects)
+]]

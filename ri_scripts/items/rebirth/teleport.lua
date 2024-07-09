@@ -1,5 +1,6 @@
 local mod = REWORKEDITEMS
 local teleportRNG = RNG()
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_TELEPORT).Quality = 1
 
 --thank you pixel!!!
 

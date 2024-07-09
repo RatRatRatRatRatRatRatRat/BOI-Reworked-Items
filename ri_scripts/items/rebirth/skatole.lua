@@ -1,4 +1,5 @@
 local mod = REWORKEDITEMS
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_SKATOLE).Quality = 1
 
 ---@param npc EntityNPC
 function mod:SkatolePreventEffects(npc)
@@ -27,6 +28,9 @@ end
 function mod:SkatolePreventDeathEffects(npc)
     if PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SKATOLE) and npc:IsDead() then
         if EntityConfig.GetEntity(npc.Type, npc.Variant, npc.SubType):HasEntityTags(EntityTag.FLY) then
+            if npc:IsChampion() then
+                npc:Morph(npc.Type, npc.Variant, npc.SubType, ChampionColor.BROWN)
+            end
             return true
         end
     end

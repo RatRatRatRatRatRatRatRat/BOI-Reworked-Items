@@ -2,7 +2,7 @@ local mod = REWORKEDITEMS
 
 function mod:SpiderButtFlashWhite()
     if not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_SPIDER_BUTT) then return end
-    local frames = (math.sin(Game():GetFrameCount() * 8) + 1) * 0.15 + 0.1
+    local frames = (math.sin(Game():GetFrameCount() / 4) + 1) * 0.15 + 0.1
 
     for _, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity.HitPoints <= 10 and entity:IsActiveEnemy() and not entity:IsInvincible() then

@@ -1,5 +1,6 @@
 local mod = REWORKEDITEMS
 local fartradius = 50
+Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_DEAD_TOOTH).Quality = 2
 
 ---@param effect EntityEffect
 function mod:DeadToothGrow(effect)
@@ -18,5 +19,4 @@ function mod:DeadToothGrow(effect)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.DeadToothGrow, EffectVariant.FART_RING)

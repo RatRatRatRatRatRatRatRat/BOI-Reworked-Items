@@ -1,4 +1,5 @@
 local mod = REWORKEDITEMS
+local sfx = SFXManager()
 FamiliarVariant.LIL_CHEST_TWO = Isaac.GetEntityVariantByName("Lil Chest Two")
 
 ---@param player EntityPlayer
@@ -47,16 +48,17 @@ function mod:LilChestUpdate(familiar)
         end
     elseif sprite:IsPlaying("Spawn") then
         if sprite:GetFrame() == 5 then
-            local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_CHEST, ChestSubType.CHEST_CLOSED, familiar.Position, familiar.Velocity, nil):ToPickup()
-            if chest then
-                chest.Visible = false
-                chest:TryOpenChest()
-                chest:Remove()
-            end
-
             local rng = familiar:GetDropRNG()
             if rng:RandomFloat() < 0.5 then
+                local chest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_CHEST, ChestSubType.CHEST_CLOSED, familiar.Position, familiar.Velocity, nil):ToPickup()
+                if chest then
+                    chest.Visible = false
+                    chest:TryOpenChest()
+                    chest:Remove()
+                end
+            else
                 Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, familiar.Position, 8 * rng:RandomVector(), nil)
+                sfx:Play(SoundEffect.SOUND_CHEST_OPEN)
             end
 
             sprite:Play("Float", true)

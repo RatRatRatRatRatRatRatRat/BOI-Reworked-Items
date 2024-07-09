@@ -86,7 +86,24 @@ local function ReloadAllCache()
 end
 
 -- Saves current Data, Persistent, and Config to storage.
-local function SaveStorage() -- 99% sure there's no harm in ignoring shouldsave as long as you blank out the data at the start of a run
+local function HardSaveStorage(_, shouldSave) -- 99% sure there's no harm in ignoring shouldsave as long as you blank out the data at the start of a run
+	local saving = {
+		Data = Mod.Data,
+		Config = Mod.Config,
+		Persistent = Mod.Persistent
+	}
+	if shouldSave then
+		Mod:SaveData(json.encode(saving))
+	else
+		Mod.Data = {}
+		Mod.LastData = {}
+		Mod:SaveData(json.encode(saving))
+	end
+end
+Mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, HardSaveStorage)
+
+-- Saves current Data, Persistent, and Config to storage.
+local function SaveStorage(_, shouldSave) -- 99% sure there's no harm in ignoring shouldsave as long as you blank out the data at the start of a run
 	local saving = {
 		Data = Mod.Data,
 		Config = Mod.Config,
@@ -94,7 +111,6 @@ local function SaveStorage() -- 99% sure there's no harm in ignoring shouldsave 
 	}
 	Mod:SaveData(json.encode(saving))
 end
-Mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, SaveStorage)
 
 -- Loads up Data, LastData, Persistent, and Config when continuing a run; only loads up Persistent and Config when starting a new one
 local function LoadStorage(_,savestate)

@@ -1,6 +1,6 @@
 local mod = REWORKEDITEMS
 local config = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_LAZARUS_RAGS)
-config.Quality = 2
+config.Quality = 3
 
 ---@param player EntityPlayer
 function mod:PlayerUpdateRags(player)
@@ -10,7 +10,6 @@ function mod:PlayerUpdateRags(player)
     end
     data.LazarusRags = false
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.PlayerUpdateRags)
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_LEVEL, mod.PlayerUpdateRags)
 
 ---@param player EntityPlayer
