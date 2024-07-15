@@ -9,12 +9,12 @@ local MonstroProjectiles = {
 local function FindNewTarget(effect)
     local position = effect.Position
     for _, entity in pairs(Isaac.GetRoomEntities()) do
-        if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
+        if entity:IsVulnerableEnemy() then
             if not effect.TargetPosition
-            or (entity.Position + entity.Velocity):Distance(position) < (effect.TargetPosition):Distance(position) then 
+            or (entity.Position + entity.Velocity):Distance(position) < (effect.TargetPosition):Distance(position) then
                 effect.TargetPosition = entity.Position + entity.Velocity
             end
-        end             
+        end
     end
 end
 
@@ -53,8 +53,8 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
     data.HasFired = data.HasFired or false
 
     if sprite:IsPlaying("JumpDown") then
-        if sprite:IsEventTriggered("Land") then            
-            if effect.Target and effect.Target:IsActiveEnemy() and not effect.Target:IsBoss() then 
+        if sprite:IsEventTriggered("Land") then
+            if effect.Target and effect.Target:IsVulnerableEnemy() and not effect.Target:IsBoss() then
                 effect.Target:Die()
             end
         end
@@ -70,7 +70,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
     elseif sprite:IsPlaying("JumpUp") then
         if data.HasFired == false then
             data.HasFired = true
-            if Isaac.CountEnemies() > 0 and not effect.Target then 
+            if Isaac.CountEnemies() > 0 and not effect.Target then
                 FindNewTarget(effect)
                 if effect.TargetPosition then
                     sprite:Play("Taunt")
