@@ -173,3 +173,11 @@ function mod:ThrownSlotCollision(tear, target, bool)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_COLLISION, mod.ThrownSlotCollision, TearVariant.GRIDENT)
+
+-- Dumb rotten very bad failsafe for the seed being 0 for absolutely no reason :(
+function mod:ThrownSlotFailsafe(type, variant, subtype, position, velocity, spawner, seed)
+    if type == EntityType.ENTITY_TEAR and variant == TearVariant.GRIDENT and seed == 0 then
+        return { type, variant, subtype, spawner.Index }
+    end
+end
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, CallbackPriority.EARLY, mod.ThrownSlotFailsafe)
