@@ -3,23 +3,143 @@ local game = Game()
 local sfx = SFXManager()
 
 ---@param player EntityPlayer
-function mod:BlockMantle(player)
-    if not player:IsCollectibleBlocked(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
-        player:BlockCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+function mod:PlayerHasMantle(player)
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+    or (player:GetPlayerType() == PlayerType.PLAYER_THELOST and Isaac:GetPersistentGameData():Unlocked(Achievement.LOST_HOLDS_HOLY_MANTLE))
+    or player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) then
+        return true
+    else
+        return false
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.BlockMantle)
 
+---@param player EntityPlayer
+function mod:CheckMantle(player)
+    if mod:PlayerHasMantle(player) then
+        local data = mod.GetPlayerData(player) 
+        local effects = player:GetEffects()
+        if mod:PlayerHasMantle(player) then
+            print("A")
+            if data.HolyMantleCharged then
+                if not effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
+                    effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+                end
+            else
+                if effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
+                    effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+                end
+                data.HolyMantleCharged = false
+            end
+        end
+    end
+end
+
+function mod:MantleGameStart(iscontinued)
+    if iscontinued then
+        for _, player in pairs(PlayerManager.GetPlayers()) do
+            mod:CheckMantle(player)
+        end
+    else
+        for _, player in pairs(PlayerManager.GetPlayers()) do
+            local data = mod.GetPlayerData(player)
+            local effects = player:GetEffects()
+            if mod:PlayerHasMantle(player) then
+                data.HolyMantleCharged = true
+                if not effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
+                    effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+                end
+            end
+        end
+    end
+end
+
+---@param player EntityPlayer
+function mod:MantleRoomClear(player)
+    local data = mod.GetPlayerData(player)
+    if not data.HolyMantleCharged then
+        data.HolyMantleCharged = true
+        player:SetColor(Color(1, 1, 1, 1, 2, 2, 2), 3, 1, true, true)
+        mod:CheckMantle(player)
+    end
+end
+
+---@param npc EntityNPC
+---@param coll Entity
+function mod:TouchFireInnapropriately(npc, coll)
+    -- 4: white fireplace
+    if npc.Variant ~= 4 then return end
+
+    local player = coll:ToPlayer()
+    if player and (not player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)) then
+        mod.GetPlayerData(player).HolyMantleCharged = true
+        local effects = player:GetEffects()
+        if not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
+            effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+        end
+    end
+end
+
+---@param player EntityPlayer
+function mod:PickupMantle(type, charge, firsttime, slot, vardata, player)
+    if firsttime then
+        mod.GetPlayerData(player).HolyMantleCharged = true
+    end
+end
+
+---@param player EntityPlayer
+---@param source EntityRef
+function mod:MantlePreventDamage(player, _, flags, source)
+    if flags & DamageFlag.DAMAGE_RED_HEARTS > 0 then return end
+    if source and source.Type == EntityType.ENTITY_FIREPLACE and source.Variant == 4 then return end
+
+    local data = mod.GetPlayerData(player)
+    local effects = player:GetEffects()
+    if player:GetDamageCooldown() == 0 
+    and data.HolyMantleCharged 
+    and effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+    and not player:HasInvincibility(flags) then
+        player:SetMinDamageCooldown(60)
+        data.HolyMantleCharged = false
+        effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+        sfx:Play(SoundEffect.SOUND_HOLY_MANTLE)
+
+        local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 11, player.Position, player.Velocity, player):ToEffect()
+        if poof then
+            poof:FollowParent(player)
+            poof.DepthOffset = 99
+        end
+
+        return false
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.MantleGameStart)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_NEW_ROOM_TEMP_EFFECTS, mod.CheckMantle)
+mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, mod.MantleRoomClear)
+mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, mod.TouchFireInnapropriately, EntityType.ENTITY_FIREPLACE)
+mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.PickupMantle, CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+mod:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, CallbackPriority.LATE, mod.MantlePreventDamage)
+--[[
 ---@param player EntityPlayer
 function mod:MantleNewRoom(player)
     local data = mod.GetPlayerData(player)
     if data.HolyMantleCharged == nil then
-        data.HolyMantleCharged = true  
+        data.HolyMantleCharged = true
     end
+
     local effects = player:GetEffects()
-    if ((player:GetPlayerType() == PlayerType.PLAYER_THELOST and Isaac:GetPersistentGameData():Unlocked(Achievement.LOST_HOLDS_HOLY_MANTLE)) or effects:HasNullEffect(NullItemID.ID_LOST_CURSE)) and not data.HolyMantleCharged then
-        effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-    elseif player:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false, true) and data.HolyMantleCharged == true then
+    local hasmantle = false
+    if player:GetPlayerType() == PlayerType.PLAYER_THELOST and Isaac:GetPersistentGameData():Unlocked(Achievement.LOST_HOLDS_HOLY_MANTLE) then
+        hasmantle = true
+    elseif effects:HasNullEffect(NullItemID.ID_LOST_CURSE) then
+        hasmantle = true
+    end
+
+    if hasmantle then
+        effects:RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, -1)
+    end
+
+    if (player:HasCollectible(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false, true) or hasmantle) and data.HolyMantleCharged == true then
         effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
     end
 end
@@ -100,7 +220,7 @@ function mod:TouchFireInnapropriately(npc, coll)
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, mod.TouchFireInnapropriately, EntityType.ENTITY_FIREPLACE)
-
+]]
 
 --[[
 ---@param player EntityPlayer

@@ -149,7 +149,7 @@ local function LoadStorage(_,savestate)
 		end
 	end
 end
-Mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, LoadStorage)
+Mod:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.EARLY, LoadStorage)
 
 -- Sets LastData to what Data was at the end of the previous room
 local function DataToLastData()

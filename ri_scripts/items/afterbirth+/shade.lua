@@ -4,14 +4,21 @@ config.Description = "They follow"
 config.Quality = 2
 
 ---@param player EntityPlayer
+function mod:BlockShade(player)
+    if not player:IsCollectibleBlocked(CollectibleType.COLLECTIBLE_SHADE) then
+        player:BlockCollectible(CollectibleType.COLLECTIBLE_SHADE)
+    end
+end
+
+---@param player EntityPlayer
 function mod:ShadeCache(player)
-    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SHADE)
+    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SHADE, false, true)
     if count > 0 then
         local data = mod.GetPlayerData(player)
         if data.ShadeHits == nil then
             data.ShadeHits = 0
         end
-        count = math.min(5, data.ShadeHits)
+        count = count + math.min(5, data.ShadeHits) - 1
         player:CheckFamiliar(FamiliarVariant.SHADE, count, player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SHADE))
     end
 end
@@ -26,12 +33,10 @@ mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.ShadeUpdate, FamiliarVarian
 ---@param player EntityPlayer
 function mod:ShadeReset(player)
     local data = mod.GetPlayerData(player)
-    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SHADE)
-    if data.ShadeHits and data.ShadeHits < 5 then
+    local count = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SHADE, false, true)
+    data.ShadeHits = data.ShadeHits or 0
+    if data.ShadeHits < 5 then
         data.ShadeHits = data.ShadeHits + 1
-        player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
-    else
-        data.ShadeHits = math.min(5, count)
         player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS, true)
     end
 end
@@ -41,7 +46,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, mod.ShadeReset)
 function mod:ShadeTakeDMG(entity, _, flags)
     local player = entity:ToPlayer()
 
-    if player and not (flags & DamageFlag.DAMAGE_NO_PENALTIES > 0) and player:HasCollectible(CollectibleType.COLLECTIBLE_SHADE) then
+    if player and not (flags & DamageFlag.DAMAGE_NO_PENALTIES > 0) and player:HasCollectible(CollectibleType.COLLECTIBLE_SHADE, false, true) then
         mod.GetPlayerData(player).ShadeHits = 0
         for _, entity in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.SHADE)) do
             local familiar = entity:ToFamiliar()
