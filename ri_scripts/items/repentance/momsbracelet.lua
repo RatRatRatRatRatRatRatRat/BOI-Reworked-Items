@@ -1,59 +1,61 @@
 local mod = REWORKEDITEMS
 
-local TryHoldDistance = 40
+local TryHoldDistance = 40.0
 
 
 
 function mod:UseMomsBracelet(type, rng, player, flags, itemSlot, customdata)
-    for _, slot in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT)) do
-        if player.Position:Distance(slot.Position) <= TryHoldDistance
-        and not player:GetData().HeldSlotData -- Previous slot isn't still held / midair
-        and (slot:ToSlot():GetState() == 1 or slot:ToSlot():GetState() == 3) then -- Only pick them up when they're idle or destroyed
-            local slot = slot:ToSlot()
-            local slotSprite = slot:GetSprite()
+    if player:GetItemState() ~= CollectibleType.COLLECTIBLE_MOMS_BRACELET then -- not currently holding anything
+        for _, entity in ipairs(Isaac.FindInRadius(player.Position, TryHoldDistance, 0xffffffff)) do
+            if entity.Type == EntityType.ENTITY_SLOT then
+                local slot = entity:ToSlot()
+                if (slot:GetState() == 1 or slot:GetState() == 3) then -- Only pick them up when they're idle or destroyed
+                    local slotSprite = slot:GetSprite()
 
-            -- Create the helper entity to hold
-            local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GRID_ENTITY_PROJECTILE_HELPER, 0, slot.Position, Vector.Zero, player)
-            helper.Parent = player
-            player:TryHoldEntity(helper)
+                    -- Remove the original slot
+                    slot:Remove()
+
+                    -- Create the helper entity to hold
+                    local helper = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GRID_ENTITY_PROJECTILE_HELPER, 0, slot.Position, Vector.Zero, nil)
+
+                    -- Store the slot's data
+                    player:GetData().HeldSlotData = {
+                        Variant       = slot.Variant,
+                        SubType       = slot.SubType,
+                        Seed          = slot.DropSeed,
+                        State         = slot:GetState(),
+                        PrizeType     = slot:GetPrizeType(),
+                        DonationValue = slot:GetDonationValue(),
+                        Timeout       = slot:GetTimeout(),
+                        Touch         = slot:GetTouch(),
+                        Offset        = slot.PositionOffset,
+                        Data          = slot:GetData(),
+                    }
 
 
-            -- Store the slot's data
-            player:GetData().HeldSlotData = {
-                Variant       = slot.Variant,
-                SubType       = slot.SubType,
-                Seed          = slot.DropSeed,
-                State         = slot:GetState(),
-                PrizeType     = slot:GetPrizeType(),
-                DonationValue = slot:GetDonationValue(),
-                Timeout       = slot:GetTimeout(),
-                Touch         = slot:GetTouch(),
-                Offset        = slot.PositionOffset,
-                Data          = slot:GetData(),
-            }
+                    -- Store the slot's sprite data
+                    local helperSprite = helper:GetSprite()
+                    helperSprite:Load(slotSprite:GetFilename())
 
+                    helperSprite:Play(slotSprite:GetAnimation(), true)
+                    helperSprite:SetFrame(slotSprite:GetFrame())
+                    helperSprite:PlayOverlay(slotSprite:GetOverlayAnimation(), true)
+                    helperSprite:SetOverlayFrame(slotSprite:GetOverlayFrame())
 
-            -- Store the slot's sprite data
-            local helperSprite = helper:GetSprite()
-            helperSprite:Load(slotSprite:GetFilename())
+                    helperSprite.PlaybackSpeed = 0
+                    helper.PositionOffset = slot.PositionOffset
 
-            helperSprite:Play(slotSprite:GetAnimation(), true)
-            helperSprite:SetFrame(slotSprite:GetFrame())
-            helperSprite:PlayOverlay(slotSprite:GetOverlayAnimation(), true)
-            helperSprite:SetOverlayFrame(slotSprite:GetOverlayFrame())
+                    for i, layer in pairs(slotSprite:GetAllLayers()) do
+                        helperSprite:ReplaceSpritesheet(i - 1, layer:GetSpritesheetPath())
+                    end
+                    helperSprite:LoadGraphics()
 
-            helperSprite.PlaybackSpeed = 0
-            helper.PositionOffset = slot.PositionOffset
+                    helper.Parent = player
+                    player:TryHoldEntity(helper)
 
-            for i, layer in pairs(slotSprite:GetAllLayers()) do
-                helperSprite:ReplaceSpritesheet(i - 1, layer:GetSpritesheetPath())
+                    return true
+                end
             end
-            helperSprite:LoadGraphics()
-
-
-            -- Remove the original slot
-            slot:Remove()
-            return true
         end
     end
 end
