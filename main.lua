@@ -151,7 +151,7 @@ local scripts = {
     },
 
     pills = {
-        horf = include("ri_scripts.pills.horf")
+        --horf = include("ri_scripts.pills.horf")
     },
 
     rooms = {

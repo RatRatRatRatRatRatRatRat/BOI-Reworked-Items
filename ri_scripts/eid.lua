@@ -79,9 +79,9 @@ for id, desc in pairs(CardDescriptionsEnglish) do
     EID:addCard(id, desc)
 end
 
-for id, desc in pairs(PillDescriptionsEnglish) do
-    EID:addPill(id, desc)
-end
+--for id, desc in pairs(PillDescriptionsEnglish) do
+  --  EID:addPill(id, desc)
+--end
 
 for id, desc in pairs(HorsePillDescriptionsEnglish) do
     --EID:addCard(id, desc)

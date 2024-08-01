@@ -70,7 +70,7 @@ end
 ---@param player EntityPlayer
 function mod:IpecacDamageMult(player)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
-        player.Damage = player.Damage * 1.5
+        player.Damage = player.Damage * 2
     end
 end
 
