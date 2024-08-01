@@ -19,7 +19,6 @@ function mod:CheckMantle(player)
         local data = mod.GetPlayerData(player) 
         local effects = player:GetEffects()
         if mod:PlayerHasMantle(player) then
-            print("A")
             if data.HolyMantleCharged then
                 if not effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
                     effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
@@ -56,7 +55,7 @@ end
 ---@param player EntityPlayer
 function mod:MantleRoomClear(player)
     local data = mod.GetPlayerData(player)
-    if not data.HolyMantleCharged then
+    if not data.HolyMantleCharged and mod:PlayerHasMantle(player) then
         data.HolyMantleCharged = true
         player:SetColor(Color(1, 1, 1, 1, 2, 2, 2), 3, 1, true, true)
         mod:CheckMantle(player)
