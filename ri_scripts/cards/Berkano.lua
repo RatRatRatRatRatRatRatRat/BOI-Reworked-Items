@@ -4,8 +4,8 @@ local mod = REWORKEDITEMS
 function mod:UseBerkano(_, player, _)
     local rng = player:GetCardRNG(Card.RUNE_BERKANO)
 
-    local flies = rng:RandomInt(4, 8)
-    local spiders = rng:RandomInt(4, 8)
+    local flies = rng:RandomInt(3, 7)
+    local spiders = rng:RandomInt(3, 7)
 
     if flies > 0 then
        player:AddBlueFlies(flies, player.Position, player)
@@ -17,7 +17,7 @@ function mod:UseBerkano(_, player, _)
     end
 
     if FiendFolio then
-        local skuzz = rng:RandomInt(4, 8)
+        local skuzz = rng:RandomInt(3, 7)
         if skuzz > 0 then
             for i = 1, skuzz do
 		        FiendFolio.ThrowFriendlySkuzz(player, RandomVector() * 2)
